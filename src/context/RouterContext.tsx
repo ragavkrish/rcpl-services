@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import { normalizePath, toHref } from '../utils/paths';
 
 interface RouteParams {
   categorySlug?: string;
@@ -32,8 +33,8 @@ interface RouterContextType {
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
 function parsePath(path: string): ParsedRoute {
-  // Normalize path
-  const cleanPath = path.split('?')[0].replace(/\/+$/, '') || '/';
+  // Normalize path using base-path awareness
+  const cleanPath = normalizePath(path);
 
   if (cleanPath === '/' || cleanPath === '') {
     return { name: 'home', params: {} };
@@ -81,7 +82,7 @@ function parsePath(path: string): ParsedRoute {
 
 export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState<string>(() => {
-    return typeof window !== 'undefined' ? window.location.pathname : '/';
+    return typeof window !== 'undefined' ? normalizePath(window.location.pathname) : '/';
   });
 
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
@@ -89,8 +90,10 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const navigate = (to: string) => {
     if (typeof window !== 'undefined') {
-      window.history.pushState(null, '', to);
-      setCurrentPath(to);
+      const internalPath = normalizePath(to);
+      const browserUrl = toHref(internalPath);
+      window.history.pushState(null, '', browserUrl);
+      setCurrentPath(internalPath);
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   };
@@ -106,7 +109,7 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizePath(window.location.pathname));
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     };
 

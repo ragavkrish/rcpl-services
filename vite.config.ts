@@ -6,8 +6,34 @@ import {defineConfig} from 'vite';
 
 const rootDir = fileURLToPath(new URL('.', import.meta.url));
 
+function resolveBase(): string {
+  // 1. Explicit override if specified
+  if (process.env.VITE_BASE_PATH) {
+    const raw = process.env.VITE_BASE_PATH.trim();
+    if (raw === '/' || raw === '') return '/';
+    return raw.startsWith('/') ? (raw.endsWith('/') ? raw : `${raw}/`) : `/${raw}/`;
+  }
+
+  // 2. Cloudflare Pages build environment
+  if (process.env.CF_PAGES === '1') {
+    return '/';
+  }
+
+  // 3. GitHub Actions workflow for GitHub Pages
+  if (process.env.GITHUB_ACTIONS === 'true' && process.env.GITHUB_REPOSITORY) {
+    const repo = process.env.GITHUB_REPOSITORY.split('/')[1];
+    if (repo && !repo.endsWith('.github.io')) {
+      return `/${repo}/`;
+    }
+  }
+
+  // 4. Default for local development and root domains
+  return '/';
+}
+
 export default defineConfig(() => {
   return {
+    base: resolveBase(),
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

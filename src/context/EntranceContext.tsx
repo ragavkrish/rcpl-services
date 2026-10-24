@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { normalizePath } from '../utils/paths';
 
 type EntrancePhase = 'wordmark' | 'hero_reveal' | 'complete';
 
@@ -24,7 +25,8 @@ export const EntranceProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Check if session has already seen the entrance
     const seen = sessionStorage.getItem('rcpl_entrance_seen');
     // Only trigger on first visit on homepage
-    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    const currentRoute = normalizePath(window.location.pathname);
+    const isHome = currentRoute === '/' || currentRoute === '';
     return !seen && isHome;
   });
 
@@ -32,7 +34,8 @@ export const EntranceProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (typeof window === 'undefined') return 'complete';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const seen = sessionStorage.getItem('rcpl_entrance_seen');
-    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    const currentRoute = normalizePath(window.location.pathname);
+    const isHome = currentRoute === '/' || currentRoute === '';
     return !seen && !reducedMotion && isHome ? 'wordmark' : 'complete';
   });
 

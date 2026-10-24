@@ -32,14 +32,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build website
         run: npm run build
+        env:
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path || '/rcpl-services/' }}
 
       - name: Create 404.html for SPA routing
         run: cp dist/index.html dist/404.html
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload built website
         uses: actions/upload-pages-artifact@v3

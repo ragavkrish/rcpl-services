@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from '../../context/RouterContext';
+import { normalizePath, toHref } from '../../utils/paths';
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string;
@@ -19,10 +20,12 @@ export const Link: React.FC<LinkProps> = ({
   ...rest
 }) => {
   const { currentPath, navigate } = useRouter();
+  const internalTo = normalizePath(to);
+  const browserHref = toHref(internalTo);
 
   const isActive = exact
-    ? currentPath === to
-    : currentPath === to || (to !== '/' && currentPath.startsWith(to));
+    ? currentPath === internalTo
+    : currentPath === internalTo || (internalTo !== '/' && currentPath.startsWith(internalTo));
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
@@ -39,7 +42,7 @@ export const Link: React.FC<LinkProps> = ({
       !rest.target
     ) {
       e.preventDefault();
-      navigate(to);
+      navigate(internalTo);
     }
   };
 
@@ -47,7 +50,7 @@ export const Link: React.FC<LinkProps> = ({
 
   return (
     <a
-      href={to}
+      href={browserHref}
       onClick={handleClick}
       className={combinedClasses}
       aria-current={isActive ? 'page' : undefined}
