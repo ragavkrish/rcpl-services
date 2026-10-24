@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #111714;
+  --color-forest: #20483A;
+  --color-forest-dark: #163329;
+  --color-forest-light: #2A5C4A;
+  --color-ivory: #F5F2E9;
+  --color-champagne: #C5A46D;
+  --color-champagne-light: #D4BA8A;
+  --color-champagne-dark: #A8874E;
+  --color-muted-grey: #A6ADA7;
+  --color-white: #FFFFFF;
+  --color-divider: #D8DDD7;
+  --color-status-error: #B42318;
+  --color-status-focus: #2563EB;
+
+  --font-display: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: #111714;
+    background-color: #F5F2E9;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+
+  ::selection {
+    background-color: #20483A;
+    color: #F5F2E9;
+  }
+}
+
+/* Custom Prestige Utilities */
+.bg-obsidian-gradient {
+  background: radial-gradient(circle at 85% 15%, rgba(32, 72, 58, 0.25) 0%, rgba(17, 23, 20, 1) 70%);
+}
+
+.champagne-glow {
+  box-shadow: 0 0 25px -5px rgba(197, 164, 109, 0.3);
+}
+
+.text-champagne-contrast {
+  color: #8C6D39; /* Enhanced contrast for light backgrounds (WCAG AA compliant) */
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

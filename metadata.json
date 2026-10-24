@@ -1,0 +1,6 @@
+{
+  "name": "RCPL Services",
+  "description": "Business formation, intellectual property, registrations, taxation, and corporate compliance services catalogue.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

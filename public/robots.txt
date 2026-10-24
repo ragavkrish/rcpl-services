@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Exclude private draft review sections if any
+Disallow: /api/
+
+Sitemap: https://rcplservices.com/sitemap.xml
