@@ -39,7 +39,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   return (
     <div
       className={`divide-y ${
-        isDark ? 'divide-[#20483A]/60 border-y border-[#20483A]/60' : 'divide-[#D8DDD7] border-y border-[#D8DDD7]'
+        isDark ? 'divide-[#2A3B4D] border-y border-[#2A3B4D]' : 'divide-[#CCD3DA] border-y border-[#CCD3DA]'
       } ${className}`}
     >
       {items.map((item, idx) => {
@@ -49,28 +49,26 @@ export const Accordion: React.FC<AccordionProps> = ({
 
         return (
           <div key={idx} className="py-5 transition-colors">
-            <h3 className="text-base font-medium">
+            <h3 className="text-base">
               <button
                 type="button"
                 id={headerId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(idx)}
-                className={`w-full text-left flex items-start justify-between gap-4 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-2 ${
+                className={`w-full text-left flex items-start justify-between gap-4 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-1 ${
                   isDark
-                    ? 'text-[#FFFFFF] hover:text-[#C5A46D] focus-visible:ring-[#C5A46D]'
-                    : 'text-[#111714] hover:text-[#20483A] focus-visible:ring-[#20483A]'
+                    ? 'text-white hover:text-[#D4A368]'
+                    : 'text-[#121B24] hover:text-[#152E4D]'
                 }`}
               >
-                <span className="font-display text-lg sm:text-xl font-semibold leading-snug tracking-tight">
+                <span className="font-display text-lg sm:text-[19px] font-bold leading-snug tracking-tight">
                   {item.question}
                 </span>
                 <span
-                  className={`mt-0.5 shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200 ${
-                    isDark
-                      ? 'border-[#20483A] text-[#A6ADA7] group-hover:text-[#C5A46D] group-hover:border-[#C5A46D] group-hover:bg-[#20483A]/40'
-                      : 'border-[#D8DDD7] text-[#52616B] group-hover:text-[#20483A] group-hover:border-[#20483A] group-hover:bg-[#F5F2E9]'
-                  } ${isOpen ? 'rotate-180 border-[#C5A46D] text-[#C5A46D]' : ''}`}
+                  className={`mt-1 shrink-0 w-6 h-6 flex items-center justify-center transition-transform duration-150 ${
+                    isDark ? 'text-[#A5B4C4]' : 'text-[#6C7A89]'
+                  } ${isOpen ? 'rotate-180 text-[#8C6534]' : ''}`}
                 >
                   <ChevronDown className="w-4 h-4" />
                 </span>
@@ -81,8 +79,8 @@ export const Accordion: React.FC<AccordionProps> = ({
               role="region"
               aria-labelledby={headerId}
               hidden={!isOpen}
-              className={`mt-3 pr-8 text-sm leading-relaxed ${
-                isDark ? 'text-[#A6ADA7]' : 'text-[#52616B]'
+              className={`mt-2.5 pr-8 text-sm leading-relaxed ${
+                isDark ? 'text-[#CCD3DA]' : 'text-[#3A4754]'
               } ${isOpen ? 'block' : 'hidden'}`}
             >
               <p>{item.answer}</p>

@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { RouterProvider, useRouter } from './context/RouterContext';
 import { EntranceProvider } from './context/EntranceContext';
 import { EntranceCurtain } from './components/animation/EntranceCurtain';
-import { NoticeBanner } from './components/common/NoticeBanner';
+
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { EnquiryModal } from './components/enquiry/EnquiryModal';
+import { FloatingWhatsApp } from './components/common/FloatingWhatsApp';
 import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
@@ -30,9 +31,9 @@ const AppContent: React.FC = () => {
     } else if (route.name === 'faq') {
       title = 'Frequently Asked Questions — RCPL Services';
     } else if (route.name === 'privacy') {
-      title = 'Privacy Policy (Candidate Draft) — RCPL Services';
+      title = 'Privacy Policy — RCPL Services';
     } else if (route.name === 'terms') {
-      title = 'Terms of Service (Candidate Draft) — RCPL Services';
+      title = 'Terms of Service — RCPL Services';
     } else if (route.name === 'category' && route.params.categorySlug) {
       const cat = getCategoryBySlug(route.params.categorySlug);
       if (cat) {
@@ -83,9 +84,8 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F5F2E9] text-[#111714] font-sans antialiased selection:bg-[#20483A] selection:text-[#F5F2E9]">
-      {/* Editorial Notice Banner */}
-      <NoticeBanner />
+    <div className="min-h-screen flex flex-col bg-[#FCFCFA] text-[#121B24] font-sans antialiased selection:bg-[#152E4D] selection:text-white">
+
 
       {/* Main Responsive Header */}
       <Header />
@@ -100,6 +100,9 @@ const AppContent: React.FC = () => {
 
       {/* Global Interactive WhatsApp Enquiry Modal */}
       <EnquiryModal />
+
+      {/* Floating WhatsApp Quick Consultation Widget */}
+      <FloatingWhatsApp />
 
       {/* Signature First-Visit Entrance Curtain */}
       <EntranceCurtain />

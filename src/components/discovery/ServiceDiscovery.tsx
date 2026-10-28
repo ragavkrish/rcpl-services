@@ -199,41 +199,41 @@ export const ServiceDiscovery: React.FC = () => {
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
-    <div className="bg-[#FFFFFF] border border-[#D8DDD7] rounded-[24px] shadow-sm overflow-hidden">
+    <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
       {/* Top Header */}
-      <div className="p-6 sm:p-10 border-b border-[#D8DDD7] bg-gradient-to-b from-[#F5F2E9] to-[#FFFFFF]">
+      <div className="p-6 sm:p-10 border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#20483A]" />
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#20483A] font-semibold">
+              <span className="w-2 h-2 rounded-full bg-[#1E3A8A]" />
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#1E3A8A] font-bold">
                 Service Explorer & Intent Matcher
               </span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#111714] tracking-tight">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F2942] tracking-tight">
               What does your business need help with?
             </h2>
-            <p className="text-sm text-[#52616B] leading-relaxed">
-              Select your immediate goal below to reveal tailored starting points, candidate service profiles, and direct WhatsApp consultation options.
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Select your immediate goal below to reveal tailored starting points, practice service profiles, and direct WhatsApp consultation options.
             </p>
           </div>
 
-          {/* Quick Keyword Filter Input: Pill Shape */}
+          {/* Quick Keyword Filter Input */}
           <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-[#A6ADA7] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Search all services (e.g. GST, Private Ltd, Trademark)..."
-              aria-label="Search candidate services across all practice areas"
-              className="w-full pl-10 pr-10 py-2.5 bg-white border border-[#D8DDD7] focus:border-[#20483A] rounded-full text-xs text-[#111714] placeholder-[#A6ADA7] focus:outline-hidden focus:ring-1 focus:ring-[#20483A] transition-all shadow-xs"
+              aria-label="Search services across all practice areas"
+              className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 focus:border-[#1E3A8A] rounded-lg text-xs text-slate-900 placeholder-slate-400 focus:outline-hidden focus:ring-1 focus:ring-[#1E3A8A] transition-all shadow-xs"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[#D8DDD7]/60 text-xs text-[#111714] flex items-center justify-center hover:bg-[#D8DDD7] transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-slate-200 text-xs text-slate-700 flex items-center justify-center hover:bg-slate-300 transition-colors"
               >
                 ×
               </button>
@@ -243,14 +243,14 @@ export const ServiceDiscovery: React.FC = () => {
 
         {/* Global Search Notice if Searching */}
         {isSearching && (
-          <div className="mt-4 pt-3 border-t border-[#D8DDD7]/70 flex flex-wrap items-center justify-between text-xs text-[#52616B]">
+          <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600">
             <span>
               Searching across entire service catalogue for "<strong>{searchQuery}</strong>" ({filteredServices.length} result{filteredServices.length === 1 ? '' : 's'})
             </span>
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="text-xs font-semibold text-[#20483A] hover:underline"
+              className="text-xs font-bold text-[#1E3A8A] hover:underline"
             >
               Reset to Intent Pathways
             </button>
@@ -258,13 +258,13 @@ export const ServiceDiscovery: React.FC = () => {
         )}
       </div>
 
-      {/* 4 Interactive Intent Pathways Selector (Tablist with varied shape language) */}
+      {/* 4 Interactive Intent Pathways Selector (Tablist) */}
       {!isSearching && (
         <div
           ref={tabListRef}
           role="tablist"
           aria-label="Service Intent Navigation"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#D8DDD7] border-b border-[#D8DDD7] bg-[#FFFFFF]"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-b border-slate-200 bg-white"
         >
           {pathways.map((pathway, idx) => {
             const isSelected = pathway.key === selectedKey;
@@ -282,21 +282,21 @@ export const ServiceDiscovery: React.FC = () => {
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => handleSelectPathway(pathway.key)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
-                className={`p-6 sm:p-7 text-left transition-all relative group cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#20483A] min-h-[115px] ${
+                className={`p-6 sm:p-7 text-left transition-all relative group cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1E3A8A] min-h-[115px] ${
                   isSelected
-                    ? 'bg-[#111714] text-[#FFFFFF]'
-                    : 'hover:bg-[#F5F2E9]/60 text-[#111714]'
+                    ? 'bg-[#0F2942] text-white shadow-xs'
+                    : 'bg-white hover:bg-slate-50 text-slate-900'
                 }`}
               >
                 {/* Active Indicator Top Accent */}
                 {isSelected && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#C5A46D]" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-amber-400" />
                 )}
 
                 <div className="flex items-center justify-between mb-3.5">
                   <span
-                    className={`font-mono text-xs font-semibold ${
-                      isSelected ? 'text-[#C5A46D]' : 'text-[#A6ADA7]'
+                    className={`font-mono text-xs font-bold ${
+                      isSelected ? 'text-amber-300' : 'text-slate-400'
                     }`}
                   >
                     {pathway.number}
@@ -304,10 +304,10 @@ export const ServiceDiscovery: React.FC = () => {
 
                   {/* Circular Icon Accent Node */}
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                    className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all ${
                       isSelected
-                        ? 'bg-[#20483A] text-[#C5A46D] shadow-[0_0_12px_rgba(197,164,109,0.2)]'
-                        : 'bg-[#F5F2E9] text-[#20483A] group-hover:bg-[#E5DFD0]'
+                        ? 'bg-[#1E3A8A] text-white shadow-xs'
+                        : 'bg-slate-100 text-[#0F2942] group-hover:bg-slate-200'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -319,7 +319,7 @@ export const ServiceDiscovery: React.FC = () => {
                 </h3>
                 <p
                   className={`text-xs mt-1.5 leading-snug line-clamp-2 ${
-                    isSelected ? 'text-[#A6ADA7]' : 'text-[#52616B]'
+                    isSelected ? 'text-slate-300' : 'text-slate-600'
                   }`}
                 >
                   {pathway.tagline}
@@ -335,39 +335,39 @@ export const ServiceDiscovery: React.FC = () => {
         id={`intent-panel-${activePathway.key}`}
         role="tabpanel"
         aria-labelledby={`intent-tab-${activePathway.key}`}
-        className="p-6 sm:p-10 bg-[#FFFFFF] transition-opacity duration-300"
+        className="p-6 sm:p-10 bg-white transition-opacity duration-300"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column (5 Cols): Strategic Guidance & Pill Primary CTA */}
+          {/* Left Column (5 Cols): Strategic Guidance & Action Button */}
           <div className="lg:col-span-5 space-y-6">
             {!isSearching ? (
               <>
                 <div className="space-y-3">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#1E3A8A] font-bold">
                     Strategic Pathway {activePathway.number}
                   </span>
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#111714] tracking-tight">
+                  <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0F2942] tracking-tight">
                     {activePathway.title}
                   </h3>
-                  <p className="text-sm text-[#52616B] leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {activePathway.description}
                   </p>
                 </div>
 
-                {/* Strategic note with organic rounded accent */}
-                <div className="p-5 bg-[#F5F2E9] border-l-3 border-[#20483A] rounded-r-[12px] space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#20483A] flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C5A46D]" />
+                {/* Strategic note */}
+                <div className="p-5 bg-blue-50/70 border-l-4 border-[#1E3A8A] rounded-r-lg space-y-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#1E3A8A] flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#B45309]" />
                     <span>Recommended Starting Point</span>
                   </p>
-                  <p className="text-xs text-[#52616B] leading-relaxed">
+                  <p className="text-xs text-slate-700 leading-relaxed font-medium">
                     {activePathway.recommendedStartingPoint}
                   </p>
                 </div>
 
-                {/* Direct Categories in this pathway as minimal clean tags */}
+                {/* Direct Categories in this pathway */}
                 <div className="space-y-2.5 pt-1">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-[#A6ADA7]">
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold">
                     Related Practice Domains
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -375,49 +375,49 @@ export const ServiceDiscovery: React.FC = () => {
                       <Link
                         key={cat.id}
                         to={`/services/${cat.slug}`}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#F5F2E9] hover:bg-[#20483A] hover:text-white text-xs font-medium text-[#111714] rounded-full transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-[#1E3A8A] hover:text-white text-xs font-semibold text-slate-800 rounded-lg transition-colors"
                       >
                         <span>{cat.title}</span>
-                        <ArrowRight className="w-3 h-3 text-[#C5A46D]" />
+                        <ArrowRight className="w-3 h-3 text-[#1E3A8A]" />
                       </Link>
                     ))}
                   </div>
                 </div>
 
-                {/* Pill-Shaped Primary Action Button */}
+                {/* Primary Action Button */}
                 <div className="pt-2 space-y-2">
                   <button
                     type="button"
                     onClick={() => openEnquiryModal(activePathway.title)}
-                    className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#20483A] hover:bg-[#163329] text-white font-display text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-sm active:scale-[0.98] hover:shadow-[0_0_18px_rgba(32,72,58,0.35)]"
+                    className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white font-display text-xs font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer shadow-sm active:scale-[0.98]"
                   >
-                    <MessageSquare className="w-4 h-4 text-[#C5A46D]" />
+                    <MessageSquare className="w-4 h-4 text-white" />
                     <span>Enquire for {activePathway.title}</span>
                   </button>
-                  <p className="text-[11px] text-[#A6ADA7]">
+                  <p className="text-[11px] text-slate-500 font-medium">
                     Opens WhatsApp with prefilled parameters · No payment required
                   </p>
                 </div>
               </>
             ) : (
               <div className="space-y-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#1E3A8A] font-bold">
                   Catalogue Search Results
                 </span>
-                <h3 className="font-display text-2xl font-bold text-[#111714]">
+                <h3 className="font-display text-2xl font-bold text-[#0F2942]">
                   Matching Services
                 </h3>
-                <p className="text-sm text-[#52616B] leading-relaxed">
-                  Showing all candidate practice profiles matching your query. Click any service to view full procedural requirements, or start a direct WhatsApp inquiry.
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Showing all practice profiles matching your query. Click any service to view full procedural requirements, or start a direct WhatsApp inquiry.
                 </p>
 
-                <div className="p-4 bg-[#F5F2E9] rounded-[12px] border border-[#D8DDD7] text-xs text-[#52616B] space-y-1">
-                  <p className="font-semibold text-[#111714]">Can't find an exact match?</p>
+                <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-600 space-y-1">
+                  <p className="font-bold text-slate-900">Can't find an exact match?</p>
                   <p>Our team handles bespoke corporate secretarial and tax matters.</p>
                   <button
                     type="button"
                     onClick={() => openEnquiryModal(`Consultation for "${searchQuery}"`)}
-                    className="text-[#20483A] font-semibold underline cursor-pointer mt-1 block"
+                    className="text-[#1E3A8A] font-bold underline cursor-pointer mt-1 block"
                   >
                     Ask our team directly about "{searchQuery}" →
                   </button>
@@ -426,61 +426,61 @@ export const ServiceDiscovery: React.FC = () => {
             )}
           </div>
 
-          {/* Right Column (7 Cols): Open Typographic Service Rows (No card boxes!) */}
+          {/* Right Column (7 Cols): Open Typographic Service Rows */}
           <div className="lg:col-span-7 space-y-3">
-            <div className="flex items-center justify-between pb-3 border-b border-[#D8DDD7]">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#A6ADA7]">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold">
                 {isSearching ? `Catalogue Results (${filteredServices.length})` : 'Services in this Pathway'}
               </span>
-              <span className="text-xs text-[#52616B] font-mono">
-                {filteredServices.length} Candidate Profiles
+              <span className="text-xs text-slate-500 font-mono font-semibold">
+                {filteredServices.length} Practice Profiles
               </span>
             </div>
 
             {filteredServices.length === 0 ? (
-              <div className="p-8 text-center bg-[#F5F2E9] rounded-[12px] border border-[#D8DDD7] space-y-3">
-                <p className="text-sm text-[#111714] font-medium">No services found matching "{searchQuery}".</p>
-                <p className="text-xs text-[#52616B] max-w-sm mx-auto">
+              <div className="p-8 text-center bg-slate-50 rounded-lg border border-slate-200 space-y-3">
+                <p className="text-sm text-slate-900 font-bold">No services found matching "{searchQuery}".</p>
+                <p className="text-xs text-slate-600 max-w-sm mx-auto">
                   We frequently assist with unlisted statutory filings and structural adjustments.
                 </p>
                 <div className="pt-2 flex justify-center gap-3">
                   <button
                     type="button"
                     onClick={() => openEnquiryModal(`Unlisted Service: ${searchQuery}`)}
-                    className="px-5 py-2.5 bg-[#20483A] text-white text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-[#163329]"
+                    className="px-5 py-2.5 bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#1E40AF]"
                   >
                     Ask About This on WhatsApp
                   </button>
                   <button
                     type="button"
                     onClick={() => setSearchQuery('')}
-                    className="px-5 py-2.5 border border-[#D8DDD7] text-xs font-medium rounded-full hover:bg-white"
+                    className="px-5 py-2.5 border border-slate-300 text-xs font-bold rounded-lg hover:bg-white text-slate-700"
                   >
                     Clear Search
                   </button>
                 </div>
               </div>
             ) : (
-              <div className="divide-y divide-[#D8DDD7]/70">
+              <div className="divide-y divide-slate-200">
                 {filteredServices.map((svc) => (
                   <div
                     key={svc.id}
-                    className="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group transition-colors hover:bg-[#F5F2E9]/40 px-3 -mx-3 rounded-[8px]"
+                    className="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group transition-colors hover:bg-slate-50 px-3 -mx-3 rounded-lg"
                   >
                     <div className="space-y-1 sm:max-w-md">
-                      <div className="flex items-center gap-2 text-[11px] font-mono text-[#C5A46D]">
+                      <div className="flex items-center gap-2 text-[11px] font-mono text-[#1E3A8A] font-bold">
                         <span>{svc.categoryTitle}</span>
-                        <span className="text-[#A6ADA7]">·</span>
-                        <span className="text-[#A6ADA7]">Candidate Scope</span>
+                        <span className="text-slate-300">·</span>
+                        <span className="text-slate-500 font-medium">Practice Scope</span>
                       </div>
 
-                      <h4 className="font-display text-base font-bold text-[#111714] group-hover:text-[#20483A] transition-colors leading-snug">
+                      <h4 className="font-display text-base font-bold text-[#0F2942] group-hover:text-[#1E3A8A] transition-colors leading-snug">
                         <Link to={`/services/${svc.categorySlug}/${svc.slug}`}>
                           {svc.title}
                         </Link>
                       </h4>
 
-                      <p className="text-xs text-[#52616B] leading-relaxed line-clamp-2">
+                      <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
                         {svc.summary}
                       </p>
                     </div>
@@ -490,19 +490,19 @@ export const ServiceDiscovery: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => openEnquiryModal(svc.title)}
-                        className="px-3.5 py-1.5 bg-[#20483A]/10 hover:bg-[#20483A] text-[#20483A] hover:text-white border border-[#20483A]/20 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer flex items-center gap-1.5"
+                        className="px-3.5 py-1.5 bg-blue-50 hover:bg-[#1E3A8A] text-[#1E3A8A] hover:text-white border border-blue-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
                       >
                         <MessageSquare className="w-3 h-3" />
                         <span>Enquire</span>
                       </button>
 
-                      {/* Circular directional control button leading to detail page */}
+                      {/* Directional control button */}
                       <Link
                         to={`/services/${svc.categorySlug}/${svc.slug}`}
                         aria-label={`View full details for ${svc.title}`}
-                        className="w-8 h-8 rounded-full border border-[#D8DDD7] group-hover:border-[#20483A] group-hover:bg-[#20483A] group-hover:text-white flex items-center justify-center text-[#52616B] transition-all shrink-0 active:scale-95 shadow-xs"
+                        className="w-8 h-8 rounded-lg border border-slate-300 group-hover:border-[#1E3A8A] group-hover:bg-[#1E3A8A] group-hover:text-white flex items-center justify-center text-slate-600 transition-all shrink-0 active:scale-95 shadow-xs"
                       >
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A46D] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[#1E3A8A] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </Link>
                     </div>
                   </div>

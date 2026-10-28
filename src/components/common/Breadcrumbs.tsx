@@ -23,24 +23,24 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-xs ${isDark ? 'text-[#A6ADA7]' : 'text-[#52616B]'} ${className}`}
+      className={`text-xs ${isDark ? 'text-[#A5B4C4]' : 'text-[#6C7A89]'} ${className}`}
     >
       <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
         <li>
           <Link
             to="/"
             className={`transition-colors ${
-              isDark ? 'hover:text-[#FFFFFF]' : 'hover:text-[#111714]'
+              isDark ? 'hover:text-white' : 'hover:text-[#152E4D] hover:underline'
             }`}
           >
-            Home
+            Overview
           </Link>
         </li>
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;
           return (
             <React.Fragment key={idx}>
-              <li aria-hidden="true" className={isDark ? 'text-[#20483A]' : 'text-[#D8DDD7]'}>
+              <li aria-hidden="true" className={isDark ? 'text-[#3A4E63]' : 'text-[#CCD3DA]'}>
                 <ChevronRight className="w-3.5 h-3.5" />
               </li>
               <li>
@@ -48,15 +48,15 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                   <Link
                     to={item.to}
                     className={`transition-colors ${
-                      isDark ? 'hover:text-[#FFFFFF]' : 'hover:text-[#111714]'
+                      isDark ? 'hover:text-white' : 'hover:text-[#152E4D] hover:underline'
                     }`}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <span
-                    className={`font-medium ${
-                      isDark ? 'text-[#C5A46D]' : 'text-[#111714]'
+                    className={`font-semibold ${
+                      isDark ? 'text-white' : 'text-[#121B24]'
                     }`}
                     aria-current={isLast ? 'page' : undefined}
                   >

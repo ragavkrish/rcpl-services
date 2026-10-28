@@ -7,12 +7,9 @@ import {
   CheckCircle2,
   MessageSquare,
   ExternalLink,
-  HelpCircle,
   Copy,
   Check,
   Mail,
-  ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 interface EnquiryFormProps {
@@ -27,7 +24,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
   initialService = '',
   onSuccess,
   variant = 'inline',
-  heading = 'Ask About This Service',
+  heading = 'Statutory Consultation Dossier',
   subheading,
 }) => {
   const [fullName, setFullName] = useState('');
@@ -47,33 +44,30 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
   const [devCustomNumber, setDevCustomNumber] = useState('');
   const [showDevConfig, setShowDevConfig] = useState(false);
 
-  // Sync selectedService if initialService changes (e.g. user opens modal for different services)
   useEffect(() => {
     if (initialService) {
       setSelectedService(initialService);
     }
   }, [initialService]);
 
-  // Active WhatsApp number: from siteConfig or client dev preview override
   const activeWhatsAppNumber = (devCustomNumber || siteConfig.whatsAppNumber || '').trim();
 
-  // Helper to build formatted message
   const buildMessageText = (): string => {
     const lines = [
-      `*New Service Enquiry — RCPL Services*`,
+      `*New Service Consultation Requisition — RCPL Services*`,
       `---------------------------------`,
-      `*Full Name:* ${fullName.trim() || '[Not provided]'}`,
-      `*Contact Number:* ${contactNumber.trim() || '[Not provided]'}`,
-      `*Service Requested:* ${selectedService.trim() || 'General Consultation'}`,
+      `*Full Legal Name:* ${fullName.trim() || '[Not provided]'}`,
+      `*Contact Phone:* ${contactNumber.trim() || '[Not provided]'}`,
+      `*Statutory Service:* ${selectedService.trim() || 'General Corporate Advisory'}`,
     ];
 
     if (message.trim()) {
-      lines.push(`*Requirement Context:*`);
+      lines.push(`*Filing Context / Scope:*`);
       lines.push(message.trim());
     }
 
     lines.push(`---------------------------------`);
-    lines.push(`_Initiated via RCPL Services Modern Prestige Desk_`);
+    lines.push(`_Submitted via RCPL Services Advisory Portal_`);
     return lines.join('\n');
   };
 
@@ -82,14 +76,13 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
     const errorFields: string[] = [];
 
     if (!fullName.trim()) {
-      newErrors.fullName = 'Please enter your full name.';
+      newErrors.fullName = 'Please enter your legal name as per official identity.';
       errorFields.push('fullName');
     } else if (fullName.trim().length < 2) {
       newErrors.fullName = 'Name must be at least 2 characters.';
       errorFields.push('fullName');
     }
 
-    // Phone validation: digits with optional leading +, min 10 digits
     const cleanedPhone = contactNumber.replace(/[\s\-()]/g, '');
     const phoneDigitsOnly = cleanedPhone.replace(/\+/g, '');
 
@@ -97,12 +90,12 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       newErrors.contactNumber = 'Please enter your contact phone number.';
       errorFields.push('contactNumber');
     } else if (!/^\+?[0-9]{10,15}$/.test(cleanedPhone) || phoneDigitsOnly.length < 10) {
-      newErrors.contactNumber = 'Please enter a valid phone number (at least 10 digits, e.g. 98765 43210).';
+      newErrors.contactNumber = 'Enter a valid phone number (at least 10 digits).';
       errorFields.push('contactNumber');
     }
 
     if (!selectedService.trim()) {
-      newErrors.service = 'Please select a service from the catalogue.';
+      newErrors.service = 'Please select a statutory service from the index.';
       errorFields.push('service');
     }
 
@@ -129,7 +122,6 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       });
       setTimeout(() => setCopiedDraft(false), 3000);
     } catch {
-      // Fallback if clipboard API is restricted
       setCopiedDraft(true);
       setTimeout(() => setCopiedDraft(false), 3000);
     }
@@ -148,7 +140,6 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       return;
     }
 
-    // Check if the business WhatsApp number is configured
     if (!activeWhatsAppNumber) {
       setIsConfigUnavailable(true);
       return;
@@ -159,17 +150,15 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
     const sanitizedNumber = activeWhatsAppNumber.replace(/[^0-9]/g, '');
     const whatsAppUrl = `https://wa.me/${sanitizedNumber}?text=${encodedText}`;
 
-    // Track handoff attempt (strictly labeled as attempt, not finished lead)
     trackConversionEvent('whatsapp_handoff_attempt', {
       serviceTitle: selectedService,
     });
 
-    // Open WhatsApp in safe new tab
     if (typeof window !== 'undefined') {
       window.open(whatsAppUrl, '_blank', 'noopener,noreferrer');
     }
 
-    setSubmissionNotice('WhatsApp chat launched. Remember to tap "Send" in WhatsApp to deliver your enquiry.');
+    setSubmissionNotice('WhatsApp discussion opened in a secure new tab. Please inspect your brief and send to initiate consultation.');
     if (onSuccess) {
       onSuccess();
     }
@@ -179,105 +168,86 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
   return (
     <div
-      className={`${
+      className={`bg-white text-[#121B24] ${
         isModal
-          ? 'bg-[#111714] text-[#FFFFFF] p-6 sm:p-8'
-          : 'bg-[#FFFFFF] text-[#111714] p-8 sm:p-10 border border-[#D8DDD7] shadow-sm'
-      } rounded-[20px] relative transition-all`}
+          ? 'p-6 sm:p-8'
+          : 'p-6 sm:p-8 border border-[#CCD3DA] rounded-xs shadow-xs'
+      }`}
     >
-      <div className="mb-6 space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#C5A46D]" />
-          <span className="font-mono text-[11px] uppercase tracking-wider text-[#C5A46D] font-semibold">
-            Direct WhatsApp Consultation Desk
-          </span>
+      {heading && (
+        <div className="mb-6 space-y-2 pb-4 border-b border-[#E3E7EB]">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-[#8C6534] font-semibold">
+            Registry Advisory Intake Desk
+          </div>
+          <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#121B24]">
+            {heading}
+          </h3>
+          <p className="text-xs text-[#556371] leading-relaxed font-normal">
+            {subheading ||
+              'Submit your entity facts below. Your brief is assembled into WhatsApp for immediate direct review with our senior compliance officers.'}
+          </p>
+          <div className="pt-1 text-[11px] text-[#6C7A89] flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>Direct partner review</span>
+            <span aria-hidden="true">·</span>
+            <span>Zero upfront fee</span>
+            <span aria-hidden="true">·</span>
+            <span>You review brief before dispatch</span>
+          </div>
         </div>
-        <h3
-          className={`font-display text-2xl sm:text-3xl font-bold tracking-tight ${
-            isModal ? 'text-[#FFFFFF]' : 'text-[#111714]'
-          }`}
-        >
-          {heading}
-        </h3>
-        <p className={`text-xs sm:text-sm leading-relaxed ${isModal ? 'text-[#A6ADA7]' : 'text-[#52616B]'}`}>
-          {subheading ||
-            'Submit your contact details and service requirement below. Your brief is preformatted into WhatsApp, where you review and send it directly.'}
-        </p>
+      )}
 
-        {/* Conversion reassurance pills */}
-        <div className="pt-2 flex flex-wrap items-center gap-3 text-[11px]">
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${
-            isModal ? 'bg-[#20483A]/50 text-[#C5A46D] border border-[#20483A]' : 'bg-[#F5F2E9] text-[#20483A] border border-[#D8DDD7]'
-          }`}>
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Zero obligation or payment</span>
-          </span>
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${
-            isModal ? 'bg-[#20483A]/50 text-[#C5A46D] border border-[#20483A]' : 'bg-[#F5F2E9] text-[#20483A] border border-[#D8DDD7]'
-          }`}>
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Review brief before sending</span>
-          </span>
-        </div>
-      </div>
-
-      {/* Unavailable configuration state banner if client has not provided number */}
       {isConfigUnavailable && (
         <div
           role="alert"
-          className="mb-6 p-4 bg-amber-50 border border-amber-300 rounded-[12px] text-xs text-amber-900 space-y-3"
+          className="mb-6 p-4 bg-[#FFFDF5] border border-[#DEB887] text-xs text-[#6B4B1B] space-y-3"
         >
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-[#8C6534] shrink-0 mt-0.5" />
             <div className="space-y-1 flex-1">
-              <p className="font-semibold text-amber-900">
-                Official Business WhatsApp Number Awaiting Client Deployment
+              <p className="font-semibold text-[#4A3210]">
+                Official WhatsApp Helpline Awaiting Deployment
               </p>
-              <p className="leading-relaxed text-amber-800">
-                In strict adherence to truth-in-advertising guidelines, RCPL Services never guesses or invents telephone numbers. The approved business WhatsApp number is awaiting client deployment.
-              </p>
-              <p className="pt-1 text-[11px] text-amber-700 font-medium">
-                You can copy your formatted brief right now or route your enquiry via email:
+              <p className="leading-relaxed text-[#6B4B1B]">
+                In accordance with truth-in-filing guidelines, telephone numbers are never fabricated. You may copy your prepared brief or send directly via email:
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-amber-200">
+          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#E8D4B0]">
             <button
               type="button"
               onClick={handleCopyDraft}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-900 text-white rounded-full text-xs font-medium hover:bg-amber-950 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#4A3210] text-white text-xs font-medium hover:bg-[#33220B] transition-colors"
             >
               {copiedDraft ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedDraft ? 'Brief Copied!' : 'Copy Formatted Brief'}</span>
+              <span>{copiedDraft ? 'Brief Copied' : 'Copy Formatted Brief'}</span>
             </button>
 
             <a
               href={`mailto:${siteConfig.defaultEmailPrompt}?subject=${encodeURIComponent(
-                `Service Enquiry: ${selectedService}`
+                `Statutory Enquiry: ${selectedService}`
               )}&body=${encodeURIComponent(buildMessageText())}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-amber-300 text-amber-900 rounded-full text-xs font-medium hover:bg-amber-100 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#DEB887] text-[#4A3210] text-xs font-medium hover:bg-[#FAF4EB] transition-colors"
             >
-              <Mail className="w-3.5 h-3.5 text-amber-700" />
+              <Mail className="w-3.5 h-3.5 text-[#8C6534]" />
               <span>Send via Email Desk</span>
             </a>
 
             <button
               type="button"
               onClick={() => setShowDevConfig(!showDevConfig)}
-              className="text-[11px] text-amber-800 underline hover:text-amber-950 ml-auto"
+              className="text-[11px] text-[#6B4B1B] underline ml-auto cursor-pointer"
             >
-              {showDevConfig ? 'Hide Test Input' : 'Enter test WhatsApp number'}
+              {showDevConfig ? 'Hide Test Input' : 'Reviewer Test Number'}
             </button>
           </div>
         </div>
       )}
 
-      {/* Reviewer test helper */}
       {showDevConfig && (
-        <div className="mb-6 p-4 bg-slate-100 border border-slate-300 rounded-[12px] text-xs text-slate-800 space-y-2">
+        <div className="mb-6 p-3 bg-[#F6F7F5] border border-[#CCD3DA] text-xs text-[#3A4754] space-y-2">
           <label htmlFor="dev-phone" className="block font-medium">
-            Temporary WhatsApp Number for review testing (country code + digits, e.g. 919876543210):
+            Temporary WhatsApp number for review testing (e.g. 919876543210):
           </label>
           <div className="flex gap-2">
             <input
@@ -286,16 +256,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               value={devCustomNumber}
               onChange={(e) => setDevCustomNumber(e.target.value)}
               placeholder="e.g. 919876543210"
-              className="flex-1 px-3 py-2 border border-slate-300 rounded-[8px] bg-white text-xs text-[#111714]"
+              className="flex-1 px-3 py-1.5 border border-[#CCD3DA] bg-white text-xs text-[#121B24]"
             />
             <button
               type="button"
               onClick={() => {
-                if (devCustomNumber.trim()) {
-                  setIsConfigUnavailable(false);
-                }
+                if (devCustomNumber.trim()) setIsConfigUnavailable(false);
               }}
-              className="px-4 py-2 bg-[#20483A] text-white rounded-full text-xs font-semibold hover:bg-[#163329]"
+              className="px-3 py-1.5 bg-[#152E4D] text-white text-xs font-semibold"
             >
               Save Number
             </button>
@@ -303,26 +271,25 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
         </div>
       )}
 
-      {/* Post-launch feedback banner */}
       {submissionNotice && (
         <div
           role="status"
-          className="mb-6 p-4 bg-emerald-50 border border-emerald-300 rounded-[12px] text-xs text-[#166534] flex items-start gap-3 shadow-xs animate-in fade-in duration-200"
+          className="mb-6 p-4 bg-[#F2F8F5] border border-[#A3D1BE] text-xs text-[#0F4A33] flex items-start gap-3"
         >
-          <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5 text-[#166534]" />
+          <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#106A49]" />
           <div className="space-y-1">
-            <p className="font-semibold">{submissionNotice}</p>
-            <p className="text-emerald-800 leading-relaxed">
-              Your draft message contains your requirements and contact information. Simply tap the green send button in WhatsApp to start your direct discussion.
+            <p className="font-semibold text-sm">{submissionNotice}</p>
+            <p className="leading-relaxed text-[#1D5E45]">
+              Your consultation docket is prepared with the requirements listed below. Tap send in WhatsApp to commence discussion.
             </p>
             <div className="pt-1">
               <button
                 type="button"
                 onClick={handleCopyDraft}
-                className="inline-flex items-center gap-1.5 text-xs text-[#166534] font-medium underline cursor-pointer hover:text-emerald-950"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold underline cursor-pointer text-[#0F4A33]"
               >
                 {copiedDraft ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copiedDraft ? 'Copied to clipboard' : 'Copy message text to clipboard as backup'}</span>
+                <span>{copiedDraft ? 'Brief Copied' : 'Copy brief text as backup'}</span>
               </button>
             </div>
           </div>
@@ -332,16 +299,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       <form onSubmit={handleSubmit} noValidate className="space-y-4">
         {/* Full Name */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center justify-between mb-1">
             <label
               htmlFor="enquiry-name"
-              className={`block text-[11px] font-mono uppercase tracking-wider ${
-                isModal ? 'text-[#C5A46D]' : 'text-[#20483A] font-semibold'
-              }`}
+              className="block text-xs font-semibold text-[#121B24]"
             >
-              Full Name <span className="text-[#B42318]">*</span>
+              Full Legal Name <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[10px] text-[#A6ADA7]">As shown on official identity</span>
+            <span className="text-[11px] text-[#6C7A89]">As in Aadhaar/PAN records</span>
           </div>
           <input
             id="enquiry-name"
@@ -354,13 +319,11 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               setFullName(e.target.value);
               if (errors.fullName) setErrors((prev) => ({ ...prev, fullName: undefined }));
             }}
-            placeholder="e.g. Vikramaditya Sharma"
+            placeholder="e.g. Ramesh Chandra Sharma"
             aria-describedby={errors.fullName ? 'name-error' : undefined}
-            className={`w-full px-3.5 py-2.5 rounded-[8px] text-sm transition-colors ${
-              isModal
-                ? 'bg-[#163329]/40 border border-[#20483A] text-[#FFFFFF] placeholder-[#A6ADA7]/50 focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]'
-                : 'bg-white border border-[#D8DDD7] text-[#111714] placeholder-[#A6ADA7] focus:border-[#20483A] focus:ring-1 focus:ring-[#20483A]'
-            } ${errors.fullName ? '!border-[#B42318]' : ''}`}
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+              errors.fullName ? '!border-[#B42318]' : ''
+            }`}
           />
           {errors.fullName && (
             <p id="name-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
@@ -372,16 +335,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Contact Phone */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center justify-between mb-1">
             <label
               htmlFor="enquiry-phone"
-              className={`block text-[11px] font-mono uppercase tracking-wider ${
-                isModal ? 'text-[#C5A46D]' : 'text-[#20483A] font-semibold'
-              }`}
+              className="block text-xs font-semibold text-[#121B24]"
             >
-              Contact Number <span className="text-[#B42318]">*</span>
+              Contact Phone / WhatsApp <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[10px] text-[#A6ADA7]">WhatsApp active number</span>
+            <span className="text-[11px] text-[#6C7A89]">For statutory review handoff</span>
           </div>
           <input
             id="enquiry-phone"
@@ -396,11 +357,9 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             }}
             placeholder="e.g. 98765 43210 (or +91...)"
             aria-describedby={errors.contactNumber ? 'phone-error' : undefined}
-            className={`w-full px-3.5 py-2.5 rounded-[8px] text-sm transition-colors ${
-              isModal
-                ? 'bg-[#163329]/40 border border-[#20483A] text-[#FFFFFF] placeholder-[#A6ADA7]/50 focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]'
-                : 'bg-white border border-[#D8DDD7] text-[#111714] placeholder-[#A6ADA7] focus:border-[#20483A] focus:ring-1 focus:ring-[#20483A]'
-            } ${errors.contactNumber ? '!border-[#B42318]' : ''}`}
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+              errors.contactNumber ? '!border-[#B42318]' : ''
+            }`}
           />
           {errors.contactNumber && (
             <p id="phone-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
@@ -412,16 +371,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Service of Interest */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center justify-between mb-1">
             <label
               htmlFor="enquiry-service"
-              className={`block text-[11px] font-mono uppercase tracking-wider ${
-                isModal ? 'text-[#C5A46D]' : 'text-[#20483A] font-semibold'
-              }`}
+              className="block text-xs font-semibold text-[#121B24]"
             >
-              Service of Interest <span className="text-[#B42318]">*</span>
+              Statutory Service of Interest <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[10px] text-[#A6ADA7]">Preselected from page</span>
+            <span className="text-[11px] text-[#6C7A89]">MCA / IP / Tax domain</span>
           </div>
           <select
             id="enquiry-service"
@@ -434,13 +391,11 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               if (errors.service) setErrors((prev) => ({ ...prev, service: undefined }));
             }}
             aria-describedby={errors.service ? 'service-error' : undefined}
-            className={`w-full px-3.5 py-2.5 rounded-[8px] text-sm transition-colors ${
-              isModal
-                ? 'bg-[#111714] border border-[#20483A] text-[#FFFFFF] focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]'
-                : 'bg-white border border-[#D8DDD7] text-[#111714] focus:border-[#20483A] focus:ring-1 focus:ring-[#20483A]'
-            } ${errors.service ? '!border-[#B42318]' : ''}`}
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+              errors.service ? '!border-[#B42318]' : ''
+            }`}
           >
-            <option value="">— Select a service from catalogue —</option>
+            <option value="">— Select from Statutory Catalogue —</option>
             {serviceCategories.map((cat) => (
               <optgroup key={cat.id} label={cat.title}>
                 {candidateServices
@@ -452,7 +407,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
                   ))}
               </optgroup>
             ))}
-            <option value="General Consultation & Guidance">General Consultation & Guidance</option>
+            <option value="General Corporate Advisory & Structuring">General Corporate Advisory & Structuring</option>
           </select>
           {errors.service && (
             <p id="service-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
@@ -464,51 +419,38 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Message / Brief requirement */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center justify-between mb-1">
             <label
               htmlFor="enquiry-message"
-              className={`block text-[11px] font-mono uppercase tracking-wider ${
-                isModal ? 'text-[#C5A46D]' : 'text-[#20483A] font-semibold'
-              }`}
+              className="block text-xs font-semibold text-[#121B24]"
             >
-              Requirement Brief <span className="text-[#A6ADA7] font-normal lowercase">(optional)</span>
+              Entity Facts / Notes <span className="text-[#6C7A89] font-normal">(optional)</span>
             </label>
-            <span className="text-[10px] text-[#A6ADA7]">Specific state, scope, or timeline</span>
+            <span className="text-[11px] text-[#6C7A89]">State, authorized capital, or timeline</span>
           </div>
           <textarea
             id="enquiry-message"
             rows={3}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Share any specific context (e.g. business activity, number of partners/directors, state of operation)..."
-            className={`w-full px-3.5 py-2.5 rounded-[8px] text-sm transition-colors resize-y ${
-              isModal
-                ? 'bg-[#163329]/40 border border-[#20483A] text-[#FFFFFF] placeholder-[#A6ADA7]/50 focus:border-[#C5A46D] focus:ring-1 focus:ring-[#C5A46D]'
-                : 'bg-white border border-[#D8DDD7] text-[#111714] placeholder-[#A6ADA7] focus:border-[#20483A] focus:ring-1 focus:ring-[#20483A]'
-            }`}
+            placeholder="Share specific context (e.g. number of directors, registered office state, nature of business activity)..."
+            className="w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] resize-y"
           />
         </div>
 
-        {/* Submission Notice & Legal Safeguards */}
-        <div className="pt-1">
-          <p className="text-xs text-[#A6ADA7] leading-relaxed flex items-start gap-1.5">
-            <HelpCircle className="w-3.5 h-3.5 text-[#C5A46D] shrink-0 mt-0.5" />
-            <span>
-              Tapping below formats and opens your brief in WhatsApp. You will review everything and click send directly inside WhatsApp to initiate your conversation.
-            </span>
-          </p>
-        </div>
-
-        {/* Submit CTA button */}
+        {/* Submit Button */}
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#20483A] hover:bg-[#2A5C4A] border border-[#C5A46D]/60 text-white font-display font-semibold text-xs uppercase tracking-wider rounded-full transition-all duration-200 hover:shadow-[0_0_20px_-3px_rgba(197,164,109,0.35)] cursor-pointer active:scale-[0.98]"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-semibold text-xs uppercase tracking-wider rounded-xs transition-colors cursor-pointer active:scale-[0.99] border border-[#0D1E33]"
           >
-            <MessageSquare className="w-4 h-4 text-[#C5A46D]" />
-            <span>{selectedService ? `Enquire About ${selectedService}` : 'Continue to WhatsApp'}</span>
-            <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            <MessageSquare className="w-4 h-4 text-[#C99C62]" />
+            <span>{selectedService ? `Enquire for ${selectedService}` : 'Open WhatsApp Consultation Docket'}</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-70" />
           </button>
+          <p className="text-[11px] text-[#6C7A89] text-center mt-2">
+            Dispatches directly to WhatsApp. You review and approve message text before sending.
+          </p>
         </div>
       </form>
     </div>

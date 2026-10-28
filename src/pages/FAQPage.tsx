@@ -6,7 +6,7 @@ import { MessageSquare } from 'lucide-react';
 
 export const FAQPage: React.FC = () => {
   const { openEnquiryModal } = useRouter();
-  const [activeTab, setActiveTab] = useState<'all' | 'general' | 'formation' | 'ip' | 'tax' | 'secretarial'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'formation' | 'ip' | 'tax' | 'secretarial'>('all');
 
   const allFaqs = [
     {
@@ -86,54 +86,50 @@ export const FAQPage: React.FC = () => {
   const filteredFaqs =
     activeTab === 'all'
       ? allFaqs
-      : allFaqs.filter((item) => item.category === activeTab);
+      : allFaqs.filter((item) => item.category === activeTab || item.category === 'general');
 
   return (
-    <div className="space-y-16 lg:space-y-24 py-8">
+    <div className="space-y-12 lg:space-y-16 py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <Breadcrumbs items={[{ label: 'Frequently Asked Questions' }]} />
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <Breadcrumbs items={[{ label: 'FAQs' }]} />
 
-        <div className="bg-[#111714] text-[#FFFFFF] rounded-tl-[36px] rounded-br-[36px] sm:rounded-tl-[48px] sm:rounded-br-[48px] border border-[#20483A] p-8 sm:p-14 relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#20483A]/30 blur-3xl pointer-events-none" />
-
-          <div className="max-w-3xl space-y-4 relative z-10">
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-[#C5A46D] uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A46D]" />
-              <span>Knowledge Base</span>
+        <div className="bg-[#121B24] text-white border border-[#243342] p-8 sm:p-14 relative">
+          <div className="max-w-3xl space-y-4">
+            <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+              Statutory Knowledge Base · Regulatory Guidance
             </div>
 
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Frequently Asked Questions
             </h1>
 
-            <p className="text-base sm:text-lg text-[#A6ADA7] leading-relaxed font-light">
-              Detailed guidance regarding statutory frameworks, entity incorporation, intellectual property rights, tax returns, and corporate governance.
+            <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
+              Methodical clarifications regarding entity incorporation, trademark registration, tax compliance, and corporate governance in India.
             </p>
           </div>
         </div>
       </section>
 
       {/* Filter Tabs & Accordion */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Category Segmented Tabs (Pill Container & Pill Buttons) */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white border border-[#D8DDD7] rounded-full mb-8 max-w-2xl shadow-xs">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* Category Segmented Tabs */}
+        <div className="flex items-center gap-1 overflow-x-auto pb-2 border-b border-[#CCD3DA]">
           {[
-            { id: 'all', label: 'All Questions' },
-            { id: 'general', label: 'General & Scope' },
-            { id: 'formation', label: 'Formations' },
+            { id: 'all', label: 'All Statutory Questions' },
+            { id: 'formation', label: 'Company Formations' },
             { id: 'ip', label: 'Intellectual Property' },
             { id: 'tax', label: 'Tax & Compliance' },
-            { id: 'secretarial', label: 'Secretarial & Conversions' },
+            { id: 'secretarial', label: 'Corporate Secretarial' },
           ].map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`px-4 py-2 text-xs font-medium rounded-full transition-all cursor-pointer ${
+              className={`px-3.5 py-2 text-xs font-semibold rounded-xs transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-[#111714] text-white shadow-xs'
-                  : 'text-[#52616B] hover:text-[#111714] hover:bg-[#F5F2E9]'
+                  ? 'bg-[#152E4D] text-white'
+                  : 'text-[#3A4754] hover:bg-[#F6F7F5] hover:text-[#121B24]'
               }`}
             >
               {tab.label}
@@ -147,14 +143,14 @@ export const FAQPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Direct Consultation Card (Rounded-24px with Pill Button) */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="p-8 sm:p-12 bg-[#FFFFFF] border border-[#D8DDD7] rounded-[24px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xs">
-          <div className="space-y-1.5 max-w-xl">
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#111714]">
-              Have a question not covered here?
+      {/* Direct Consultation Card */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="p-8 sm:p-10 bg-[#F6F7F5] border border-[#CCD3DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1 max-w-xl">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#121B24]">
+              Have a specific question not covered here?
             </h2>
-            <p className="text-xs sm:text-sm text-[#52616B] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#556371] leading-relaxed">
               Every enterprise setup has distinct jurisdictional and capital considerations. Connect directly via WhatsApp to review your exact requirements.
             </p>
           </div>
@@ -162,10 +158,10 @@ export const FAQPage: React.FC = () => {
           <button
             type="button"
             onClick={() => openEnquiryModal()}
-            className="px-8 py-3.5 bg-[#20483A] hover:bg-[#2A5C4A] border border-[#C5A46D]/60 text-white font-display text-xs font-semibold uppercase tracking-wider rounded-full transition-all shrink-0 cursor-pointer inline-flex items-center gap-2.5 shadow-sm active:scale-[0.98]"
+            className="px-6 py-3.5 bg-[#8C6534] hover:bg-[#A3753C] text-white font-semibold text-xs uppercase tracking-wider transition-colors shrink-0 cursor-pointer inline-flex items-center gap-2"
           >
-            <MessageSquare className="w-4 h-4 text-[#C5A46D]" />
-            <span>Consult via WhatsApp</span>
+            <MessageSquare className="w-4 h-4 text-white" />
+            <span>Consult on WhatsApp</span>
           </button>
         </div>
       </section>

@@ -1,68 +1,51 @@
 import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { AlertTriangle } from 'lucide-react';
 
 export const TermsOfServicePage: React.FC = () => {
   return (
-    <div className="space-y-12 py-8">
+    <div className="space-y-10 py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Breadcrumbs items={[{ label: 'Terms of Service' }]} />
 
-        {/* Draft Notice Banner */}
-        <div
-          role="alert"
-          className="p-4 bg-amber-50 border border-amber-300 rounded-[3px] flex items-start gap-3 text-amber-900"
-        >
-          <AlertTriangle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
-          <div className="text-xs space-y-1">
-            <p className="font-semibold uppercase tracking-wider text-amber-800">
-              Draft Document — Pending Client & Legal Counsel Review
-            </p>
-            <p className="leading-relaxed text-amber-700">
-              This document is a candidate terms of service draft for RCPL Services. It must be formally reviewed, modified, and approved by qualified legal counsel to match finalized commercial, operational, and regulatory agreements.
-            </p>
-          </div>
-        </div>
-
-        <div className="bg-[#111714] text-[#FFFFFF] rounded-[4px] border border-[#20483A] p-8 sm:p-12 relative overflow-hidden">
+        <div className="bg-[#121B24] text-white border border-[#243342] p-8 sm:p-12 relative">
           <div className="space-y-2">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D]">
-              Candidate Draft · Version 1.0
+            <span className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+              Official Terms · Version 1.0
             </span>
-            <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight">
-              Terms of Service (Candidate Draft)
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Terms of Service
             </h1>
           </div>
         </div>
       </section>
 
       {/* Terms Content */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-3xl space-y-8 text-sm text-[#52616B] leading-relaxed">
-          <div className="space-y-3">
-            <h2 className="font-display text-xl font-bold text-[#111714]">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-3xl space-y-8 text-sm text-[#3A4754] leading-relaxed bg-white p-8 sm:p-10 border border-[#CCD3DA]">
+          <div className="space-y-2.5">
+            <h2 className="font-display text-xl font-bold text-[#121B24]">
               1. Nature of Services
             </h2>
             <p>
               RCPL Services provides corporate document preparation, procedural facilitation, and administrative filing assistance for business formations, intellectual property applications, and statutory tax and compliance filings in India.
             </p>
-            <p className="font-semibold text-[#111714]">
+            <p className="font-semibold text-[#121B24]">
               RCPL Services is not an official government department, regulatory registry, or judicial advocate practice. Informational materials provided on this website or during exploratory consultations do not constitute legal advice, judicial advocacy, or chartered audit opinions.
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="font-display text-xl font-bold text-[#111714]">
-              2. Candidate Catalogue Status
+          <div className="space-y-2.5">
+            <h2 className="font-display text-xl font-bold text-[#121B24]">
+              2. Service Catalogue &amp; Scope
             </h2>
             <p>
-              The services, processes, and candidate profiles listed across this website represent onboarding candidate scopes. They are subject to scoping revisions, regulatory changes, and specific client requirements. Formal commercial obligations are established only upon execution of an approved mandate.
+              The services, processes, and service profiles listed across this website represent standard practice scopes. They are subject to scoping revisions, regulatory changes, and specific client requirements. Formal commercial obligations are established upon execution of an approved mandate.
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="font-display text-xl font-bold text-[#111714]">
+          <div className="space-y-2.5">
+            <h2 className="font-display text-xl font-bold text-[#121B24]">
               3. Absence of Outcome Guarantees
             </h2>
             <p>
@@ -73,8 +56,8 @@ export const TermsOfServicePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="font-display text-xl font-bold text-[#111714]">
+          <div className="space-y-2.5">
+            <h2 className="font-display text-xl font-bold text-[#121B24]">
               4. Client Evidentiary Responsibilities
             </h2>
             <p>
@@ -82,8 +65,8 @@ export const TermsOfServicePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="font-display text-xl font-bold text-[#111714]">
+          <div className="space-y-2.5">
+            <h2 className="font-display text-xl font-bold text-[#121B24]">
               5. Limitation of Liability
             </h2>
             <p>

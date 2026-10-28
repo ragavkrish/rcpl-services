@@ -7,12 +7,10 @@ import { useRouter } from '../context/RouterContext';
 import {
   ArrowRight,
   ArrowUpRight,
-  CheckCircle2,
+  Check,
   FileCheck2,
-  HelpCircle,
   Info,
   MessageSquare,
-  ShieldAlert,
 } from 'lucide-react';
 
 interface ServiceDetailPageProps {
@@ -30,152 +28,133 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 
   if (!service || !category) {
     return (
-      <div className="max-w-[1280px] mx-auto px-4 py-20 text-center space-y-4">
-        <h1 className="font-display text-3xl font-bold text-[#111714]">Service Profile Not Found</h1>
-        <p className="text-sm text-[#52616B]">
-          The requested candidate service could not be located in our catalogue.
+      <div className="max-w-[1320px] mx-auto px-4 py-20 text-center space-y-4">
+        <h1 className="font-display text-3xl font-bold text-[#121B24]">Practice Profile Not Found</h1>
+        <p className="text-sm text-[#556371]">
+          The requested service could not be located in our directory.
         </p>
         <div className="pt-4 flex items-center justify-center gap-4">
           <Link
             to={`/services/${categorySlug}`}
-            className="px-6 py-2.5 bg-[#111714] text-white text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-[#20483A] transition-colors"
+            className="px-6 py-2.5 bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider transition-colors"
           >
-            Back to Category
+            Back to Domain
           </Link>
           <Link
             to="/"
-            className="px-6 py-2.5 border border-[#D8DDD7] text-[#111714] text-xs font-semibold uppercase tracking-wider rounded-full hover:border-[#111714] transition-colors"
+            className="px-6 py-2.5 border border-[#CCD3DA] text-[#121B24] text-xs font-semibold uppercase tracking-wider hover:bg-[#F6F7F5] transition-colors"
           >
-            Homepage
+            Overview
           </Link>
         </div>
       </div>
     );
   }
 
-  // Related services
   const relatedServices = service.relatedServiceSlugs
     .map((slug) => getRelatedService(slug))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
-    <article className="space-y-16 lg:space-y-24 py-8">
-      {/* 1. BREADCRUMBS & 2. HERO HEADER (ASYMMETRICAL CURVED ARCHITECTURE) */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+    <article className="space-y-12 lg:space-y-16 py-8">
+      {/* 1. BREADCRUMBS & 2. HERO HEADER */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Breadcrumbs
           items={[
-            { label: 'Services', to: '/#intent-discovery' },
+            { label: 'Statutory Practices', to: '/#statutory-ledger' },
             { label: category.title, to: `/services/${category.slug}` },
             { label: service.title },
           ]}
         />
 
-        <div className="bg-[#111714] text-[#FFFFFF] rounded-tl-[36px] rounded-br-[36px] sm:rounded-tl-[48px] sm:rounded-br-[48px] border border-[#20483A] p-8 sm:p-12 relative overflow-hidden shadow-xl">
-          {/* Ambient background glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#20483A]/30 blur-3xl pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+        <div className="bg-[#121B24] text-white border border-[#243342] p-8 sm:p-12 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 font-mono text-xs text-[#C5A46D] uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C5A46D]" />
-                <span>{category.title}</span>
-                <span className="text-[#A6ADA7]">/</span>
-                <span>Candidate Service Profile</span>
+              <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+                {category.title} · Statutory Practice Profile
               </div>
 
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
                 {service.title}
               </h1>
 
-              <p className="text-base sm:text-lg text-[#A6ADA7] leading-relaxed max-w-2xl font-light">
+              <p className="text-base sm:text-[17px] text-[#CCD3DA] leading-relaxed max-w-2xl font-normal">
                 {service.summary}
               </p>
             </div>
 
-            {/* 3. HIGH-CONVERTING ENQUIRY CTA CARD */}
-            <div className="lg:col-span-4 bg-[#163329]/60 p-6 sm:p-7 rounded-[24px] border border-[#C5A46D]/30 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#C5A46D] font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C5A46D] animate-pulse" />
-                  Direct Advisory Desk
-                </span>
-                <span className="font-mono text-xs text-[#A6ADA7]">WhatsApp Intake</span>
+            {/* Advisory Intake Action Box */}
+            <div className="lg:col-span-4 bg-[#1B2937] border border-[#2D4055] p-6 space-y-4">
+              <div className="flex items-center justify-between text-xs text-[#B28348] font-mono">
+                <span>Advisory Desk</span>
+                <span>WhatsApp Intake</span>
               </div>
               <div className="space-y-1">
-                <h2 className="font-display text-base font-bold text-white">
-                  Discuss Your Requirements
+                <h2 className="font-display text-lg font-bold text-white">
+                  Consult on {service.title}
                 </h2>
-                <p className="text-xs text-[#A6ADA7] leading-relaxed">
-                  Connect with our facilitation team to review eligibility, document checklists, and government fee schedules.
+                <p className="text-xs text-[#CCD3DA] leading-relaxed">
+                  Connect with our corporate team to review requisite documentation checklists, registrar fee schedules, and turnaround expectations.
                 </p>
               </div>
 
               <button
                 type="button"
                 onClick={() => openEnquiryModal(service.title)}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 bg-[#20483A] hover:bg-[#2A5C4A] border border-[#C5A46D] text-white font-display text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-[0_0_20px_-3px_rgba(197,164,109,0.35)] active:scale-[0.98]"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-md"
               >
-                <MessageSquare className="w-4 h-4 text-[#C5A46D] shrink-0" />
-                <span className="truncate">Ask About This on WhatsApp</span>
+                <MessageSquare className="w-4 h-4 text-[#121B24] shrink-0" />
+                <span className="truncate">Open WhatsApp Discussion</span>
               </button>
 
-              <div className="pt-2 border-t border-[#20483A]/80 space-y-1.5 text-[11px] text-[#A6ADA7]">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#C5A46D]">✓</span>
-                  <span>1-minute enquiry · No payment required</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#C5A46D]">✓</span>
-                  <span>You review WhatsApp draft before sending</span>
-                </div>
+              <div className="pt-2 border-t border-[#2D4055] space-y-1 text-[11px] text-[#A5B4C4]">
+                <div>Direct partner review · Zero upfront fee</div>
+                <div>You review prepared message before dispatch</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. SERVICE OVERVIEW & 5. WHO MIGHT NEED THIS */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* 3. SERVICE OVERVIEW & CANDIDATE PROFILES */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Service Overview */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Domain Scope
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+              Statutory Scope
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#111714]">
-              Service Overview
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
+              Service Overview & Context
             </h2>
-            <div className="text-sm text-[#52616B] leading-relaxed space-y-4">
+            <div className="text-sm text-[#3A4754] leading-relaxed space-y-4">
               <p>{service.overview}</p>
             </div>
 
-            {/* Candidate Notice */}
-            <div className="mt-6 p-5 bg-[#FFFFFF] border border-[#D8DDD7] rounded-[16px] flex items-start gap-3">
-              <div className="w-7 h-7 rounded-full bg-[#F5F2E9] text-[#20483A] flex items-center justify-center shrink-0 mt-0.5">
-                <Info className="w-4 h-4 text-[#C5A46D]" />
-              </div>
-              <p className="text-xs text-[#52616B] leading-relaxed">
-                <strong className="text-[#111714]">Candidate Scope Notice:</strong> Procedural steps and timelines vary by state jurisdiction and statutory registry workload. We do not make unverified claims of fast-track approvals.
+            <div className="mt-6 p-4 bg-[#F6F7F5] border border-[#CCD3DA] flex items-start gap-3">
+              <Info className="w-4 h-4 text-[#8C6534] shrink-0 mt-0.5" />
+              <p className="text-xs text-[#556371] leading-relaxed">
+                <strong className="text-[#121B24]">Procedural Notice:</strong> Registration criteria and timelines vary by jurisdiction and workload at respective Registrar of Companies (ROC) or Trademark Registry offices.
               </p>
             </div>
           </div>
 
-          {/* 5. Who might need to explore this service */}
-          <div className="lg:col-span-5 bg-white p-8 border border-[#D8DDD7] rounded-[24px] space-y-4 shadow-xs">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#A6ADA7]">
-              Candidate Profiles
+          {/* Who Typically Needs This */}
+          <div className="lg:col-span-5 bg-white p-6 sm:p-7 border border-[#CCD3DA] space-y-4">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+              Applicable Contexts
             </span>
-            <h3 className="font-display text-xl font-bold text-[#111714]">
-              Who Typically Explores This Service
+            <h3 className="font-display text-xl font-bold text-[#121B24]">
+              Who Typically Explores This Practice
             </h3>
-            <p className="text-xs text-[#52616B] leading-relaxed">
-              These candidate profiles reflect common enterprise requirements. Suitability should be evaluated against your specific commercial structure:
+            <p className="text-xs text-[#556371] leading-relaxed">
+              These client profiles reflect common enterprise requirements across commercial domains:
             </p>
-            <ul className="space-y-3 pt-2">
+            <ul className="space-y-2.5 pt-1">
               {service.whoNeedsThis.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs text-[#111714]">
-                  <CheckCircle2 className="w-4 h-4 text-[#20483A] shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{item}</span>
+                <li key={idx} className="flex items-start gap-2.5 text-xs text-[#3A4754]">
+                  <Check className="w-4 h-4 text-[#152E4D] shrink-0 mt-0.5" />
+                  <span className="leading-relaxed font-medium">{item}</span>
                 </li>
               ))}
             </ul>
@@ -183,40 +162,35 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         </div>
       </section>
 
-      {/* 6. NEUTRAL PROCESS SECTION ("What Happens Next" - Connected Sequence) */}
-      <section className="bg-[#111714] text-[#FFFFFF] border-y border-[#20483A] py-20">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="max-w-xl space-y-2">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Procedural Roadmap
+      {/* 4. PROCEDURAL SEQUENCE ("What Happens Next") */}
+      <section className="bg-[#F6F7F5] border-y border-[#CCD3DA] py-14">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-xl space-y-1">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+              Filing Progression
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#FFFFFF] tracking-tight">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
               What Happens Next
             </h2>
-            <p className="text-xs sm:text-sm text-[#A6ADA7]">
-              A general, verified roadmap of initial consultation and subsequent filing steps.
+            <p className="text-xs sm:text-sm text-[#556371]">
+              A verified sequence of initial consultation and subsequent electronic filing stages.
             </p>
           </div>
 
-          {/* Connected sequence with circular nodes */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {service.whatHappensNext.map((step) => (
               <div
                 key={step.step}
-                className="space-y-3 group"
+                className="p-6 bg-white border border-[#CCD3DA] space-y-2.5"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full border border-[#C5A46D] bg-[#20483A]/30 text-[#C5A46D] font-mono text-xs font-bold flex items-center justify-center">
-                    0{step.step}
-                  </div>
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#A6ADA7]">
-                    Stage Overview
-                  </span>
+                <div className="flex items-center justify-between text-xs text-[#8C6534] font-mono font-semibold">
+                  <span>Stage {step.step}</span>
+                  <span>0{step.step}</span>
                 </div>
-                <h3 className="font-display text-lg font-bold text-[#FFFFFF] group-hover:text-[#C5A46D] transition-colors">
+                <h3 className="font-display text-lg font-bold text-[#121B24]">
                   {step.title}
                 </h3>
-                <p className="text-xs text-[#A6ADA7] leading-relaxed">
+                <p className="text-xs text-[#556371] leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -225,77 +199,77 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         </div>
       </section>
 
-      {/* 7. DOCUMENT GUIDANCE */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 bg-[#FFFFFF] border border-[#D8DDD7] rounded-[24px] space-y-3">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#20483A] font-semibold">
-            <FileCheck2 className="w-4 h-4 text-[#C5A46D]" />
-            <span>Document Guidance & Verification</span>
+      {/* 5. DOCUMENT GUIDANCE */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-6 sm:p-8 bg-white border border-[#CCD3DA] space-y-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+            <FileCheck2 className="w-4 h-4 text-[#8C6534]" />
+            <span>Evidentiary Prerequisites & Checklist</span>
           </div>
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-[#111714]">
-            Confirming Your Documentation Checklist
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-[#121B24]">
+            Confirming Your Documentation Docket
           </h2>
-          <p className="text-sm text-[#52616B] leading-relaxed max-w-4xl">
+          <p className="text-sm text-[#3A4754] leading-relaxed max-w-4xl">
             {service.documentGuidance}
           </p>
-          <div className="pt-2 text-xs text-[#A6ADA7] italic">
+          <div className="pt-2 text-[11px] text-[#6C7A89] border-t border-[#E3E7EB]">
             * Note: Government departments and registrars periodically revise required formats (e.g., Aadhaar OTP, digital signatures, utility bill recency). Please confirm exact requirements during your WhatsApp enquiry before submitting sensitive records.
           </div>
         </div>
       </section>
 
-      {/* 7B. WHAT TO HAVE READY BEFORE ENQUIRING (CRO CHECKLIST) */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#F5F2E9] border border-[#C5A46D]/40 rounded-[24px] p-8 sm:p-10 space-y-6">
+      {/* 6. WHAT TO HAVE READY BEFORE ENQUIRING */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#F6F7F5] border border-[#CCD3DA] p-6 sm:p-8 space-y-6">
           <div className="space-y-1">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#8C6D39] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
               Readiness Checklist
             </span>
-            <h3 className="font-display text-2xl font-bold text-[#111714]">
-              What to Have Ready Before Enquiring
+            <h3 className="font-display text-2xl font-bold text-[#121B24]">
+              What to Have Ready Before Consultation
             </h3>
-            <p className="text-xs sm:text-sm text-[#52616B] max-w-2xl leading-relaxed">
-              Having these baseline details in mind accelerates your WhatsApp consultation. Don't worry if you don't have everything yet—we will identify valid alternatives together.
+            <p className="text-xs sm:text-sm text-[#556371] max-w-2xl leading-relaxed">
+              Having these baseline details in mind accelerates your preliminary advisory review:
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 bg-white rounded-[16px] border border-[#D8DDD7] space-y-1.5">
-              <span className="font-mono text-[11px] font-bold text-[#20483A]">01. Identity & KYC</span>
-              <p className="text-xs text-[#52616B] leading-relaxed">
+            <div className="p-4 bg-white border border-[#CCD3DA] space-y-1">
+              <span className="text-xs font-mono font-bold text-[#8C6534]">01. Identity & KYC</span>
+              <p className="text-xs text-[#556371] leading-relaxed">
                 PAN and Aadhaar copies of all key directors, partners, or applicants.
               </p>
             </div>
-            <div className="p-4 bg-white rounded-[16px] border border-[#D8DDD7] space-y-1.5">
-              <span className="font-mono text-[11px] font-bold text-[#20483A]">02. Address Proof</span>
-              <p className="text-xs text-[#52616B] leading-relaxed">
-                Recent electricity bill or rent agreement plus owner NOC for registered office.
+            <div className="p-4 bg-white border border-[#CCD3DA] space-y-1">
+              <span className="text-xs font-mono font-bold text-[#8C6534]">02. Address Proof</span>
+              <p className="text-xs text-[#556371] leading-relaxed">
+                Recent utility bill (under 60 days old) plus owner NOC for registered office.
               </p>
             </div>
-            <div className="p-4 bg-white rounded-[16px] border border-[#D8DDD7] space-y-1.5">
-              <span className="font-mono text-[11px] font-bold text-[#20483A]">03. Purpose Details</span>
-              <p className="text-xs text-[#52616B] leading-relaxed">
-                Proposed company names, brand mark file, or target filing scope description.
+            <div className="p-4 bg-white border border-[#CCD3DA] space-y-1">
+              <span className="text-xs font-mono font-bold text-[#8C6534]">03. Purpose Details</span>
+              <p className="text-xs text-[#556371] leading-relaxed">
+                Proposed company names, brand mark file, or intended commercial objects.
               </p>
             </div>
-            <div className="p-4 bg-white rounded-[16px] border border-[#D8DDD7] space-y-1.5">
-              <span className="font-mono text-[11px] font-bold text-[#20483A]">04. Digital Signatures</span>
-              <p className="text-xs text-[#52616B] leading-relaxed">
-                Existing DSC status or Class-3 certificate (can be arranged if you do not have one).
+            <div className="p-4 bg-white border border-[#CCD3DA] space-y-1">
+              <span className="text-xs font-mono font-bold text-[#8C6534]">04. Digital Signatures</span>
+              <p className="text-xs text-[#556371] leading-relaxed">
+                Existing DSC status or Class-3 certificate (can be arranged if needed).
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. RELEVANT FAQS */}
+      {/* 7. RELEVANT FAQS */}
       {service.faqs && service.faqs.length > 0 && (
-        <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-xl pb-6 space-y-1">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Service Clarifications
+        <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-xl pb-4 border-b border-[#CCD3DA] mb-4 space-y-1">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+              Clarifications
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#111714]">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
               Frequently Asked Questions
             </h2>
           </div>
@@ -303,48 +277,44 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         </section>
       )}
 
-      {/* 9. RELATED SERVICES */}
+      {/* 8. RELATED SERVICES */}
       {relatedServices.length > 0 && (
-        <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="pb-6 border-b border-[#D8DDD7]">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Cross-Domain
+        <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="pb-3 border-b border-[#CCD3DA]">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
+              Related Scopes
             </span>
-            <h2 className="font-display text-2xl font-bold text-[#111714] mt-1">
-              Related Services & Next Steps
+            <h2 className="font-display text-2xl font-bold text-[#121B24] mt-0.5">
+              Associated Regulatory Practices
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
             {relatedServices.map((rel) => (
               <div
                 key={rel.id}
-                className="p-6 bg-[#FFFFFF] border border-[#D8DDD7] rounded-[16px] hover:border-[#20483A] transition-all flex flex-col justify-between group hover:shadow-xs"
+                className="p-5 bg-white border border-[#CCD3DA] hover:border-[#152E4D] transition-colors flex flex-col justify-between group"
               >
-                <div className="space-y-2">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#C5A46D] font-semibold">
+                <div className="space-y-1.5">
+                  <span className="text-[11px] font-mono text-[#8C6534] font-semibold">
                     {rel.categoryTitle}
                   </span>
-                  <h3 className="font-display text-lg font-bold text-[#111714] group-hover:text-[#20483A] transition-colors">
+                  <h3 className="font-display text-base font-bold text-[#121B24] group-hover:text-[#152E4D] transition-colors">
                     <Link to={`/services/${rel.categorySlug}/${rel.slug}`}>
                       {rel.title}
                     </Link>
                   </h3>
-                  <p className="text-xs text-[#52616B] leading-relaxed line-clamp-3">
+                  <p className="text-xs text-[#556371] leading-relaxed line-clamp-2">
                     {rel.summary}
                   </p>
                 </div>
-                <div className="pt-4 mt-4 border-t border-[#D8DDD7]/70 flex items-center justify-between">
+                <div className="pt-3 mt-3 border-t border-[#E3E7EB] flex items-center justify-between">
                   <Link
                     to={`/services/${rel.categorySlug}/${rel.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#111714] hover:text-[#20483A]"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#152E4D] hover:underline"
                   >
                     <span>View Profile</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#C5A46D]" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#8C6534]" />
                   </Link>
-
-                  <div className="w-8 h-8 rounded-full border border-[#D8DDD7] group-hover:bg-[#20483A] group-hover:border-[#20483A] group-hover:text-white flex items-center justify-center transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A46D]" />
-                  </div>
                 </div>
               </div>
             ))}
@@ -352,46 +322,39 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         </section>
       )}
 
-      {/* 10. FINAL ENQUIRY CTA (ASYMMETRIC CONTAINER + PILL CTA) */}
-      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="bg-[#111714] text-white p-8 sm:p-14 rounded-tl-[36px] rounded-br-[36px] sm:rounded-tl-[48px] sm:rounded-br-[48px] border border-[#20483A] flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#20483A]/30 blur-3xl pointer-events-none" />
-
-          <div className="space-y-3 max-w-xl relative z-10">
-            <span className="font-mono text-xs uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Next Step Forward
+      {/* 9. CLOSING DIRECT ADVISORY LINE */}
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="bg-[#121B24] text-white p-8 sm:p-10 border border-[#243342] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 max-w-xl">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+              Statutory Consultation
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
-              Ready to explore {service.title}?
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
+              Ready to evaluate {service.title}?
             </h2>
-            <p className="text-xs sm:text-sm text-[#A6ADA7] leading-relaxed">
-              Open WhatsApp with your prefilled requirements to discuss documentation checklists, turnaround estimates, and statutory fees directly with our advisory desk.
+            <p className="text-xs sm:text-sm text-[#A5B4C4] leading-relaxed">
+              Open WhatsApp with your prefilled parameters to discuss checklists, statutory fee breakdowns, and procedural timelines directly with our senior corporate desk.
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-[#A6ADA7]/90 pt-1">
-              <span>✓ Direct advisory desk</span>
-              <span>✓ No automated billing</span>
-              <span>✓ Review before sending</span>
-            </div>
           </div>
 
-          <div className="shrink-0 relative z-10">
+          <div className="shrink-0">
             <button
               type="button"
               onClick={() => openEnquiryModal(service.title)}
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#20483A] hover:bg-[#2A5C4A] border border-[#C5A46D]/80 text-white font-display font-semibold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-lg active:scale-[0.98] hover:shadow-[0_0_24px_-3px_rgba(197,164,109,0.4)]"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#8C6534] hover:bg-[#A3753C] text-white font-semibold text-xs uppercase tracking-wider transition-colors cursor-pointer"
             >
-              <MessageSquare className="w-4 h-4 text-[#C5A46D]" />
-              <span>Ask About This on WhatsApp</span>
+              <MessageSquare className="w-4 h-4 text-white" />
+              <span>Discuss on WhatsApp</span>
             </button>
           </div>
         </div>
       </section>
 
-      {/* 11. MOBILE STICKY ENQUIRY ACTION BAR (CRO Tap Target >= 44px) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#111714]/95 backdrop-blur-md border-t border-[#20483A] p-3 px-4 flex items-center justify-between gap-3 shadow-2xl">
+      {/* 10. MOBILE STICKY ENQUIRY BAR */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#121B24] border-t border-[#243342] p-3 px-4 flex items-center justify-between gap-3 text-white">
         <div className="truncate">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-[#C5A46D]">
-            Selected Service
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[#B28348]">
+            Selected Practice
           </div>
           <div className="text-xs font-bold text-white truncate max-w-[180px]">
             {service.title}
@@ -400,9 +363,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <button
           type="button"
           onClick={() => openEnquiryModal(service.title)}
-          className="shrink-0 min-h-[44px] px-5 py-2.5 bg-[#20483A] hover:bg-[#2A5C4A] border border-[#C5A46D] text-white text-xs font-display font-semibold uppercase tracking-wider rounded-full inline-flex items-center gap-2 active:scale-95 shadow-md"
+          className="shrink-0 min-h-[44px] px-4 py-2 bg-[#8C6534] text-white text-xs font-semibold uppercase tracking-wider inline-flex items-center gap-1.5 cursor-pointer"
         >
-          <MessageSquare className="w-4 h-4 text-[#C5A46D]" />
+          <MessageSquare className="w-3.5 h-3.5 text-white" />
           <span>Enquire</span>
         </button>
       </div>

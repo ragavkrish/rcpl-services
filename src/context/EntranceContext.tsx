@@ -16,28 +16,8 @@ const EntranceContext = createContext<EntranceContextType>({
 });
 
 export const EntranceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    // Check reduced motion
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) return false;
-
-    // Check if session has already seen the entrance
-    const seen = sessionStorage.getItem('rcpl_entrance_seen');
-    // Only trigger on first visit on homepage
-    const currentRoute = normalizePath(window.location.pathname);
-    const isHome = currentRoute === '/' || currentRoute === '';
-    return !seen && isHome;
-  });
-
-  const [entrancePhase, setEntrancePhase] = useState<EntrancePhase>(() => {
-    if (typeof window === 'undefined') return 'complete';
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const seen = sessionStorage.getItem('rcpl_entrance_seen');
-    const currentRoute = normalizePath(window.location.pathname);
-    const isHome = currentRoute === '/' || currentRoute === '';
-    return !seen && !reducedMotion && isHome ? 'wordmark' : 'complete';
-  });
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(false);
+  const [entrancePhase, setEntrancePhase] = useState<EntrancePhase>('complete');
 
   useEffect(() => {
     if (!isFirstVisit || entrancePhase === 'complete') return;

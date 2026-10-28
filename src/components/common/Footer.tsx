@@ -1,96 +1,247 @@
 import React from 'react';
 import { Link } from './Link';
-import { serviceCategories } from '../../data/services';
-import { useEntrance } from '../../context/EntranceContext';
+import { useRouter } from '../../context/RouterContext';
+import {
+  Mail,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  MessageSquare,
+  ArrowRight,
+} from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { replayEntrance } = useEntrance();
+  const { openEnquiryModal } = useRouter();
+
   return (
-    <footer className="bg-[#111714] text-[#A6ADA7] border-t border-[#20483A]/70 pt-20 pb-12">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#20483A]/60">
-          {/* Brand & Editorial Column (col-span-5) */}
-          <div className="md:col-span-5 space-y-5">
-            <Link to="/" className="inline-flex items-center gap-2.5">
-              <div className="w-2.5 h-2.5 bg-[#C5A46D] transform rotate-45" />
-              <span className="font-display text-2xl font-bold tracking-tight text-[#FFFFFF]">
-                RCPL <span className="font-light text-[#A6ADA7]">Services</span>
-              </span>
-            </Link>
-            <p className="text-sm text-[#A6ADA7] leading-relaxed max-w-sm">
-              Contemporary corporate facilitation and administrative compliance advisory. Assisting enterprises with company formation, intellectual property filings, taxation records, and secretarial governance across India.
+    <footer className="bg-[#0D1620] text-[#A5B4C4] pt-16 pb-12 border-t border-[#1C2C3D] text-xs">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Feature Bar in Footer */}
+        <div className="pb-10 mb-12 border-b border-[#1C2C3D] grid grid-cols-1 md:grid-cols-4 gap-8 text-[#A5B4C4]">
+          <div className="space-y-1">
+            <p className="font-semibold text-white text-sm">Registry Strict Protocols</p>
+            <p className="text-[11px] text-[#7A8E9E] leading-relaxed">
+              Filing structures aligned with MCA SPICe+, GSTN, and Trade Marks Registry standards.
             </p>
-            <div className="p-4 bg-[#20483A]/20 border border-[#20483A]/60 rounded-[14px] text-xs text-[#A6ADA7] space-y-1">
-              <p className="text-[#FFFFFF] font-medium">Candidate Catalogue Governance</p>
-              <p className="text-[11px] leading-relaxed">
-                Services presented across this portal reflect onboarding candidate scopes awaiting official client verification. No unverified legal representation or government affiliations are claimed.
-              </p>
+          </div>
+
+          <div className="space-y-1">
+            <p className="font-semibold text-white text-sm">Direct WhatsApp Advisory</p>
+            <p className="text-[11px] text-[#7A8E9E] leading-relaxed">
+              Direct review with senior corporate desk officers before any portal lodgement.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <p className="font-semibold text-white text-sm">100% Digital Execution</p>
+            <p className="text-[11px] text-[#7A8E9E] leading-relaxed">
+              Paperless document verification, Class-3 DSC signing, and electronic submission.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <p className="font-semibold text-white text-sm">Pan-India Reach</p>
+            <p className="text-[11px] text-[#7A8E9E] leading-relaxed">
+              Incorporating and facilitating compliance across all 28 states and union territories.
+            </p>
+          </div>
+        </div>
+
+        {/* Multi-Column Sitemap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pb-12 border-b border-[#1C2C3D]">
+          {/* Column 1: Company Profile */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-[#152E4D] text-white flex items-center justify-center font-display font-semibold text-base border border-[#23456F]">
+                R
+              </div>
+              <div>
+                <span className="font-display text-xl font-bold text-white tracking-tight">
+                  RCPL <span className="font-light italic text-[#A5B4C4]">Services</span>
+                </span>
+                <p className="text-[10px] uppercase font-semibold text-[#7A8E9E] tracking-widest">
+                  Legal &amp; Business Advisory
+                </p>
+              </div>
+            </Link>
+
+            <p className="text-[#889DAF] leading-relaxed max-w-sm text-xs font-normal">
+              Corporate documentation and compliance facilitation desk. We assist founders, directors, and business owners with company formation, intellectual property filings, taxation records, and secretarial governance.
+            </p>
+
+            <div className="space-y-2 pt-1 text-[11px] text-[#889DAF]">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#B28348] shrink-0 mt-0.5" />
+                <span>Offices: Mumbai &amp; New Delhi · Pan-India Liaison</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[#B28348] shrink-0" />
+                <span>enquiry@rcplservices.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-[#B28348] shrink-0" />
+                <span>Mon – Sat: 9:30 AM – 6:30 PM IST</span>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => openEnquiryModal()}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs rounded-xs transition-colors cursor-pointer"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-[#121B24]" />
+                <span>Open WhatsApp Consultation</span>
+              </button>
             </div>
           </div>
 
-          {/* Service Categories (col-span-4) */}
-          <div className="md:col-span-4 space-y-4">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Practice Domains
+          {/* Column 2: Business Formation */}
+          <div className="space-y-2.5">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-widest text-white">
+              Company Formation
             </h4>
-            <ul className="space-y-2.5 text-xs">
-              {serviceCategories.map((cat) => (
-                <li key={cat.id}>
-                  <Link
-                    to={`/services/${cat.slug}`}
-                    className="text-[#A6ADA7] hover:text-[#FFFFFF] hover:translate-x-0.5 transition-all flex items-center justify-between group py-0.5"
-                  >
-                    <span>{cat.title}</span>
-                    <span className="font-mono text-[10px] text-[#20483A] group-hover:text-[#C5A46D] transition-colors">
-                      {cat.number}
-                    </span>
-                  </Link>
-                </li>
-              ))}
+            <ul className="space-y-2 text-[#889DAF] text-xs">
+              <li>
+                <Link to="/services/business-formation/private-limited-company" className="hover:text-white transition-colors">
+                  Private Limited Company
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/business-formation/limited-liability-partnership" className="hover:text-white transition-colors">
+                  Limited Liability Partnership (LLP)
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/business-formation/one-person-company" className="hover:text-white transition-colors">
+                  One Person Company (OPC)
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/business-formation/public-limited-company" className="hover:text-white transition-colors">
+                  Public Limited Company
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/business-formation/partnership-firm" className="hover:text-white transition-colors">
+                  Partnership Firm
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/business-formation/section-8-company" className="hover:text-white transition-colors">
+                  Section 8 NGO
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Quick Navigation & Policy Drafts (col-span-3) */}
-          <div className="md:col-span-3 space-y-4">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#C5A46D] font-semibold">
-              Platform & Policies
+          {/* Column 3: Registrations & Licenses */}
+          <div className="space-y-2.5">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-widest text-white">
+              Registrations & Licenses
             </h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2 text-[#889DAF] text-xs">
               <li>
-                <Link to="/about" className="text-[#A6ADA7] hover:text-[#FFFFFF] transition-colors">
-                  About RCPL Services
+                <Link to="/services/registrations/gst-registration" className="hover:text-white transition-colors">
+                  GST Registration
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-[#A6ADA7] hover:text-[#FFFFFF] transition-colors">
-                  Contact & Advisory Desk
+                <Link to="/services/registrations/msme-udyam-registration" className="hover:text-white transition-colors">
+                  MSME / Udyam Certificate
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-[#A6ADA7] hover:text-[#FFFFFF] transition-colors">
-                  Frequently Asked Questions
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link
-                  to="/privacy-policy"
-                  className="text-[#A6ADA7] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-2"
-                >
-                  <span>Privacy Policy</span>
-                  <span className="text-[10px] px-2 py-0.5 bg-[#20483A]/40 text-[#C5A46D] rounded-full font-mono">
-                    Draft
-                  </span>
+                <Link to="/services/registrations/startup-india-recognition" className="hover:text-white transition-colors">
+                  Startup India DPIIT
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/terms-of-service"
-                  className="text-[#A6ADA7] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-2"
-                >
-                  <span>Terms of Service</span>
-                  <span className="text-[10px] px-2 py-0.5 bg-[#20483A]/40 text-[#C5A46D] rounded-full font-mono">
-                    Draft
-                  </span>
+                <Link to="/services/registrations/import-export-code" className="hover:text-white transition-colors">
+                  Import Export Code (IEC)
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/registrations/apeda-registration" className="hover:text-white transition-colors">
+                  APEDA Export License
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/registrations/pwd-contractor-license" className="hover:text-white transition-colors">
+                  PWD Contractor License
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Intellectual Property */}
+          <div className="space-y-2.5">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-widest text-white">
+              Intellectual Property
+            </h4>
+            <ul className="space-y-2 text-[#889DAF] text-xs">
+              <li>
+                <Link to="/services/intellectual-property/trademark-registration" className="hover:text-white transition-colors">
+                  Trademark Registration
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/intellectual-property/trademark-objection-reply" className="hover:text-white transition-colors">
+                  Trademark Objection Response
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/intellectual-property/copyright-registration" className="hover:text-white transition-colors">
+                  Copyright Registration
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/intellectual-property/patent-filing-assistance" className="hover:text-white transition-colors">
+                  Patent Filing Support
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/intellectual-property" className="hover:text-white transition-colors">
+                  TM Classification Search
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Tax & MCA Compliance */}
+          <div className="space-y-2.5">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-widest text-white">
+              Tax & MCA Governance
+            </h4>
+            <ul className="space-y-2 text-[#889DAF] text-xs">
+              <li>
+                <Link to="/services/taxation/gst-return-filing" className="hover:text-white transition-colors">
+                  GST Return Filing
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/taxation/income-tax-return" className="hover:text-white transition-colors">
+                  Corporate Income Tax
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/taxation/tds-return-filing" className="hover:text-white transition-colors">
+                  TDS Return Compliance
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/secretarial/annual-roc-filings" className="hover:text-white transition-colors">
+                  Annual ROC Filings (AOC-4/MGT-7)
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/secretarial/addition-removal-director" className="hover:text-white transition-colors">
+                  Director Appointments
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/secretarial/change-registered-office" className="hover:text-white transition-colors">
+                  Change Registered Office
                 </Link>
               </li>
             </ul>
@@ -98,21 +249,30 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Regulatory & Disclaimer Sub-footer */}
-        <div className="pt-8 text-xs text-[#A6ADA7]/70 space-y-4">
-          <p className="leading-relaxed">
-            <strong className="text-[#FFFFFF]">Statutory Advisory Notice:</strong> RCPL Services operates exclusively as an independent business facilitation and corporate documentation advisory firm. RCPL Services is not an official government department, regulatory registry, or judicial legal practice. All incorporation certificates, trade mark grants, tax registrations, and licenses are evaluated and granted solely at the discretion of respective central and state governmental authorities (including the Ministry of Corporate Affairs, Trade Marks Registry, DGFT, and CBIC).
+        <div className="pt-8 space-y-4 text-[#7A8E9E] text-xs">
+          <p className="leading-relaxed text-[11px]">
+            <strong className="text-white">Statutory Regulatory Notice:</strong> RCPL Services operates strictly as an independent corporate facilitation and statutory compliance documentation advisory platform. RCPL Services is not an official government department, regulatory registry, or judicial advocate practice. All company registrations, incorporation certificates, trademark grants, GST numbers, and licenses are evaluated and issued solely under sovereign legal authority by respective government departments (including the Ministry of Corporate Affairs, Trade Marks Registry, DGFT, and CBIC).
           </p>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-3 border-t border-[#20483A]/40 text-[11px] text-[#A6ADA7]/60">
+
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-[#1C2C3D] text-[11px]">
             <p>© {new Date().getFullYear()} RCPL Services. All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={replayEntrance}
-                className="hover:text-[#C5A46D] transition-colors cursor-pointer font-mono text-[10px] text-[#A6ADA7]/60 underline underline-offset-2"
-              >
-                Replay Entrance
-              </button>
-              <span className="font-mono text-[#C5A46D]/70">Modern Prestige Edition</span>
+
+            <div className="flex items-center gap-6">
+              <Link to="/about" className="hover:text-white transition-colors">
+                About Us
+              </Link>
+              <Link to="/contact" className="hover:text-white transition-colors">
+                Contact Us
+              </Link>
+              <Link to="/faq" className="hover:text-white transition-colors">
+                FAQs
+              </Link>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>

@@ -5,45 +5,45 @@ import { ArrowRight, Compass } from 'lucide-react';
 
 export const NotFoundPage: React.FC = () => {
   return (
-    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center space-y-8">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
       <div className="max-w-md mx-auto space-y-4">
-        <div className="inline-flex p-3.5 bg-[#111714] border border-[#20483A] rounded-[4px] text-[#C5A46D]">
-          <Compass className="w-8 h-8" />
+        <div className="inline-flex p-3 bg-[#F6F7F5] border border-[#CCD3DA] text-[#8C6534]">
+          <Compass className="w-6 h-6" />
         </div>
-        <div className="font-mono text-xs uppercase tracking-wider text-[#C5A46D]">
-          404 — Location Not Found
+        <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#8C6534]">
+          404 — Registry Docket Not Found
         </div>
-        <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-[#111714] tracking-tight">
-          The requested document could not be located.
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-[#121B24] tracking-tight">
+          The requested page could not be located.
         </h1>
-        <p className="text-sm text-[#52616B] leading-relaxed">
-          The page or service profile you are looking for may have been updated or moved in our candidate catalogue.
+        <p className="text-sm text-[#556371] leading-relaxed">
+          The practice profile or document you are seeking may have been re-indexed or updated in our statutory catalogue.
         </p>
 
         <div className="pt-2">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#111714] text-white text-xs font-display font-semibold uppercase tracking-wider rounded-[3px] hover:bg-[#20483A] transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0D1E33] transition-colors"
           >
-            <span>Return to Homepage</span>
-            <ArrowRight className="w-4 h-4 text-[#C5A46D]" />
+            <span>Return to Overview</span>
+            <ArrowRight className="w-4 h-4 text-[#B28348]" />
           </Link>
         </div>
       </div>
 
-      <div className="pt-14 border-t border-[#D8DDD7] max-w-2xl mx-auto">
-        <p className="font-mono text-xs uppercase tracking-wider text-[#A6ADA7] mb-4">
-          Explore Practice Domains
+      <div className="pt-12 border-t border-[#CCD3DA] max-w-2xl mx-auto">
+        <p className="text-[11px] font-mono uppercase tracking-widest text-[#6C7A89] mb-4 font-semibold">
+          Explore Statutory Practices
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {serviceCategories.map((cat) => (
             <Link
               key={cat.id}
               to={`/services/${cat.slug}`}
-              className="p-3.5 bg-white border border-[#D8DDD7] hover:border-[#20483A] text-xs text-[#111714] rounded-[3px] transition-colors text-left"
+              className="p-4 bg-white border border-[#CCD3DA] hover:border-[#152E4D] text-xs text-[#121B24] transition-colors text-left"
             >
-              <span className="font-mono text-[10px] text-[#C5A46D] block">{cat.number}</span>
-              <span className="font-display font-bold mt-1 block">{cat.title}</span>
+              <span className="text-[10px] text-[#8C6534] font-mono block">{cat.number}</span>
+              <span className="font-display font-bold mt-1 block text-sm">{cat.title}</span>
             </Link>
           ))}
         </div>
