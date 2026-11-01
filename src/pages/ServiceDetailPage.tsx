@@ -1,9 +1,11 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Link } from '../components/common/Link';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Accordion } from '../components/common/Accordion';
 import { getServiceBySlug, getCategoryBySlug, getServiceBySlug as getRelatedService } from '../data/services';
 import { useRouter } from '../context/RouterContext';
+import { fadeInUp, viewportConfig } from '../utils/motion';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -58,7 +60,12 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
   return (
     <article className="space-y-12 lg:space-y-16 py-8 pb-24 md:pb-8">
       {/* 1. BREADCRUMBS & 2. HERO HEADER */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+      >
         <Breadcrumbs
           items={[
             { label: 'Statutory Practices', to: '/#statutory-ledger' },
@@ -114,10 +121,16 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. SERVICE OVERVIEW & CANDIDATE PROFILES */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Service Overview */}
           <div className="lg:col-span-7 space-y-4">
@@ -160,10 +173,16 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </ul>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. PROCEDURAL SEQUENCE ("What Happens Next") */}
-      <section className="bg-slate-50/80 border-y border-slate-200 py-14">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="bg-slate-50/80 border-y border-slate-200 py-14"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-xl space-y-1">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
@@ -197,10 +216,16 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. DOCUMENT GUIDANCE */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#B28348] font-semibold">
             <FileCheck2 className="w-4 h-4 text-[#B28348]" />
@@ -216,10 +241,16 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             * Note: Government departments and registrars periodically revise required formats (e.g., Aadhaar OTP, digital signatures, utility bill recency). Please confirm exact requirements during your WhatsApp enquiry before submitting sensitive records.
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. WHAT TO HAVE READY BEFORE ENQUIRING */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-6 sm:p-8 space-y-6">
           <div className="space-y-1">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
@@ -260,11 +291,17 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. RELEVANT FAQS */}
       {service.faqs && service.faqs.length > 0 && (
-        <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.section
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+        >
           <div className="max-w-xl pb-4 border-b border-slate-200 mb-4 space-y-1">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
               Clarifications
@@ -274,12 +311,18 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </h2>
           </div>
           <Accordion items={service.faqs} theme="light" />
-        </section>
+        </motion.section>
       )}
 
       {/* 8. RELATED SERVICES */}
       {relatedServices.length > 0 && (
-        <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.section
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+        >
           <div className="pb-3 border-b border-slate-200">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
               Related Scopes
@@ -319,11 +362,17 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
       )}
 
       {/* 9. CLOSING DIRECT ADVISORY LINE */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12"
+      >
         <div className="bg-[#121B24] text-white p-8 sm:p-10 border border-slate-800 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
@@ -348,7 +397,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 10. MOBILE STICKY ENQUIRY BAR */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#121B24] border-t border-slate-800 p-3 px-4 flex items-center justify-between gap-3 text-white">

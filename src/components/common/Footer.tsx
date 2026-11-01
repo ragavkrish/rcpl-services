@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
             <div className="space-y-2 pt-1 text-[11px] text-[#889DAF]">
               <div className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#B28348] shrink-0 mt-0.5" />
-                <span>Offices: Mumbai &amp; New Delhi · Pan-India Liaison</span>
+                <span>Office: Chennai, Tamil Nadu · Pan-India Advisory</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#B28348] shrink-0" />

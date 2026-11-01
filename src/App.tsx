@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'motion/react';
 import { RouterProvider, useRouter } from './context/RouterContext';
 import { EntranceProvider } from './context/EntranceContext';
 import { EntranceCurtain } from './components/animation/EntranceCurtain';
@@ -92,7 +93,14 @@ const AppContent: React.FC = () => {
       {/* Main Dynamic Viewport with Page-Level ErrorBoundary */}
       <main id="main-content" className="flex-1">
         <ErrorBoundary fallbackTitle="Section Temporarily Unavailable" fallbackMessage="This page encountered an issue while loading. Please reload or select another practice domain.">
-          {renderCurrentPage()}
+          <motion.div
+            key={route.name + (route.params.categorySlug || '') + (route.params.serviceSlug || '')}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {renderCurrentPage()}
+          </motion.div>
         </ErrorBoundary>
       </main>
 

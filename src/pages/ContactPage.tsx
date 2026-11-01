@@ -66,14 +66,14 @@ export const ContactPage: React.FC = () => {
 
             <div className="bg-white p-6 sm:p-7 border border-[#CCD3DA] space-y-2.5">
               <h3 className="font-display text-base font-bold text-[#121B24]">
-                Operating Hours & Locations
+                Operating Hours &amp; Location
               </h3>
               <p className="text-xs text-[#556371] leading-relaxed">
-                Our advisory desk reviews incoming WhatsApp enquiries during regular commercial business hours (Monday to Friday, standard Indian business hours: 9:30 AM to 6:30 PM IST). Enquiries received outside these windows are queued for immediate attention on the next business morning.
+                Our advisory desk reviews incoming WhatsApp enquiries during regular commercial business hours (Monday to Saturday, standard Indian business hours: 9:30 AM to 6:30 PM IST). Enquiries received outside these windows are queued for immediate attention on the next business morning.
               </p>
               <div className="pt-2 text-xs text-[#3A4754] space-y-1">
-                <p><strong>Principal Offices:</strong> Mumbai & New Delhi</p>
-                <p><strong>Registry Scope:</strong> Pan-India Electronic ROC & GST Filings</p>
+                <p><strong>Head Office:</strong> Chennai, Tamil Nadu</p>
+                <p><strong>Registry Scope:</strong> Pan-India Electronic ROC &amp; GST Filings</p>
                 <p><strong>Official Email:</strong> enquiry@rcplservices.com</p>
               </div>
             </div>

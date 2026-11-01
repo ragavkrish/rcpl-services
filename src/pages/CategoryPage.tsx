@@ -1,8 +1,10 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Link } from '../components/common/Link';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { getCategoryBySlug, getServicesByCategory, serviceCategories } from '../data/services';
 import { useRouter } from '../context/RouterContext';
+import { fadeInUp, viewportConfig } from '../utils/motion';
 import { ArrowUpRight, MessageSquare, ShieldAlert, Check } from 'lucide-react';
 
 interface CategoryPageProps {
@@ -40,7 +42,12 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
   return (
     <div className="space-y-12 lg:space-y-16 py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+      >
         <Breadcrumbs
           items={[
             { label: 'Statutory Practices', to: '/#statutory-ledger' },
@@ -92,10 +99,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Ledger */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+      >
         <div className="pb-4 flex items-baseline justify-between border-b border-slate-200">
           <div>
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
@@ -177,10 +190,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </article>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Advisory & Scoping Note */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-4 text-xs text-slate-600">
           <ShieldAlert className="w-5 h-5 text-[#B28348] shrink-0 mt-0.5" />
           <div className="space-y-1">
@@ -192,10 +211,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Other Categories Index */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-4"
+      >
         <div className="pb-3 border-b border-slate-200 mb-4">
           <h3 className="font-display text-xl font-bold text-[#121B24]">
             Other Statutory Practice Domains
@@ -218,7 +243,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </Link>
           ))}
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

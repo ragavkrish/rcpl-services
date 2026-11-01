@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from './Link';
 import { useRouter } from '../../context/RouterContext';
 import { candidateServices } from '../../data/services';
@@ -180,63 +181,71 @@ export const Header: React.FC = () => {
                   </button>
 
                   {/* Dropdown Menu */}
-                  {isOpen && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-[380px] z-50 animate-in fade-in duration-100">
-                      <div className="bg-white border border-slate-200 shadow-xl p-4 text-left rounded-xl">
-                        <div className="pb-2.5 mb-2.5 border-b border-[#E3E7EB] flex items-baseline justify-between">
-                          <div>
-                            <Link
-                              to={`/services/${item.slug}`}
-                              onClick={() => setActiveDropdown(null)}
-                              className="font-display text-sm font-bold text-[#121B24] hover:text-[#152E4D] flex items-center gap-1.5"
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 4, scale: 0.99 }}
+                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-[380px] z-50"
+                      >
+                        <div className="bg-white border border-slate-200 shadow-xl p-4 text-left rounded-xl">
+                          <div className="pb-2.5 mb-2.5 border-b border-[#E3E7EB] flex items-baseline justify-between">
+                            <div>
+                              <Link
+                                to={`/services/${item.slug}`}
+                                onClick={() => setActiveDropdown(null)}
+                                className="font-display text-sm font-bold text-[#121B24] hover:text-[#152E4D] flex items-center gap-1.5"
+                              >
+                                <span>{item.title} Services</span>
+                                <ArrowRight className="w-3.5 h-3.5 text-[#B28348]" />
+                              </Link>
+                              <p className="text-[11px] text-[#64748B] mt-0.5">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Service Directory Grid */}
+                          <div className="grid grid-cols-1 gap-1 max-h-[260px] overflow-y-auto pr-1">
+                            {services.slice(0, 6).map((svc) => (
+                              <Link
+                                key={svc.id}
+                                to={`/services/${svc.categorySlug}/${svc.slug}`}
+                                onClick={() => setActiveDropdown(null)}
+                                className="py-1.5 px-2 hover:bg-[#F8FAFC] rounded-lg transition-colors group block"
+                              >
+                                <span className="text-xs font-semibold text-[#121B24] group-hover:text-[#152E4D] block truncate">
+                                  {svc.title}
+                                </span>
+                                <span className="text-[11px] text-[#64748B] block truncate font-normal">
+                                  {svc.summary}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+
+                          <div className="mt-3 pt-2.5 border-t border-[#E3E7EB] flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span className="text-[#64748B] text-[11px]">
+                              Need custom advice?
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveDropdown(null);
+                                openEnquiryModal(item.title);
+                              }}
+                              className="text-[#152E4D] hover:underline font-bold text-xs flex items-center gap-1 cursor-pointer"
                             >
-                              <span>{item.title} Services</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-[#B28348]" />
-                            </Link>
-                            <p className="text-[11px] text-[#64748B] mt-0.5">
-                              {item.description}
-                            </p>
+                              <span>Free Consultation</span>
+                              <ArrowRight className="w-3 h-3 text-[#B28348]" />
+                            </button>
                           </div>
                         </div>
-
-                        {/* Service Directory Grid */}
-                        <div className="grid grid-cols-1 gap-1 max-h-[260px] overflow-y-auto pr-1">
-                          {services.slice(0, 6).map((svc) => (
-                            <Link
-                              key={svc.id}
-                              to={`/services/${svc.categorySlug}/${svc.slug}`}
-                              onClick={() => setActiveDropdown(null)}
-                              className="py-1.5 px-2 hover:bg-[#F8FAFC] rounded-lg transition-colors group block"
-                            >
-                              <span className="text-xs font-semibold text-[#121B24] group-hover:text-[#152E4D] block truncate">
-                                {svc.title}
-                              </span>
-                              <span className="text-[11px] text-[#64748B] block truncate font-normal">
-                                {svc.summary}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-
-                        <div className="mt-3 pt-2.5 border-t border-[#E3E7EB] flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                          <span className="text-[#64748B] text-[11px]">
-                            Need custom advice?
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setActiveDropdown(null);
-                              openEnquiryModal(item.title);
-                            }}
-                            className="text-[#152E4D] hover:underline font-bold text-xs flex items-center gap-1 cursor-pointer"
-                          >
-                            <span>Free Consultation</span>
-                            <ArrowRight className="w-3 h-3 text-[#B28348]" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
@@ -267,8 +276,15 @@ export const Header: React.FC = () => {
       </div>
 
       {/* 3. MOBILE NAVIGATION DRAWER */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-[#CCD3DA] bg-white max-h-[80vh] overflow-y-auto px-4 pt-4 pb-8 space-y-4 shadow-xl">
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden border-t border-[#CCD3DA] bg-white max-h-[80vh] overflow-y-auto px-4 pt-4 pb-8 space-y-4 shadow-xl"
+          >
           <div className="space-y-1">
             <Link
               to="/"
@@ -360,8 +376,9 @@ export const Header: React.FC = () => {
               <span>Get Free Consultation</span>
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </header>
   );
 };

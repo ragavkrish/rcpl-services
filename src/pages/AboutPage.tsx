@@ -1,8 +1,10 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Link } from '../components/common/Link';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { useRouter } from '../context/RouterContext';
 import { serviceCategories } from '../data/services';
+import { fadeInUp, viewportConfig } from '../utils/motion';
 import { MessageSquare, ArrowRight, ArrowUpRight, ShieldCheck, Scale, Landmark } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -11,7 +13,12 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="space-y-12 lg:space-y-16 py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+      >
         <Breadcrumbs items={[{ label: 'About Us' }]} />
 
         <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
@@ -29,10 +36,16 @@ export const AboutPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Purpose & Operating Principles */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-5 text-sm text-[#3A4754] leading-relaxed">
             <div className="text-[11px] font-mono uppercase tracking-widest text-[#8C6534] font-semibold">
@@ -86,7 +99,7 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Domain Overview */}
       <section className="bg-[#F6F7F5] border-y border-[#CCD3DA] py-14">

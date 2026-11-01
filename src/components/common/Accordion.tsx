@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
 export interface AccordionItem {
@@ -74,17 +75,29 @@ export const Accordion: React.FC<AccordionProps> = ({
                 </span>
               </button>
             </h3>
-            <div
-              id={panelId}
-              role="region"
-              aria-labelledby={headerId}
-              hidden={!isOpen}
-              className={`mt-2.5 pr-8 text-sm leading-relaxed ${
-                isDark ? 'text-[#CCD3DA]' : 'text-[#3A4754]'
-              } ${isOpen ? 'block' : 'hidden'}`}
-            >
-              <p>{item.answer}</p>
-            </div>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  key="content"
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={headerId}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div
+                    className={`pt-2.5 pb-1 pr-6 sm:pr-8 text-xs sm:text-sm leading-relaxed ${
+                      isDark ? 'text-[#CCD3DA]' : 'text-[#3A4754]'
+                    }`}
+                  >
+                    <p>{item.answer}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}
