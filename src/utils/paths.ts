@@ -1,7 +1,7 @@
 /**
  * Resilient path normalization and base URL resolution across multiple
- * hosting environments (GitHub Pages repo subpaths, Cloudflare Pages root domain,
- * custom domains, local preview, and development servers).
+ * hosting environments (Custom domain rcplservices.com, GitHub Pages repo subpaths,
+ * Cloudflare Pages, local preview, and development servers).
  */
 
 declare global {
@@ -20,7 +20,15 @@ export function getBasePath(): string {
     return window.__RCPL_BASE_PATH__.replace(/\/+$/, '');
   }
 
-  // 2. Safely read import.meta.env.BASE_URL with full optional chaining
+  // 2. Custom domain production (rcplservices.com) is ALWAYS root ''
+  if (typeof window !== 'undefined' && window.location) {
+    const { hostname } = window.location;
+    if (hostname === 'rcplservices.com' || hostname.endsWith('.rcplservices.com')) {
+      return '';
+    }
+  }
+
+  // 3. Safely read import.meta.env.BASE_URL with optional chaining
   let envBase = '';
   try {
     if (typeof import.meta !== 'undefined' && import.meta && import.meta.env && typeof import.meta.env.BASE_URL === 'string') {
@@ -34,19 +42,17 @@ export function getBasePath(): string {
     return envBase.replace(/\/+$/, '');
   }
 
-  // 3. Dynamic browser auto-detection for GitHub Pages and subfolder deployments
+  // 4. Dynamic browser auto-detection for GitHub Pages subfolder preview (*.github.io/<repo>/)
   if (typeof window !== 'undefined' && window.location) {
     const { pathname, hostname } = window.location;
 
-    // Check for explicit known repo subpath
-    if (pathname.startsWith('/rcpl-services/') || pathname === '/rcpl-services') {
-      return '/rcpl-services';
-    }
-
-    // Auto-detect GitHub Pages subpath for any *.github.io/<repo>/
+    // Only inspect for repo subpaths on github.io domains
     if (hostname.endsWith('.github.io')) {
+      if (pathname.startsWith('/rcpl-services/') || pathname === '/rcpl-services') {
+        return '/rcpl-services';
+      }
       const segments = pathname.split('/').filter(Boolean);
-      if (segments.length > 0 && segments[0] !== 'services' && segments[0] !== 'about' && segments[0] !== 'contact' && segments[0] !== 'faq' && segments[0] !== 'privacy-policy' && segments[0] !== 'terms-of-service') {
+      if (segments.length > 0 && !['services', 'about', 'contact', 'faq', 'privacy-policy', 'terms-of-service'].includes(segments[0])) {
         return `/${segments[0]}`;
       }
     }
@@ -94,12 +100,6 @@ export function extractSpaRedirectRoute(): string | null {
 /**
  * Strips base path prefix, query parameters, hash fragments, and trailing slashes
  * to return the pure internal application route.
- * E.g.:
- * - '/rcpl-services/about' -> '/about'
- * - '/rcpl-services/' -> '/'
- * - '/rcpl-services' -> '/'
- * - '/services/business-formation/' -> '/services/business-formation'
- * - '/about?foo=bar#section' -> '/about'
  */
 export function normalizePath(pathname: string): string {
   if (!pathname) return '/';
@@ -107,7 +107,7 @@ export function normalizePath(pathname: string): string {
   // Strip query strings and hash anchors
   let clean = pathname.split('?')[0].split('#')[0].trim();
 
-  // Strip leading/trailing whitespaces
+  // Ensure leading slash
   if (!clean.startsWith('/')) {
     clean = `/${clean}`;
   }
@@ -121,7 +121,7 @@ export function normalizePath(pathname: string): string {
     }
   }
 
-  // Always strip trailing slashes, except for exact '/'
+  // Strip trailing slashes, except for exact '/'
   clean = clean.replace(/\/+$/, '');
   return clean || '/';
 }

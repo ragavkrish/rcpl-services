@@ -1,4 +1,3 @@
-
 name: Deploy React + Vite site to GitHub Pages
 
 on:
@@ -36,13 +35,20 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build website
+      - name: Build website for rcplservices.com
         run: npm run build
         env:
-          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path || '/rcpl-services/' }}
+          # Custom domain production requires root base path '/'
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path || '/' }}
 
-      - name: Create 404.html for SPA routing
-        run: cp dist/index.html dist/404.html
+      - name: Ensure 404.html and CNAME exist for SPA and Custom Domain
+        run: |
+          cp dist/index.html dist/404.html
+          if [ -f public/CNAME ]; then
+            cp public/CNAME dist/CNAME
+          else
+            echo "rcplservices.com" > dist/CNAME
+          fi
 
       - name: Upload built website
         uses: actions/upload-pages-artifact@v3
