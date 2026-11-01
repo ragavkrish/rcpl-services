@@ -39,7 +39,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   return (
     <div
       className={`divide-y ${
-        isDark ? 'divide-[#2A3B4D] border-y border-[#2A3B4D]' : 'divide-[#CCD3DA] border-y border-[#CCD3DA]'
+        isDark ? 'divide-[#2A3B4D] border-y border-[#2A3B4D]' : 'divide-slate-200 border-y border-slate-200'
       } ${className}`}
     >
       {items.map((item, idx) => {

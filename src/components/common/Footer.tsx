@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
           {/* Column 1: Company Profile */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="inline-flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-[#152E4D] text-white flex items-center justify-center font-display font-semibold text-base border border-[#23456F]">
+              <div className="w-8 h-8 rounded-lg bg-[#152E4D] text-white flex items-center justify-center font-display font-semibold text-base border border-[#23456F]">
                 R
               </div>
               <div>
@@ -88,7 +88,7 @@ export const Footer: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openEnquiryModal()}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs rounded-xs transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs rounded-lg transition-colors cursor-pointer"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-[#121B24]" />
                 <span>Open WhatsApp Consultation</span>
@@ -141,6 +141,12 @@ export const Footer: React.FC = () => {
               Registrations & Licenses
             </h4>
             <ul className="space-y-2 text-[#889DAF] text-xs">
+              <li>
+                <Link to="/services/ra-license/overseas-recruitment-agent-license" className="text-white font-medium hover:text-[#B28348] transition-colors flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
+                  <span>RA License (MEA Emigration)</span>
+                </Link>
+              </li>
               <li>
                 <Link to="/services/registrations/gst-registration" className="hover:text-white transition-colors">
                   GST Registration

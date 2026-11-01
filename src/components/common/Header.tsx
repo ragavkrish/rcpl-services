@@ -19,6 +19,7 @@ import {
   Menu,
   X,
   ArrowRight,
+  Globe,
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -51,6 +52,12 @@ export const Header: React.FC = () => {
       slug: 'registrations',
       icon: FileBadge,
       description: 'GST, MSME / Udyam, Import Export Code (IEC), FSSAI, and trade licences.',
+    },
+    {
+      title: 'RA License',
+      slug: 'ra-license',
+      icon: Globe,
+      description: 'Overseas Recruiting Agent (RA) License registration, renewal & MEA eMigrate liaison.',
     },
     {
       title: 'Taxation',
@@ -132,7 +139,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Brand Wordmark & Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0 py-2 group">
-            <div className="w-10 h-10 rounded-xs bg-[#152E4D] text-white flex items-center justify-center font-display font-bold text-xl shadow-xs border border-[#23456F]">
+            <div className="w-10 h-10 rounded-lg bg-[#152E4D] text-white flex items-center justify-center font-display font-bold text-xl shadow-xs border border-[#23456F]">
               R
             </div>
             <div className="flex flex-col">
@@ -146,7 +153,7 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links with Icon on Top */}
-          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-3 xl:gap-5">
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1.5 xl:gap-3.5">
             {navMenuItems.map((item) => {
               const services = getCategoryServices(item.slug);
               const isOpen = activeDropdown === item.title;
@@ -168,7 +175,7 @@ export const Header: React.FC = () => {
                     }`}
                   >
                     <Icon className="w-4 h-4 mb-1 text-[#64748B] group-hover:text-[#152E4D] transition-colors" />
-                    <div className="flex items-center gap-0.5 text-xs font-semibold">
+                    <div className="flex items-center gap-0.5 text-xs font-semibold whitespace-nowrap">
                       <span>{item.title}</span>
                       <ChevronDown
                         className={`w-3 h-3 text-[#94A3B8] transition-transform duration-150 ${
@@ -181,7 +188,7 @@ export const Header: React.FC = () => {
                   {/* Dropdown Menu */}
                   {isOpen && (
                     <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-[380px] z-50 animate-in fade-in duration-100">
-                      <div className="bg-white border border-[#CCD3DA] shadow-xl p-4 text-left rounded-xs">
+                      <div className="bg-white border border-slate-200 shadow-xl p-4 text-left rounded-xl">
                         <div className="pb-2.5 mb-2.5 border-b border-[#E3E7EB] flex items-baseline justify-between">
                           <div>
                             <Link
@@ -205,7 +212,7 @@ export const Header: React.FC = () => {
                               key={svc.id}
                               to={`/services/${svc.categorySlug}/${svc.slug}`}
                               onClick={() => setActiveDropdown(null)}
-                              className="py-1.5 px-2 hover:bg-[#F8FAFC] rounded-xs transition-colors group block"
+                              className="py-1.5 px-2 hover:bg-[#F8FAFC] rounded-lg transition-colors group block"
                             >
                               <span className="text-xs font-semibold text-[#121B24] group-hover:text-[#152E4D] block truncate">
                                 {svc.title}
@@ -217,7 +224,7 @@ export const Header: React.FC = () => {
                           ))}
                         </div>
 
-                        <div className="mt-3 pt-2.5 border-t border-[#E3E7EB] flex items-center justify-between text-xs bg-[#FAFBFB] p-2.5 rounded-xs">
+                        <div className="mt-3 pt-2.5 border-t border-[#E3E7EB] flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100">
                           <span className="text-[#64748B] text-[11px]">
                             Need custom advice?
                           </span>
@@ -246,7 +253,7 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => openEnquiryModal()}
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-sm transition-colors cursor-pointer shadow-xs active:scale-[0.99]"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs active:scale-[0.99]"
             >
               <span>Consult an Expert</span>
             </button>
@@ -257,7 +264,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={isMobileMenuOpen}
-              className="lg:hidden w-10 h-10 border border-[#CCD3DA] text-[#121B24] hover:bg-[#F8FAFC] flex items-center justify-center rounded-xs transition-colors cursor-pointer"
+              className="lg:hidden w-10 h-10 border border-slate-300 text-[#121B24] hover:bg-[#F8FAFC] flex items-center justify-center rounded-lg transition-colors cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

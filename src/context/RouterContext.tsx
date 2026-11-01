@@ -1,12 +1,12 @@
-import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
-import { normalizePath, toHref } from '../utils/paths';
+import React, { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
+import { normalizePath, toHref, extractSpaRedirectRoute } from '../utils/paths';
 
-interface RouteParams {
+export interface RouteParams {
   categorySlug?: string;
   serviceSlug?: string;
 }
 
-interface ParsedRoute {
+export interface ParsedRoute {
   name:
     | 'home'
     | 'about'
@@ -20,7 +20,7 @@ interface ParsedRoute {
   params: RouteParams;
 }
 
-interface RouterContextType {
+export interface RouterContextType {
   currentPath: string;
   navigate: (to: string) => void;
   route: ParsedRoute;
@@ -32,8 +32,7 @@ interface RouterContextType {
 
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
-function parsePath(path: string): ParsedRoute {
-  // Normalize path using base-path awareness
+export function parsePath(path: string): ParsedRoute {
   const cleanPath = normalizePath(path);
 
   if (cleanPath === '/' || cleanPath === '') {
@@ -48,14 +47,18 @@ function parsePath(path: string): ParsedRoute {
   if (cleanPath === '/faq') {
     return { name: 'faq', params: {} };
   }
-  if (cleanPath === '/privacy-policy') {
+  if (cleanPath === '/privacy-policy' || cleanPath === '/privacy') {
     return { name: 'privacy', params: {} };
   }
-  if (cleanPath === '/terms-of-service') {
+  if (cleanPath === '/terms-of-service' || cleanPath === '/terms') {
     return { name: 'terms', params: {} };
   }
+  if (cleanPath === '/services') {
+    // Redirect to default category view
+    return { name: 'category', params: { categorySlug: 'business-formation' } };
+  }
 
-  // Category or Service detail: /services/:cat or /services/:cat/:svc
+  // Service detail: /services/:cat/:svc
   const serviceDetailMatch = cleanPath.match(/^\/services\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)$/);
   if (serviceDetailMatch) {
     return {
@@ -67,6 +70,7 @@ function parsePath(path: string): ParsedRoute {
     };
   }
 
+  // Category: /services/:cat
   const categoryMatch = cleanPath.match(/^\/services\/([a-zA-Z0-9_-]+)$/);
   if (categoryMatch) {
     return {
@@ -82,35 +86,63 @@ function parsePath(path: string): ParsedRoute {
 
 export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState<string>(() => {
-    return typeof window !== 'undefined' ? normalizePath(window.location.pathname) : '/';
+    if (typeof window === 'undefined') {
+      return '/';
+    }
+
+    // 1. Check if redirect parameters were passed by 404.html fallback
+    const redirected = extractSpaRedirectRoute();
+    if (redirected) {
+      const normalizedRedirect = normalizePath(redirected);
+      // Clean up the URL in address bar to display pure canonical path
+      try {
+        const canonicalHref = toHref(normalizedRedirect);
+        window.history.replaceState(null, '', canonicalHref);
+      } catch {
+        // Safe fallback in restricted environments
+      }
+      return normalizedRedirect;
+    }
+
+    // 2. Direct browser URL access / reload
+    return normalizePath(window.location.pathname);
   });
 
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [preselectedService, setPreselectedService] = useState('');
 
-  const navigate = (to: string) => {
+  const navigate = useCallback((to: string) => {
     if (typeof window !== 'undefined') {
       const internalPath = normalizePath(to);
       const browserUrl = toHref(internalPath);
-      window.history.pushState(null, '', browserUrl);
-      setCurrentPath(internalPath);
+
+      // Only push new state if target path is different from current
+      if (internalPath !== currentPath) {
+        window.history.pushState(null, '', browserUrl);
+        setCurrentPath(internalPath);
+      }
+
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
-  };
+  }, [currentPath]);
 
-  const openEnquiryModal = (serviceName = '') => {
+  const openEnquiryModal = useCallback((serviceName = '') => {
     setPreselectedService(serviceName);
     setIsEnquiryModalOpen(true);
-  };
+  }, []);
 
-  const closeEnquiryModal = () => {
+  const closeEnquiryModal = useCallback(() => {
     setIsEnquiryModalOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(normalizePath(window.location.pathname));
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (typeof window !== 'undefined') {
+        const redirected = extractSpaRedirectRoute();
+        const nextPath = redirected ? normalizePath(redirected) : normalizePath(window.location.pathname);
+        setCurrentPath(nextPath);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -119,18 +151,21 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const route = useMemo(() => parsePath(currentPath), [currentPath]);
 
+  const contextValue = useMemo(
+    () => ({
+      currentPath,
+      navigate,
+      route,
+      openEnquiryModal,
+      closeEnquiryModal,
+      isEnquiryModalOpen,
+      preselectedService,
+    }),
+    [currentPath, navigate, route, openEnquiryModal, closeEnquiryModal, isEnquiryModalOpen, preselectedService]
+  );
+
   return (
-    <RouterContext.Provider
-      value={{
-        currentPath,
-        navigate,
-        route,
-        openEnquiryModal,
-        closeEnquiryModal,
-        isEnquiryModalOpen,
-        preselectedService,
-      }}
-    >
+    <RouterContext.Provider value={contextValue}>
       {children}
     </RouterContext.Provider>
   );

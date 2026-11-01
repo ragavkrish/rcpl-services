@@ -73,6 +73,18 @@ export const serviceCategories: ServiceCategory[] = [
     status: 'published',
     serviceCountCandidate: 6,
   },
+  {
+    id: 'cat-7',
+    number: '07',
+    title: 'RA License',
+    slug: 'ra-license',
+    shortDescription:
+      'Overseas Recruiting Agent (RA) License registration, capacity enhancement, bank guarantees, and MEA eMigrate liaison under the Emigration Act, 1983.',
+    editorialIntro:
+      'Operating as an overseas manpower recruitment consultancy in India legally mandates an authorized Recruiting Agent (RA) License issued by the Protector General of Emigrants (PGE), Ministry of External Affairs (MEA). We facilitate full compliance including commercial office verification, bank guarantee structuring, police clearance assembly, and eMigrate central portal lodgement.',
+    status: 'published',
+    serviceCountCandidate: 4,
+  },
 ];
 
 export const candidateServices: ServiceItem[] = [
@@ -1652,6 +1664,209 @@ export const candidateServices: ServiceItem[] = [
       },
     ],
     relatedServiceSlugs: ['public-limited-company', 'private-limited-company', 'business-structure-changes'],
+  },
+  // Category 7: RA License (Overseas Recruiting Agent Services under MEA)
+  {
+    id: 'ra-overseas-recruitment-license',
+    title: 'Fresh Overseas Recruiting Agent (RA) License',
+    slug: 'overseas-recruitment-agent-license',
+    categorySlug: 'ra-license',
+    categoryTitle: 'RA License',
+    status: 'published',
+    isFeatured: true,
+    summary:
+      'Comprehensive advisory, office readiness vetting, and MEA eMigrate portal filing for obtaining a new Overseas Recruiting Agent (RA) License under the Emigration Act, 1983.',
+    overview:
+      'In India, any enterprise, recruitment consultancy, or HR firm that deploys Indian citizens for overseas employment—especially in ECR (Emigration Check Required) countries across the Gulf (GCC), Europe, and Southeast Asia—must lawfully hold a Recruiting Agent (RA) License issued by the Protector General of Emigrants (PGE), Ministry of External Affairs (MEA), Government of India. Operating without an RA License is a non-bailable statutory offense under Section 10 of the Emigration Act, 1983. RCPL Services provides complete facilitation: evaluating applicant entity criteria, conducting 500+ sq. ft. commercial office readiness checks, assembling Police Clearance Certificates (PCC), coordinating MEA-format Bank Guarantees, preparing Form 1 filings, and liaising with the regional Protector of Emigrants (PoE) office until license grant.',
+    whoNeedsThis: [
+      'Overseas recruitment agencies and HR staffing consultancies placing Indian workers abroad',
+      'Private Limited Companies, LLPs, and Partnership firms entering international human resource deployment',
+      'Established domestic manpower staffing agencies expanding into GCC, Europe, or Far East placements',
+      'Consultancies seeking direct eMigrate portal registration to operate legally without sub-agent liabilities',
+    ],
+    whatHappensNext: [
+      {
+        step: 1,
+        title: 'Eligibility & Office Premises Vetting',
+        description:
+          'Audit entity registration, director credentials, financial standing, and ensure mandatory 500+ sq. ft. commercial office space layout compliance for government inspection.',
+      },
+      {
+        step: 2,
+        title: 'Bank Guarantee & Police Verification Assembly',
+        description:
+          'Prepare Form 1 application, coordinate MEA-format Bank Guarantee (₹8 Lakhs for up to 100 workers or ₹50 Lakhs for unlimited capacity), and assemble PCC dockets.',
+      },
+      {
+        step: 3,
+        title: 'eMigrate Lodgement & PoE Regional Liaison',
+        description:
+          'Digitally submit the complete dossier on the central MEA eMigrate portal, coordinate local police site verification, and address PoE departmental clarifications.',
+      },
+      {
+        step: 4,
+        title: 'Final Grant Order & Certificate Issuance',
+        description:
+          'Assist through final PGE approval, receive the official 5-year RA License Certificate, and configure active agency credentials on the eMigrate recruitment portal.',
+      },
+    ],
+    documentGuidance:
+      'Mandatory documentation includes: Certificate of Incorporation / Partnership Deed, registered commercial lease deed (min 500 sq. ft.) with floor plan & photos, electricity bill, PAN and Aadhaar of all directors/partners, Police Clearance Certificates (PCC), audited balance sheets with Net Worth Certificate, bank statements, and original Bank Guarantee in MEA format.',
+    faqs: [
+      {
+        question: 'What is the validity period of an RA License in India?',
+        answer:
+          'A newly granted RA License is valid for 5 years. It can be periodically renewed on the eMigrate portal provided the agency maintains an unblemished compliance and grievance-resolution track record.',
+      },
+      {
+        question: 'What is the mandatory Bank Guarantee amount for an RA License?',
+        answer:
+          'Under current Ministry of External Affairs regulations, applicants must furnish an irrevocable Bank Guarantee drawn in favor of the President of India: ₹8 Lakhs for a license permitting deployment of up to 100 workers, or ₹50 Lakhs for larger/unlimited overseas recruitment capacity.',
+      },
+      {
+        question: 'Is a commercial office mandatory for MEA inspection?',
+        answer:
+          'Yes. The Emigration Act mandates that the registered office must be an independent commercial premises with a minimum covered area of 500 sq. ft., equipped with client reception, interview cabins, and record management facilities.',
+      },
+      {
+        question: 'Can a Proprietorship firm obtain an RA License?',
+        answer:
+          'Yes, Sole Proprietorships are eligible under the Emigration Act. However, registering as a Private Limited Company or LLP is strongly advised to facilitate easier bank guarantee approvals and institutional corporate standing.',
+      },
+    ],
+    relatedServiceSlugs: ['ra-license-renewal', 'ra-bank-guarantee-compliance', 'ra-branch-office-shifting'],
+  },
+  {
+    id: 'ra-license-renewal',
+    title: 'RA License Renewal & Capacity Enhancement',
+    slug: 'ra-license-renewal',
+    categorySlug: 'ra-license',
+    categoryTitle: 'RA License',
+    status: 'published',
+    summary:
+      'Timely 5-year renewal filing, capacity upgrade from 100-worker tier to unlimited deployment, and eMigrate compliance reconciliation.',
+    overview:
+      'Overseas Recruiting Agent licenses must be submitted for renewal at least three months prior to the expiration date under Rule 9 of the Emigration Rules, 1983. Additionally, agencies holding a 100-worker capacity license can apply for enhancement to the unlimited recruitment bracket upon fulfilling enhanced bank guarantee and deployment turnover requirements. We handle end-to-end renewal filings, eMigrate record sanitization, grievance settlement proofs, and PoE clearance.',
+    whoNeedsThis: [
+      'Licensed recruiting agents approaching their 5-year validity expiration',
+      'Agencies desiring to upgrade from the 100-worker quota to full/unlimited foreign placement capacity',
+      'Agencies with pending eMigrate technical reconciliations or bank guarantee revalidations',
+    ],
+    whatHappensNext: [
+      {
+        step: 1,
+        title: 'Compliance Audit & Deployment Review',
+        description: 'Examine eMigrate deployment registers, worker welfare records, and resolve open worker grievances.',
+      },
+      {
+        step: 2,
+        title: 'Bank Guarantee Extension & Document Drafting',
+        description: 'Extend or enhance the existing Bank Guarantee with the issuing bank as per MEA renewal guidelines.',
+      },
+      {
+        step: 3,
+        title: 'eMigrate Renewal Submission & PoE Endorsement',
+        description: 'File Form 2 renewal docket online and obtain official endorsement order extending validity for another 5 years.',
+      },
+    ],
+    documentGuidance:
+      'Original RA License certificate, updated bank guarantee extension confirmation, last 3 years ITR and financial statements, current commercial lease proof, and clean police clearance for current management.',
+    faqs: [
+      {
+        question: 'When should an agency initiate the RA License renewal process?',
+        answer:
+          'MEA regulations require filing renewal at least 90 days before the license expiration date to prevent automatic suspension of recruitment privileges on the eMigrate portal.',
+      },
+    ],
+    relatedServiceSlugs: ['overseas-recruitment-agent-license', 'ra-bank-guarantee-compliance'],
+  },
+  {
+    id: 'ra-bank-guarantee-advisory',
+    title: 'RA Bank Guarantee & Financial Compliance',
+    slug: 'ra-bank-guarantee-compliance',
+    categorySlug: 'ra-license',
+    categoryTitle: 'RA License',
+    status: 'published',
+    summary:
+      'Assistance with MEA-format Bank Guarantee execution, solvency certifications, replacement of maturing guarantees, and net worth auditing.',
+    overview:
+      'The Bank Guarantee is the bedrock security deposit enforced by the Protector General of Emigrants (PGE) to safeguard overseas workers against employment fraud or non-payment of repatriation expenses. We advise recruitment agencies on executing conforming guarantees with scheduled commercial banks, drafting proper invocation clause protections, and obtaining required chartered accountant net worth certificates.',
+    whoNeedsThis: [
+      'Applicants preparing initial financial submissions for a fresh RA License',
+      'Existing agents needing to replace an expiring bank guarantee or release collateral after compliant closure',
+      'Agencies upgrading from ₹8 Lakhs to ₹50 Lakhs guarantee for capacity scaling',
+    ],
+    whatHappensNext: [
+      {
+        step: 1,
+        title: 'MEA Guarantee Text Vetting',
+        description: 'Provide your banker with the exact PGE-mandated guarantee verbiage to prevent clerical rejections.',
+      },
+      {
+        step: 2,
+        title: 'CA Net Worth & Financial Verification',
+        description: 'Audit balance sheet records and prepare certified net worth dossiers as mandated under Emigration Rules.',
+      },
+      {
+        step: 3,
+        title: 'Lodgement & Official MEA Acknowledgment',
+        description: 'Deliver the physical instrument to the Ministry and verify electronic tagging on the eMigrate dashboard.',
+      },
+    ],
+    documentGuidance:
+      'Bank guarantee original instrument, banker confirmation letter with SFMS reference, CA net worth certificate, and entity financial returns.',
+    faqs: [
+      {
+        question: 'Can Fixed Deposits be submitted directly instead of a Bank Guarantee?',
+        answer:
+          'No. MEA regulations require an irrevocable Bank Guarantee issued by a scheduled commercial bank in the prescribed statutory format, not a direct cash or FD pledge.',
+      },
+    ],
+    relatedServiceSlugs: ['overseas-recruitment-agent-license', 'ra-license-renewal'],
+  },
+  {
+    id: 'ra-branch-office-shifting',
+    title: 'RA Branch Office Permission & Address Shifting',
+    slug: 'ra-branch-office-shifting',
+    categorySlug: 'ra-license',
+    categoryTitle: 'RA License',
+    status: 'published',
+    summary:
+      'Statutory permission from the Protector General of Emigrants (PGE) for opening multi-city branch offices or relocating registered operational premises.',
+    overview:
+      'A licensed Recruiting Agent is strictly prohibited from conducting overseas recruitment activities from any unauthorized location or through unlicensed sub-agents. Relocating a registered office or establishing a branch office in another city requires prior formal approval from the MEA and on-site physical verification by the local Protector of Emigrants (PoE). We assist with the complete regulatory approval process.',
+    whoNeedsThis: [
+      'Licensed recruitment agencies relocating to larger commercial premises or changing cities',
+      'Agencies establishing secondary branch offices in key talent hubs across India (e.g. Mumbai, Delhi, Kerala, Hyderabad, Chennai, Punjab)',
+      'Agencies responding to PGE inquiries regarding operational premises changes',
+    ],
+    whatHappensNext: [
+      {
+        step: 1,
+        title: 'Premises Due Diligence',
+        description: 'Inspect prospective branch or relocated office premises against MEA commercial space criteria.',
+      },
+      {
+        step: 2,
+        title: 'Statutory Application Filing',
+        description: 'Draft Form 3 / Form 4 petitions to the PGE with proposed layout plans, lease agreements, and staff details.',
+      },
+      {
+        step: 3,
+        title: 'PoE Inspection & Endorsement',
+        description: 'Facilitate physical inspection by the regional PoE officer and obtain the amended RA License certificate.',
+      },
+    ],
+    documentGuidance:
+      'Current RA License copy, commercial lease deed for proposed premises (min 500 sq. ft.), floor layout diagram, municipal tax receipts, and staff authorization declarations.',
+    faqs: [
+      {
+        question: 'Can an agency recruit workers from an unapproved branch office?',
+        answer:
+          'No. Conducting recruitment from an unapproved premises constitutes illegal sub-agency practice under the Emigration Act, punishable by license cancellation and criminal prosecution.',
+      },
+    ],
+    relatedServiceSlugs: ['overseas-recruitment-agent-license', 'ra-license-renewal'],
   },
 ];
 

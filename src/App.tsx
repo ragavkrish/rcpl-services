@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { RouterProvider, useRouter } from './context/RouterContext';
 import { EntranceProvider } from './context/EntranceContext';
 import { EntranceCurtain } from './components/animation/EntranceCurtain';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
@@ -19,7 +20,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { getServiceBySlug, getCategoryBySlug } from './data/services';
 
 const AppContent: React.FC = () => {
-  const { route, currentPath } = useRouter();
+  const { route } = useRouter();
 
   // Dynamic Title Management
   useEffect(() => {
@@ -85,14 +86,14 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FCFCFA] text-[#121B24] font-sans antialiased selection:bg-[#152E4D] selection:text-white">
-
-
       {/* Main Responsive Header */}
       <Header />
 
-      {/* Main Dynamic Viewport */}
+      {/* Main Dynamic Viewport with Page-Level ErrorBoundary */}
       <main id="main-content" className="flex-1">
-        {renderCurrentPage()}
+        <ErrorBoundary fallbackTitle="Section Temporarily Unavailable" fallbackMessage="This page encountered an issue while loading. Please reload or select another practice domain.">
+          {renderCurrentPage()}
+        </ErrorBoundary>
       </main>
 
       {/* Editorial Footer */}
@@ -112,10 +113,12 @@ const AppContent: React.FC = () => {
 
 export default function App() {
   return (
-    <RouterProvider>
-      <EntranceProvider>
-        <AppContent />
-      </EntranceProvider>
-    </RouterProvider>
+    <ErrorBoundary fallbackTitle="RCPL Services" fallbackMessage="The application could not initialize. Please refresh your browser.">
+      <RouterProvider>
+        <EntranceProvider>
+          <AppContent />
+        </EntranceProvider>
+      </RouterProvider>
+    </ErrorBoundary>
   );
 }
