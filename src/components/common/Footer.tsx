@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
     <footer className="bg-[#0D1620] text-[#A5B4C4] pt-16 pb-12 border-t border-[#1C2C3D] text-xs">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Feature Bar in Footer */}
-        <div className="pb-10 mb-12 border-b border-[#1C2C3D] grid grid-cols-1 md:grid-cols-4 gap-8 text-[#A5B4C4]">
+        <div className="pb-10 mb-12 border-b border-[#1C2C3D] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-[#A5B4C4]">
           <div className="space-y-1">
             <p className="font-semibold text-white text-sm">Registry Strict Protocols</p>
             <p className="text-[11px] text-[#7A8E9E] leading-relaxed">
@@ -48,12 +48,16 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Multi-Column Sitemap */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pb-12 border-b border-[#1C2C3D]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-12 border-b border-[#1C2C3D]">
           {/* Column 1: Company Profile */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#152E4D] text-white flex items-center justify-center font-display font-semibold text-base border border-[#23456F]">
-                R
+            <Link to="/" className="inline-flex items-center gap-3">
+              <div className="bg-white px-2.5 py-1.5 rounded-lg inline-flex items-center shadow-xs border border-slate-700/60">
+                <img
+                  src="/assets/aistudio/rcpl-logo.png"
+                  alt="RCPL"
+                  className="h-5 sm:h-6 w-auto object-contain"
+                />
               </div>
               <div>
                 <span className="font-display text-xl font-bold text-white tracking-tight">
@@ -261,9 +265,15 @@ export const Footer: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-[#1C2C3D] text-[11px]">
-            <p>© {new Date().getFullYear()} RCPL Services. All rights reserved.</p>
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              <p>© {new Date().getFullYear()} RCPL Services. All rights reserved.</p>
+              <span className="text-[#2C3F53] hidden sm:inline" aria-hidden="true">·</span>
+              <p className="text-[#5B7083] text-[10.5px]">
+                Made by <span className="text-[#7E93A5] font-medium tracking-wide">linkkmediaa</span>
+              </p>
+            </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2">
               <Link to="/about" className="hover:text-white transition-colors">
                 About Us
               </Link>

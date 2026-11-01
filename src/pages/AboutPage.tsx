@@ -14,13 +14,13 @@ export const AboutPage: React.FC = () => {
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Breadcrumbs items={[{ label: 'About Us' }]} />
 
-        <div className="bg-[#121B24] text-white border border-[#243342] p-8 sm:p-14 relative">
+        <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
           <div className="max-w-3xl space-y-4">
             <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
               Institutional Profile · Corporate & Compliance Advisory
             </div>
 
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
               About RCPL Services
             </h1>
 

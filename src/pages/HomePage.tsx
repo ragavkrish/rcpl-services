@@ -201,8 +201,8 @@ export const HomePage: React.FC = () => {
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Column: Bold Original Headline & Free Consultation CTA */}
-            <div className="lg:col-span-6 space-y-8 text-left">
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] font-bold text-[#121B24] leading-[1.18] tracking-tight">
+            <div className="lg:col-span-6 space-y-6 sm:space-y-8 text-left">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-[#121B24] leading-[1.18] tracking-tight break-words">
                 Helping Entrepreneurs Launch, Protect, and Grow in India.
               </h1>
 
@@ -210,7 +210,7 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => openEnquiryModal()}
-                  className="px-7 py-3.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-sm font-bold rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center gap-2 active:scale-[0.99]"
+                  className="px-6 sm:px-7 py-3.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.99]"
                 >
                   <span>Get Free Consultation</span>
                 </button>
@@ -219,14 +219,14 @@ export const HomePage: React.FC = () => {
 
             {/* Right Column: Custom Clean Vector Illustration */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end">
-              <HeroIllustration className="w-full max-w-[500px]" />
+              <HeroIllustration className="w-full max-w-[480px] sm:max-w-[500px]" />
             </div>
           </div>
         </div>
 
         {/* 3-Pillar Trust Strip (Integrated & Softened) */}
-        <div className="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 mt-12 lg:mt-16">
-          <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl shadow-xs p-6 sm:p-7">
+        <div className="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12 lg:mt-16">
+          <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl shadow-xs p-4 sm:p-7">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/80 items-center">
               {/* Item 1: Handshake / Trusted */}
               <div className="flex items-center gap-4 justify-center md:justify-start md:px-4">
@@ -293,15 +293,15 @@ export const HomePage: React.FC = () => {
         {/* Live Service Autocomplete Search Bar */}
         <div className="pt-2 relative max-w-2xl mx-auto text-left">
           <div className="relative flex items-center border border-slate-300 focus-within:border-[#152E4D] focus-within:ring-4 focus-within:ring-[#152E4D]/10 bg-white rounded-xl transition-all shadow-xs">
-            <Search className="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" />
+            <Search className="w-4 sm:w-5 h-4 sm:h-5 text-slate-400 absolute left-3.5 sm:left-4 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setTimeout(() => setIsSearchFocused(false), 250)}
-              placeholder="Search services (e.g. Private Limited, Trademark, GST, MSME)..."
-              className="w-full pl-12 pr-28 py-3.5 text-sm text-[#121B24] placeholder-slate-400 focus:outline-hidden"
+              placeholder="Search services (e.g. Trademark, GST)..."
+              className="w-full pl-10 sm:pl-12 pr-22 sm:pr-28 py-3 sm:py-3.5 text-xs sm:text-sm text-[#121B24] placeholder-slate-400 focus:outline-hidden"
             />
             <button
               type="button"
@@ -309,7 +309,7 @@ export const HomePage: React.FC = () => {
                 const el = document.getElementById('services-tabs-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="absolute right-2 px-5 py-2.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+              className="absolute right-1.5 sm:right-2 px-3.5 sm:px-5 py-2 sm:py-2.5 min-h-[36px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer active:scale-95"
             >
               Search
             </button>
@@ -650,29 +650,29 @@ export const HomePage: React.FC = () => {
           7. EXPERT SUPPORT / CONTACT PANEL (SOFTENED ELEVATED BANNER)
          ========================================================================= */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#121B24] text-white p-8 sm:p-12 rounded-2xl border border-slate-800 shadow-xl">
+        <div className="bg-[#121B24] text-white p-6 sm:p-8 lg:p-12 rounded-2xl border border-slate-800 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#25D366] font-bold">
                 Approachable Expert Support
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight break-words">
                 Need Help Navigating Legal or Tax Requirements?
               </h2>
               <p className="text-xs sm:text-sm text-[#A5B4C4] leading-relaxed max-w-xl">
                 Connect directly with our corporate advisory desk on WhatsApp or email. We review your entity objectives, outline the exact documents needed, and itemize official government charges.
               </p>
-              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-[#CCD3DA]">
+              <div className="pt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#CCD3DA]">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#25D366]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
                   <span>Prompt WhatsApp response</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#25D366]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
                   <span>No obligation consultation</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#25D366]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#25D366] shrink-0" />
                   <span>Clear fee breakdown</span>
                 </div>
               </div>
@@ -682,18 +682,18 @@ export const HomePage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openEnquiryModal()}
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md active:scale-[0.99]"
               >
-                <MessageSquare className="w-4 h-4 text-[#121B24]" />
+                <MessageSquare className="w-4 h-4 text-[#121B24] shrink-0" />
                 <span>Talk to an Expert on WhatsApp</span>
               </button>
 
               <Link
                 to="/contact"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent hover:bg-white/5 text-[#CCD3DA] hover:text-white text-xs font-semibold uppercase tracking-wider border border-[#3A4754] transition-colors rounded-lg text-center"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] bg-transparent hover:bg-white/5 text-[#CCD3DA] hover:text-white text-xs font-semibold uppercase tracking-wider border border-[#3A4754] transition-colors rounded-lg text-center active:scale-[0.99]"
               >
                 <span>Office &amp; Contact Details</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#25D366]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
               </Link>
             </div>
           </div>

@@ -41,14 +41,14 @@ export const EnquiryModal: React.FC = () => {
         if (e.target === e.currentTarget) closeEnquiryModal();
       }}
     >
-      <div className="relative w-full max-w-xl bg-white rounded-xs shadow-2xl border border-[#CCD3DA] my-8 overflow-hidden animate-in fade-in duration-150">
+      <div className="relative w-full max-w-xl bg-white rounded-xl shadow-2xl border border-[#CCD3DA] my-auto max-h-[92vh] overflow-y-auto animate-in fade-in duration-150">
         <button
           type="button"
           onClick={closeEnquiryModal}
           aria-label="Close consultation modal"
-          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-xs border border-[#CCD3DA] text-[#556371] hover:text-[#121B24] hover:bg-[#F6F7F5] flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-3 right-3 z-10 w-11 h-11 min-h-[44px] min-w-[44px] rounded-lg border border-[#CCD3DA] text-[#556371] hover:text-[#121B24] hover:bg-[#F6F7F5] flex items-center justify-center transition-colors cursor-pointer active:scale-95 bg-white/90"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
         <EnquiryForm

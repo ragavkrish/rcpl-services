@@ -138,22 +138,16 @@ export const Header: React.FC = () => {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Brand Wordmark & Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0 py-2 group">
-            <div className="w-10 h-10 rounded-lg bg-[#152E4D] text-white flex items-center justify-center font-display font-bold text-xl shadow-xs border border-[#23456F]">
-              R
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-2xl font-bold tracking-tight text-[#121B24] leading-tight group-hover:text-[#152E4D] transition-colors">
-                RCPL <span className="text-[#B28348]">SERVICES</span>
-              </span>
-              <span className="text-[10px] uppercase font-semibold tracking-wider text-[#64748B]">
-                Legal &amp; Business Advisory
-              </span>
-            </div>
+          <Link to="/" className="flex items-center shrink-0 py-2 group">
+            <img
+              src="/assets/aistudio/rcpl-logo.png"
+              alt="RCPL Services"
+              className="h-8 sm:h-9.5 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation Links with Icon on Top */}
-          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1.5 xl:gap-3.5">
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 xl:gap-2.5 2xl:gap-3.5">
             {navMenuItems.map((item) => {
               const services = getCategoryServices(item.slug);
               const isOpen = activeDropdown === item.title;
@@ -249,22 +243,22 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Right Action: Free Inquiry Button */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               type="button"
               onClick={() => openEnquiryModal()}
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs active:scale-[0.99]"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 lg:px-5 py-2.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs active:scale-[0.99]"
             >
               <span>Consult an Expert</span>
             </button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle (44x44px Touch Target) */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={isMobileMenuOpen}
-              className="lg:hidden w-10 h-10 border border-slate-300 text-[#121B24] hover:bg-[#F8FAFC] flex items-center justify-center rounded-lg transition-colors cursor-pointer"
+              className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] border border-slate-300 text-[#121B24] hover:bg-[#F8FAFC] flex items-center justify-center rounded-lg transition-colors cursor-pointer active:scale-95"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -279,7 +273,7 @@ export const Header: React.FC = () => {
             <Link
               to="/"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC]"
+              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
             >
               Home
             </Link>
@@ -331,7 +325,7 @@ export const Header: React.FC = () => {
             <Link
               to="/about"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC]"
+              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
             >
               About Us
             </Link>
@@ -339,7 +333,7 @@ export const Header: React.FC = () => {
             <Link
               to="/faq"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC]"
+              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
             >
               Resources &amp; FAQs
             </Link>
@@ -347,7 +341,7 @@ export const Header: React.FC = () => {
             <Link
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC]"
+              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
             >
               Contact Us
             </Link>
@@ -360,7 +354,7 @@ export const Header: React.FC = () => {
                 setIsMobileMenuOpen(false);
                 openEnquiryModal();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs tracking-wider uppercase rounded-sm cursor-pointer shadow-sm"
+              className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-4 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs tracking-wider uppercase rounded-lg cursor-pointer shadow-sm active:scale-[0.99]"
             >
               <MessageSquare className="w-4 h-4 text-white" />
               <span>Get Free Consultation</span>

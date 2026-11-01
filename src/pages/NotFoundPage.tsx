@@ -23,7 +23,7 @@ export const NotFoundPage: React.FC = () => {
         <div className="pt-2">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0D1E33] transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0D1E33] transition-colors rounded-lg active:scale-95"
           >
             <span>Return to Overview</span>
             <ArrowRight className="w-4 h-4 text-[#B28348]" />
@@ -35,12 +35,12 @@ export const NotFoundPage: React.FC = () => {
         <p className="text-[11px] font-mono uppercase tracking-widest text-[#6C7A89] mb-4 font-semibold">
           Explore Statutory Practices
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {serviceCategories.map((cat) => (
             <Link
               key={cat.id}
               to={`/services/${cat.slug}`}
-              className="p-4 bg-white border border-[#CCD3DA] hover:border-[#152E4D] text-xs text-[#121B24] transition-colors text-left"
+              className="p-3.5 sm:p-4 bg-white border border-[#CCD3DA] hover:border-[#152E4D] text-xs text-[#121B24] transition-colors text-left rounded-lg shadow-2xs"
             >
               <span className="text-[10px] text-[#8C6534] font-mono block">{cat.number}</span>
               <span className="font-display font-bold mt-1 block text-sm">{cat.title}</span>

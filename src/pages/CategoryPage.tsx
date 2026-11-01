@@ -48,14 +48,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
           ]}
         />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-8 sm:p-12 rounded-2xl relative shadow-xl">
+        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-4">
               <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
                 Domain {category.number} · Statutory Practice Catalogue
               </div>
 
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
                 {category.title}
               </h1>
 
@@ -155,11 +155,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                 </div>
 
                 {/* Actions */}
-                <div className="md:col-span-3 flex flex-row md:flex-col items-center md:items-end justify-between gap-3 pt-2">
+                <div className="md:col-span-3 flex flex-wrap items-center md:items-end justify-between md:justify-start gap-3 pt-2">
                   <button
                     type="button"
                     onClick={() => openEnquiryModal(service.title)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer active:scale-95"
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
                     <span>Direct Enquiry</span>
@@ -167,7 +167,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
 
                   <Link
                     to={`/services/${category.slug}/${service.slug}`}
-                    className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 min-h-[38px] py-1"
                   >
                     <span>Inspect Profile</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#8C6534]" />

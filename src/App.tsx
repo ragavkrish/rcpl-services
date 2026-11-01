@@ -85,7 +85,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCFCFA] text-[#121B24] font-sans antialiased selection:bg-[#152E4D] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FCFCFA] text-[#121B24] font-sans antialiased selection:bg-[#152E4D] selection:text-white overflow-x-clip">
       {/* Main Responsive Header */}
       <Header />
 

@@ -8,12 +8,12 @@ export const TermsOfServicePage: React.FC = () => {
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Breadcrumbs items={[{ label: 'Terms of Service' }]} />
 
-        <div className="bg-[#121B24] text-white border border-[#243342] p-8 sm:p-12 relative">
+        <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="space-y-2">
             <span className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
               Official Terms · Version 1.0
             </span>
-            <h1 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight break-words">
               Terms of Service
             </h1>
           </div>
@@ -22,7 +22,7 @@ export const TermsOfServicePage: React.FC = () => {
 
       {/* Terms Content */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-3xl space-y-8 text-sm text-[#3A4754] leading-relaxed bg-white p-8 sm:p-10 border border-[#CCD3DA]">
+        <div className="max-w-3xl space-y-8 text-sm text-[#3A4754] leading-relaxed bg-white p-6 sm:p-10 border border-[#CCD3DA] rounded-xl shadow-xs">
           <div className="space-y-2.5">
             <h2 className="font-display text-xl font-bold text-[#121B24]">
               1. Nature of Services

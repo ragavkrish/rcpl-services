@@ -56,7 +56,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
-    <article className="space-y-12 lg:space-y-16 py-8">
+    <article className="space-y-12 lg:space-y-16 py-8 pb-24 md:pb-8">
       {/* 1. BREADCRUMBS & 2. HERO HEADER */}
       <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Breadcrumbs
@@ -67,14 +67,14 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           ]}
         />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-8 sm:p-12 rounded-2xl relative shadow-xl">
+        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-4">
               <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
                 {category.title} · Statutory Practice Profile
               </div>
 
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
                 {service.title}
               </h1>
 
