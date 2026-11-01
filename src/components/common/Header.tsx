@@ -7,20 +7,11 @@ import {
   Phone,
   MessageSquare,
   MessageCircle,
-  User,
-  Rocket,
-  Copyright,
-  FileBadge,
-  Landmark,
-  ShieldCheck,
-  Award,
-  Handshake,
-  CircleDollarSign,
   ChevronDown,
   Menu,
   X,
   ArrowRight,
-  Globe,
+  MapPin,
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -29,115 +20,106 @@ export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpandedCat, setMobileExpandedCat] = useState<string | null>(null);
 
-  const getCategoryServices = (categorySlug: string) => {
+  const getCategoryServices = (categorySlugs: string[]) => {
     return candidateServices.filter(
-      (s) => s.categorySlug === categorySlug && s.status !== 'draft'
+      (s) => categorySlugs.includes(s.categorySlug) && s.status !== 'draft'
     );
   };
 
   const navMenuItems = [
     {
-      title: 'Startup',
-      slug: 'business-formation',
-      icon: Rocket,
-      description: 'Private Limited, LLP, OPC, Partnership, and Startup India registration.',
-    },
-    {
-      title: 'Trademark',
-      slug: 'intellectual-property',
-      icon: Copyright,
-      description: 'Trademark search, filing, objection response, copyright, and brand security.',
-    },
-    {
-      title: 'License',
-      slug: 'registrations',
-      icon: FileBadge,
-      description: 'GST, MSME / Udyam, Import Export Code (IEC), FSSAI, and trade licences.',
-    },
-    {
       title: 'RA License',
       slug: 'ra-license',
-      icon: Globe,
-      description: 'Overseas Recruiting Agent (RA) License registration, renewal & MEA eMigrate liaison.',
+      slugs: ['ra-license'],
+      featured: true,
+      description: 'Overseas Recruiting Agent (RA) License registration, ₹50L BG advisory & MEA eMigrate liaison.',
     },
     {
-      title: 'Taxation',
-      slug: 'taxation',
-      icon: Landmark,
-      description: 'Periodic GST returns, income tax filing, TDS compliance, and bookkeeping.',
+      title: 'Formation',
+      slug: 'business-formation',
+      slugs: ['business-formation', 'company-conversions'],
+      featured: false,
+      description: 'Private Limited, LLP, OPC, Partnership, Section 8 NGO, and entity conversions.',
     },
     {
-      title: 'Secretarial',
-      slug: 'secretarial',
-      icon: ShieldCheck,
-      description: 'Annual ROC compliance, director KYC, change of directors, and MoA updates.',
-    },
-    {
-      title: 'Certification',
+      title: 'Registrations',
       slug: 'registrations',
-      icon: Award,
-      description: 'ISO certification, Startup India DPIT recognition, and quality audits.',
+      slugs: ['registrations'],
+      featured: false,
+      description: 'GSTIN, MSME / Udyam, Startup India DPIIT, Import Export Code (IEC), and APEDA.',
     },
     {
-      title: 'Consulting',
-      slug: 'company-conversions',
-      icon: Handshake,
-      description: 'Proprietorship to Pvt Ltd conversions, business structuring & advisory.',
+      title: 'Trademark & IP',
+      slug: 'intellectual-property',
+      slugs: ['intellectual-property'],
+      featured: false,
+      description: 'Trademark search, TM-A filing, examination objection reply, copyright & patent support.',
     },
     {
-      title: 'Finance',
+      title: 'Tax & Filings',
       slug: 'taxation',
-      icon: CircleDollarSign,
-      description: 'Virtual CFO, accounting facilitation, payroll records & investor readiness.',
+      slugs: ['taxation'],
+      featured: false,
+      description: 'Periodic GST returns, corporate income tax, TDS compliance, and accounting records.',
+    },
+    {
+      title: 'MCA Secretarial',
+      slug: 'secretarial',
+      slugs: ['secretarial'],
+      featured: false,
+      description: 'Annual ROC filings (AOC-4 / MGT-7), Director KYC, share transfers & office changes.',
     },
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#EAEFE9] shadow-xs">
-      {/* 1. TOP UTILITY BAR (LEGALBABU SPEC) */}
-      <div className="bg-[#FAFBFB] text-[#4A5568] text-[12px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-[#EAEFE9] hidden md:block">
-        <div className="max-w-[1320px] mx-auto flex items-center justify-end gap-7 font-medium">
-          <a
-            href="tel:+918691001900"
-            className="flex items-center gap-1.5 text-[#4A5568] hover:text-[#152E4D] transition-colors"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#152E4D]" />
-            <span>Call: +918691001900</span>
-          </a>
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs">
+      {/* 1. INSTITUTIONAL TOP UTILITY BAR */}
+      <div className="bg-[#FAFBFB] text-slate-600 text-[12px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-200/70 hidden md:block">
+        <div className="max-w-[1320px] mx-auto flex items-center justify-between font-medium">
+          <div className="flex items-center gap-2 text-slate-500">
+            <MapPin className="w-3.5 h-3.5 text-[#1D4ED8]" />
+            <span>Chennai Head Office · Pan-India Electronic Filings (MCA, MEA &amp; IP India)</span>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => openEnquiryModal()}
-            className="flex items-center gap-1.5 text-[#4A5568] hover:text-[#152E4D] transition-colors cursor-pointer"
-          >
-            <MessageSquare className="w-3.5 h-3.5 text-[#152E4D]" />
-            <span>Chat with us</span>
-          </button>
+          <div className="flex items-center gap-6">
+            <a
+              href="tel:+918691001900"
+              className="flex items-center gap-1.5 text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#152E4D]" />
+              <span>+91 86910 01900</span>
+            </a>
 
-          <a
-            href="https://wa.me/918691001900?text=Hello%20RCPL%20Services,%20I%20would%20like%20to%20inquire%20about%20business%20and%20compliance%20services."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[#4A5568] hover:text-[#25D366] transition-colors"
-          >
-            <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
-            <span>Whatsapp</span>
-          </a>
+            <a
+              href="https://wa.me/918691001900?text=Hello%20RCPL%20Services,%20I%20would%20like%20to%20inquire%20about%20business%20and%20compliance%20services."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-slate-600 hover:text-[#0F766E] transition-colors whitespace-nowrap"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-[#0F766E]" />
+              <span>WhatsApp Desk</span>
+            </a>
 
-          <button
-            type="button"
-            onClick={() => openEnquiryModal('Client Login')}
-            className="flex items-center gap-1.5 text-[#4A5568] hover:text-[#152E4D] transition-colors cursor-pointer"
-          >
-            <User className="w-3.5 h-3.5 text-[#152E4D]" />
-            <span>Login</span>
-          </button>
+            <Link
+              to="/faq"
+              className="text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
+            >
+              Statutory FAQs
+            </Link>
+
+            <Link
+              to="/contact"
+              className="text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
+            >
+              Chennai Office
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* 2. MAIN NAVIGATION BAR */}
+      {/* 2. MAIN EXECUTIVE NAVIGATION BAR */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
+        <div className="flex items-center justify-between h-18 sm:h-20 gap-4">
           {/* Brand Wordmark & Logo */}
           <Link to="/" className="flex items-center shrink-0 py-2 group">
             <img
@@ -147,12 +129,12 @@ export const Header: React.FC = () => {
             />
           </Link>
 
-          {/* Desktop Navigation Links with Icon on Top */}
-          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 xl:gap-2.5 2xl:gap-3.5">
+          {/* Desktop Navigation Links — Clean Single-Row Executive Architecture */}
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navMenuItems.map((item) => {
-              const services = getCategoryServices(item.slug);
+              const services = getCategoryServices(item.slugs);
               const isOpen = activeDropdown === item.title;
-              const Icon = item.icon;
+              const isActiveRoute = currentPath.startsWith(`/services/${item.slug}`);
 
               return (
                 <div
@@ -165,19 +147,23 @@ export const Header: React.FC = () => {
                     type="button"
                     onClick={() => setActiveDropdown(isOpen ? null : item.title)}
                     aria-expanded={isOpen}
-                    className={`flex flex-col items-center py-2 px-1 text-center group transition-colors cursor-pointer ${
-                      isOpen ? 'text-[#152E4D]' : 'text-[#334155] hover:text-[#152E4D]'
+                    className={`inline-flex items-center gap-1 py-2 px-2.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                      isOpen || isActiveRoute
+                        ? 'text-[#152E4D] bg-slate-100/80'
+                        : 'text-slate-700 hover:text-[#152E4D] hover:bg-slate-50'
                     }`}
                   >
-                    <Icon className="w-4 h-4 mb-1 text-[#64748B] group-hover:text-[#152E4D] transition-colors" />
-                    <div className="flex items-center gap-0.5 text-xs font-semibold whitespace-nowrap">
-                      <span>{item.title}</span>
-                      <ChevronDown
-                        className={`w-3 h-3 text-[#94A3B8] transition-transform duration-150 ${
-                          isOpen ? 'rotate-180 text-[#152E4D]' : ''
-                        }`}
-                      />
-                    </div>
+                    <span>{item.title}</span>
+                    {item.featured && (
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-bold ml-0.5">
+                        MEA
+                      </span>
+                    )}
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-150 ${
+                        isOpen ? 'rotate-180 text-[#152E4D]' : ''
+                      }`}
+                    />
                   </button>
 
                   {/* Dropdown Menu */}
@@ -188,20 +174,20 @@ export const Header: React.FC = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 4, scale: 0.99 }}
                         transition={{ duration: 0.18, ease: 'easeOut' }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full pt-1 w-[380px] z-50"
+                        className="absolute left-1/2 -translate-x-1/2 top-full pt-1.5 w-[390px] z-50"
                       >
-                        <div className="bg-white border border-slate-200 shadow-xl p-4 text-left rounded-xl">
-                          <div className="pb-2.5 mb-2.5 border-b border-[#E3E7EB] flex items-baseline justify-between">
+                        <div className="bg-white border border-slate-200/90 shadow-xl p-4 text-left rounded-xl">
+                          <div className="pb-2.5 mb-2.5 border-b border-slate-100 flex items-baseline justify-between">
                             <div>
                               <Link
                                 to={`/services/${item.slug}`}
                                 onClick={() => setActiveDropdown(null)}
                                 className="font-display text-sm font-bold text-[#121B24] hover:text-[#152E4D] flex items-center gap-1.5"
                               >
-                                <span>{item.title} Services</span>
-                                <ArrowRight className="w-3.5 h-3.5 text-[#B28348]" />
+                                <span>{item.title} Practice</span>
+                                <ArrowRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
                               </Link>
-                              <p className="text-[11px] text-[#64748B] mt-0.5">
+                              <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
                                 {item.description}
                               </p>
                             </div>
@@ -214,32 +200,36 @@ export const Header: React.FC = () => {
                                 key={svc.id}
                                 to={`/services/${svc.categorySlug}/${svc.slug}`}
                                 onClick={() => setActiveDropdown(null)}
-                                className="py-1.5 px-2 hover:bg-[#F8FAFC] rounded-lg transition-colors group block"
+                                className="py-1.5 px-2.5 hover:bg-slate-50 rounded-lg transition-colors group block"
                               >
                                 <span className="text-xs font-semibold text-[#121B24] group-hover:text-[#152E4D] block truncate">
                                   {svc.title}
                                 </span>
-                                <span className="text-[11px] text-[#64748B] block truncate font-normal">
+                                <span className="text-[11px] text-slate-500 block truncate font-normal">
                                   {svc.summary}
                                 </span>
                               </Link>
                             ))}
                           </div>
 
-                          <div className="mt-3 pt-2.5 border-t border-[#E3E7EB] flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                            <span className="text-[#64748B] text-[11px]">
-                              Need custom advice?
-                            </span>
+                          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/80 p-2.5 rounded-lg border border-slate-200/60">
+                            <Link
+                              to={`/services/${item.slug}`}
+                              onClick={() => setActiveDropdown(null)}
+                              className="text-slate-600 hover:text-[#152E4D] font-medium text-[11px]"
+                            >
+                              View all {services.length} profiles →
+                            </Link>
                             <button
                               type="button"
                               onClick={() => {
                                 setActiveDropdown(null);
                                 openEnquiryModal(item.title);
                               }}
-                              className="text-[#152E4D] hover:underline font-bold text-xs flex items-center gap-1 cursor-pointer"
+                              className="text-[#152E4D] hover:underline font-bold text-xs flex items-center gap-1 cursor-pointer whitespace-nowrap"
                             >
                               <span>Free Consultation</span>
-                              <ArrowRight className="w-3 h-3 text-[#B28348]" />
+                              <ArrowRight className="w-3 h-3 text-[#1D4ED8]" />
                             </button>
                           </div>
                         </div>
@@ -249,15 +239,27 @@ export const Header: React.FC = () => {
                 </div>
               );
             })}
+
+            <Link
+              to="/about"
+              className={`py-2 px-2.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors ${
+                currentPath === '/about'
+                  ? 'text-[#152E4D] bg-slate-100/80'
+                  : 'text-slate-700 hover:text-[#152E4D] hover:bg-slate-50'
+              }`}
+            >
+              About Us
+            </Link>
           </nav>
 
-          {/* Right Action: Free Inquiry Button */}
+          {/* Right Action: Consult an Expert CTA */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               type="button"
               onClick={() => openEnquiryModal()}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 lg:px-5 py-2.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs active:scale-[0.99]"
+              className="hidden sm:inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs active:scale-[0.99] whitespace-nowrap"
             >
+              <MessageSquare className="w-3.5 h-3.5 text-[#60A5FA]" />
               <span>Consult an Expert</span>
             </button>
 
@@ -267,7 +269,7 @@ export const Header: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={isMobileMenuOpen}
-              className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] border border-slate-300 text-[#121B24] hover:bg-[#F8FAFC] flex items-center justify-center rounded-lg transition-colors cursor-pointer active:scale-95"
+              className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] border border-slate-300 text-[#121B24] hover:bg-slate-50 flex items-center justify-center rounded-lg transition-colors cursor-pointer active:scale-95"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -283,102 +285,116 @@ export const Header: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden border-t border-[#CCD3DA] bg-white max-h-[80vh] overflow-y-auto px-4 pt-4 pb-8 space-y-4 shadow-xl"
+            className="lg:hidden border-t border-slate-200 bg-white max-h-[82vh] overflow-y-auto px-4 pt-3 pb-8 space-y-4 shadow-xl"
           >
-          <div className="space-y-1">
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
-            >
-              Home
-            </Link>
+            <div className="space-y-1">
+              <Link
+                to="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-slate-50 rounded-lg"
+              >
+                Home
+              </Link>
 
-            {navMenuItems.map((menu) => {
-              const services = getCategoryServices(menu.slug);
-              const isExpanded = mobileExpandedCat === menu.title;
+              {navMenuItems.map((menu) => {
+                const services = getCategoryServices(menu.slugs);
+                const isExpanded = mobileExpandedCat === menu.title;
 
-              return (
-                <div key={menu.title} className="border-b border-[#E3E7EB] last:border-b-0 pb-1">
-                  <button
-                    type="button"
-                    onClick={() => setMobileExpandedCat(isExpanded ? null : menu.title)}
-                    className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] text-left"
-                  >
-                    <span>{menu.title}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-[#8C9BAA] transition-transform ${
-                        isExpanded ? 'rotate-180 text-[#152E4D]' : ''
-                      }`}
-                    />
-                  </button>
+                return (
+                  <div key={menu.title} className="border-b border-slate-100 last:border-b-0 pb-1">
+                    <button
+                      type="button"
+                      onClick={() => setMobileExpandedCat(isExpanded ? null : menu.title)}
+                      className="w-full flex items-center justify-between px-3 py-3 min-h-[44px] text-sm font-semibold text-[#121B24] hover:bg-slate-50 text-left rounded-lg cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span>{menu.title}</span>
+                        {menu.featured && (
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-bold">
+                            MEA Flagship
+                          </span>
+                        )}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-400 transition-transform ${
+                          isExpanded ? 'rotate-180 text-[#152E4D]' : ''
+                        }`}
+                      />
+                    </button>
 
-                  {isExpanded && (
-                    <div className="pl-3 pr-2 py-2 space-y-1 bg-[#F8FAFC] my-1 rounded-xs">
-                      <Link
-                        to={`/services/${menu.slug}`}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-xs font-bold text-[#152E4D] py-1.5 px-2 hover:underline"
-                      >
-                        Explore All {menu.title} Services →
-                      </Link>
-                      {services.map((svc) => (
+                    {isExpanded && (
+                      <div className="pl-3 pr-2 py-2 space-y-1 bg-slate-50 my-1 rounded-lg border border-slate-200/60">
                         <Link
-                          key={svc.id}
-                          to={`/services/${svc.categorySlug}/${svc.slug}`}
+                          to={`/services/${menu.slug}`}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block text-xs text-[#334155] hover:text-[#121B24] py-1 px-2"
+                          className="block text-xs font-bold text-[#152E4D] py-2 px-2 hover:underline"
                         >
-                          {svc.title}
+                          Explore All {menu.title} Services →
                         </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                        {services.map((svc) => (
+                          <Link
+                            key={svc.id}
+                            to={`/services/${svc.categorySlug}/${svc.slug}`}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block text-xs text-slate-600 hover:text-[#121B24] py-1.5 px-2 rounded-md hover:bg-white"
+                          >
+                            {svc.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
 
-            <Link
-              to="/about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
-            >
-              About Us
-            </Link>
+              <Link
+                to="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-slate-50 rounded-lg"
+              >
+                About Us
+              </Link>
 
-            <Link
-              to="/faq"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
-            >
-              Resources &amp; FAQs
-            </Link>
+              <Link
+                to="/faq"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-slate-50 rounded-lg"
+              >
+                Statutory FAQs
+              </Link>
 
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-[#F8FAFC] rounded-lg"
-            >
-              Contact Us
-            </Link>
-          </div>
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-[#121B24] hover:bg-slate-50 rounded-lg"
+              >
+                Contact Us (Chennai Desk)
+              </Link>
+            </div>
 
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                openEnquiryModal();
-              }}
-              className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-4 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs tracking-wider uppercase rounded-lg cursor-pointer shadow-sm active:scale-[0.99]"
-            >
-              <MessageSquare className="w-4 h-4 text-white" />
-              <span>Get Free Consultation</span>
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <div className="pt-2 space-y-2.5 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openEnquiryModal();
+                }}
+                className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-4 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs tracking-wider uppercase rounded-lg cursor-pointer shadow-xs active:scale-[0.99]"
+              >
+                <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
+                <span>Get Free Consultation</span>
+              </button>
+
+              <div className="flex items-center justify-between text-xs text-slate-500 px-1 pt-1">
+                <span>Chennai Head Office</span>
+                <a href="tel:+918691001900" className="font-semibold text-[#152E4D]">
+                  +91 86910 01900
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

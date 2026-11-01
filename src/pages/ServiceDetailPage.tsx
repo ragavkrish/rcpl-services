@@ -28,6 +28,25 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
   const service = getServiceBySlug(serviceSlug);
   const category = getCategoryBySlug(categorySlug);
 
+  const getAuthorityName = (slug: string): string => {
+    switch (slug) {
+      case 'ra-license':
+        return 'Ministry of External Affairs (MEA · eMigrate)';
+      case 'business-formation':
+      case 'secretarial':
+      case 'company-conversions':
+        return 'Ministry of Corporate Affairs (MCA V3 · ROC)';
+      case 'intellectual-property':
+        return 'CGPDTM · Trade Marks & IP Registry';
+      case 'taxation':
+        return 'CBIC (GSTN) & Income Tax Department';
+      case 'registrations':
+        return 'Central & State Licensing Portals';
+      default:
+        return 'Central Statutory Portal';
+    }
+  };
+
   if (!service || !category) {
     return (
       <div className="max-w-[1320px] mx-auto px-4 py-20 text-center space-y-4">
@@ -38,13 +57,13 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <div className="pt-4 flex items-center justify-center gap-4">
           <Link
             to={`/services/${categorySlug}`}
-            className="px-6 py-2.5 bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+            className="px-6 py-2.5 bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors"
           >
             Back to Domain
           </Link>
           <Link
             to="/"
-            className="px-6 py-2.5 border border-[#CCD3DA] text-[#121B24] text-xs font-semibold uppercase tracking-wider hover:bg-[#F6F7F5] transition-colors"
+            className="px-6 py-2.5 border border-slate-300 text-[#121B24] text-xs font-semibold uppercase tracking-wider rounded-lg hover:bg-slate-50 transition-colors"
           >
             Overview
           </Link>
@@ -68,7 +87,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       >
         <Breadcrumbs
           items={[
-            { label: 'Statutory Practices', to: '/#statutory-ledger' },
+            { label: 'Statutory Practices', to: '/#services-tabs-section' },
             { label: category.title, to: `/services/${category.slug}` },
             { label: service.title },
           ]}
@@ -76,24 +95,52 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 
         <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+            <div className="lg:col-span-8 space-y-5">
+              <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
                 {category.title} · Statutory Practice Profile
               </div>
 
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
                 {service.title}
               </h1>
 
               <p className="text-base sm:text-[17px] text-[#CCD3DA] leading-relaxed max-w-2xl font-normal">
                 {service.summary}
               </p>
+
+              {/* 3-Column Statutory Metadata Strip */}
+              <div className="pt-4 mt-2 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+                    Governing Authority
+                  </span>
+                  <span className="font-semibold text-white mt-0.5 block">
+                    {getAuthorityName(category.slug)}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+                    Lodgement Mode
+                  </span>
+                  <span className="font-semibold text-white mt-0.5 block">
+                    100% Electronic · Pan-India
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+                    Fee Transparency
+                  </span>
+                  <span className="font-semibold text-[#60A5FA] mt-0.5 block">
+                    Itemized Govt + Advisory
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Advisory Intake Action Box */}
             <div className="lg:col-span-4 bg-[#1B2937] border border-[#2D4055] p-6 space-y-4 rounded-xl shadow-md">
-              <div className="flex items-center justify-between text-xs text-[#B28348] font-mono">
-                <span>Advisory Desk</span>
+              <div className="flex items-center justify-between text-xs text-[#60A5FA] font-mono">
+                <span>Chennai Advisory Desk</span>
                 <span>WhatsApp Intake</span>
               </div>
               <div className="space-y-1">
@@ -108,9 +155,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <button
                 type="button"
                 onClick={() => openEnquiryModal(service.title)}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md whitespace-nowrap"
               >
-                <MessageSquare className="w-4 h-4 text-[#121B24] shrink-0" />
+                <MessageSquare className="w-4 h-4 text-[#0F766E] shrink-0" />
                 <span className="truncate">Open WhatsApp Discussion</span>
               </button>
 
@@ -134,7 +181,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Service Overview */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Statutory Scope
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
@@ -145,7 +192,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </div>
 
             <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-3">
-              <Info className="w-4 h-4 text-[#B28348] shrink-0 mt-0.5" />
+              <Info className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
               <p className="text-xs text-slate-500 leading-relaxed">
                 <strong className="text-[#121B24]">Procedural Notice:</strong> Registration criteria and timelines vary by jurisdiction and workload at respective Registrar of Companies (ROC) or Trademark Registry offices.
               </p>
@@ -154,7 +201,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 
           {/* Who Typically Needs This */}
           <div className="lg:col-span-5 bg-white p-6 sm:p-7 border border-slate-200 rounded-xl shadow-xs space-y-4">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Applicable Contexts
             </span>
             <h3 className="font-display text-xl font-bold text-[#121B24]">
@@ -166,7 +213,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             <ul className="space-y-2.5 pt-1">
               {service.whoNeedsThis.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                  <Check className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
                   <span className="leading-relaxed font-medium">{item}</span>
                 </li>
               ))}
@@ -185,7 +232,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-xl space-y-1">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Filing Progression
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
@@ -202,7 +249,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 key={step.step}
                 className="p-6 bg-white border border-slate-200 rounded-xl shadow-xs space-y-2.5"
               >
-                <div className="flex items-center justify-between text-xs text-[#B28348] font-mono font-semibold">
+                <div className="flex items-center justify-between text-xs text-[#1D4ED8] font-mono font-semibold">
                   <span>Stage {step.step}</span>
                   <span>0{step.step}</span>
                 </div>
@@ -227,8 +274,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#B28348] font-semibold">
-            <FileCheck2 className="w-4 h-4 text-[#B28348]" />
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+            <FileCheck2 className="w-4 h-4 text-[#1D4ED8]" />
             <span>Evidentiary Prerequisites &amp; Checklist</span>
           </div>
           <h2 className="font-display text-xl sm:text-2xl font-bold text-[#121B24]">
@@ -253,7 +300,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       >
         <div className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-6 sm:p-8 space-y-6">
           <div className="space-y-1">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Readiness Checklist
             </span>
             <h3 className="font-display text-2xl font-bold text-[#121B24]">
@@ -266,25 +313,25 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-2xs space-y-1">
-              <span className="text-xs font-mono font-bold text-[#B28348]">01. Identity &amp; KYC</span>
+              <span className="text-xs font-mono font-bold text-[#1D4ED8]">01. Identity &amp; KYC</span>
               <p className="text-xs text-slate-500 leading-relaxed">
                 PAN and Aadhaar copies of all key directors, partners, or applicants.
               </p>
             </div>
             <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-2xs space-y-1">
-              <span className="text-xs font-mono font-bold text-[#B28348]">02. Address Proof</span>
+              <span className="text-xs font-mono font-bold text-[#1D4ED8]">02. Address Proof</span>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Recent utility bill (under 60 days old) plus owner NOC for registered office.
               </p>
             </div>
             <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-2xs space-y-1">
-              <span className="text-xs font-mono font-bold text-[#B28348]">03. Purpose Details</span>
+              <span className="text-xs font-mono font-bold text-[#1D4ED8]">03. Purpose Details</span>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Proposed company names, brand mark file, or intended commercial objects.
               </p>
             </div>
             <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-2xs space-y-1">
-              <span className="text-xs font-mono font-bold text-[#B28348]">04. Digital Signatures</span>
+              <span className="text-xs font-mono font-bold text-[#1D4ED8]">04. Digital Signatures</span>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Existing DSC status or Class-3 certificate (can be arranged if needed).
               </p>
@@ -303,7 +350,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-xl pb-4 border-b border-slate-200 mb-4 space-y-1">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Clarifications
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
@@ -324,7 +371,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div className="pb-3 border-b border-slate-200">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Related Scopes
             </span>
             <h2 className="font-display text-2xl font-bold text-[#121B24] mt-0.5">
@@ -338,7 +385,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 className="p-5 bg-white border border-slate-200/80 hover:border-[#152E4D] rounded-xl hover:shadow-md transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-1.5">
-                  <span className="text-[11px] font-mono text-[#B28348] font-semibold">
+                  <span className="text-[11px] font-mono text-[#1D4ED8] font-semibold">
                     {rel.categoryTitle}
                   </span>
                   <h3 className="font-display text-base font-bold text-[#121B24] group-hover:text-[#152E4D] transition-colors">
@@ -356,7 +403,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                     className="inline-flex items-center gap-1 text-xs font-semibold text-[#152E4D] hover:underline"
                   >
                     <span>View Profile</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#B28348]" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
                   </Link>
                 </div>
               </div>
@@ -375,7 +422,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       >
         <div className="bg-[#121B24] text-white p-8 sm:p-10 border border-slate-800 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#60A5FA] font-semibold">
               Statutory Consultation
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
@@ -390,9 +437,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             <button
               type="button"
               onClick={() => openEnquiryModal(service.title)}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-3.5 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md whitespace-nowrap"
             >
-              <MessageSquare className="w-4 h-4 text-[#121B24]" />
+              <MessageSquare className="w-4 h-4 text-[#0F766E]" />
               <span>Discuss on WhatsApp</span>
             </button>
           </div>
@@ -400,21 +447,21 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       </motion.section>
 
       {/* 10. MOBILE STICKY ENQUIRY BAR */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#121B24] border-t border-slate-800 p-3 px-4 flex items-center justify-between gap-3 text-white">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#121B24]/95 backdrop-blur-md border-t border-slate-800 p-3 px-4 flex items-center justify-between gap-3 text-white shadow-2xl">
         <div className="truncate">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-[#B28348]">
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[#60A5FA]">
             Selected Practice
           </div>
-          <div className="text-xs font-bold text-white truncate max-w-[180px]">
+          <div className="text-xs font-bold text-white truncate max-w-[200px]">
             {service.title}
           </div>
         </div>
         <button
           type="button"
           onClick={() => openEnquiryModal(service.title)}
-          className="shrink-0 min-h-[44px] px-4 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1.5 cursor-pointer rounded-lg"
+          className="shrink-0 min-h-[44px] px-4 py-2 bg-white hover:bg-slate-100 text-[#121B24] text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1.5 cursor-pointer rounded-lg whitespace-nowrap"
         >
-          <MessageSquare className="w-3.5 h-3.5 text-[#121B24]" />
+          <MessageSquare className="w-3.5 h-3.5 text-[#0F766E]" />
           <span>Enquire</span>
         </button>
       </div>

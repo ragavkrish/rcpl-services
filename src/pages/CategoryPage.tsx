@@ -50,7 +50,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
       >
         <Breadcrumbs
           items={[
-            { label: 'Statutory Practices', to: '/#statutory-ledger' },
+            { label: 'Statutory Practices', to: '/#services-tabs-section' },
             { label: category.title },
           ]}
         />
@@ -58,11 +58,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
         <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-4">
-              <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+              <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
                 Domain {category.number} · Statutory Practice Catalogue
               </div>
 
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
                 {category.title}
               </h1>
 
@@ -72,8 +72,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </div>
 
             <div className="lg:col-span-4 bg-[#1B2937] border border-[#2D4055] p-6 space-y-4 rounded-xl shadow-md">
-              <div className="flex items-center justify-between text-xs text-[#B28348] font-mono">
-                <span>Advisory Desk</span>
+              <div className="flex items-center justify-between text-xs text-[#60A5FA] font-mono">
+                <span>Chennai Advisory Desk</span>
                 <span>{services.length} Scopes Documented</span>
               </div>
               <div className="space-y-1">
@@ -87,9 +87,9 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               <button
                 type="button"
                 onClick={() => openEnquiryModal(category.title)}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md whitespace-nowrap"
               >
-                <MessageSquare className="w-4 h-4 text-[#121B24] shrink-0" />
+                <MessageSquare className="w-4 h-4 text-[#0F766E] shrink-0" />
                 <span className="truncate">Open WhatsApp Discussion</span>
               </button>
               <div className="pt-2 border-t border-[#2D4055] flex items-center justify-between text-[11px] text-[#A5B4C4]">
@@ -111,7 +111,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
       >
         <div className="pb-4 flex items-baseline justify-between border-b border-slate-200">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#B28348] font-semibold">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Registry Scopes
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24] mt-0.5">
@@ -132,7 +132,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                 {/* Index number */}
                 <div className="md:col-span-1 hidden md:flex items-center">
-                  <span className="font-mono text-xs font-bold text-[#B28348]">
+                  <span className="font-mono text-xs font-bold text-[#1D4ED8]">
                     {String(index + 1).padStart(2, '0')}.
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                       <ul className="space-y-1">
                         {service.whoNeedsThis.slice(0, 2).map((item, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Check className="w-3.5 h-3.5 text-[#25D366] shrink-0 mt-0.5" />
+                            <Check className="w-3.5 h-3.5 text-[#0F766E] shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -174,7 +174,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                     onClick={() => openEnquiryModal(service.title)}
                     className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer active:scale-95"
                   >
-                    <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+                    <MessageSquare className="w-3.5 h-3.5 text-[#60A5FA]" />
                     <span>Direct Enquiry</span>
                   </button>
 
@@ -183,7 +183,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                     className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 min-h-[38px] py-1"
                   >
                     <span>Inspect Profile</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#8C6534]" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
                   </Link>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-4 text-xs text-slate-600">
-          <ShieldAlert className="w-5 h-5 text-[#B28348] shrink-0 mt-0.5" />
+          <ShieldAlert className="w-5 h-5 text-[#1D4ED8] shrink-0 mt-0.5" />
           <div className="space-y-1">
             <h3 className="font-semibold text-[#121B24]">
               Statutory Scoping Notice
@@ -233,7 +233,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               to={`/services/${c.slug}`}
               className="p-4 bg-white border border-slate-200/80 hover:border-[#152E4D] rounded-xl hover:shadow-xs transition-all flex flex-col justify-between group"
             >
-              <div className="flex items-center justify-between text-xs text-[#B28348] font-mono">
+              <div className="flex items-center justify-between text-xs text-[#1D4ED8] font-mono">
                 <span>{c.number}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#152E4D]" />
               </div>

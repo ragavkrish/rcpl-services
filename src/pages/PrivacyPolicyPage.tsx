@@ -10,7 +10,7 @@ export const PrivacyPolicyPage: React.FC = () => {
 
         <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
           <div className="space-y-2">
-            <span className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+            <span className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
               Official Policy · Version 1.0
             </span>
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight break-words">

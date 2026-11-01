@@ -171,12 +171,12 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       className={`bg-white text-[#121B24] ${
         isModal
           ? 'p-6 sm:p-8'
-          : 'p-6 sm:p-8 border border-[#CCD3DA] rounded-xs shadow-xs'
+          : 'p-6 sm:p-8 border border-slate-200/80 rounded-xl shadow-xs'
       }`}
     >
       {heading && (
-        <div className="mb-6 space-y-2 pb-4 border-b border-[#E3E7EB]">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-[#8C6534] font-semibold">
+        <div className="mb-6 space-y-2 pb-4 border-b border-slate-100">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-[#1D4ED8] font-semibold">
             Registry Advisory Intake Desk
           </div>
           <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#121B24]">
@@ -199,25 +199,25 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       {isConfigUnavailable && (
         <div
           role="alert"
-          className="mb-6 p-4 bg-[#FFFDF5] border border-[#DEB887] text-xs text-[#6B4B1B] space-y-3"
+          className="mb-6 p-4 bg-[#EFF6FF] border border-[#BFDBFE] text-xs text-[#1E3A8A] space-y-3 rounded-lg"
         >
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-4 h-4 text-[#8C6534] shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
             <div className="space-y-1 flex-1">
-              <p className="font-semibold text-[#4A3210]">
+              <p className="font-semibold text-[#1E3A8A]">
                 Official WhatsApp Helpline Awaiting Deployment
               </p>
-              <p className="leading-relaxed text-[#6B4B1B]">
+              <p className="leading-relaxed text-[#1E40AF]">
                 In accordance with truth-in-filing guidelines, telephone numbers are never fabricated. You may copy your prepared brief or send directly via email:
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#E8D4B0]">
+          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#BFDBFE]">
             <button
               type="button"
               onClick={handleCopyDraft}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#4A3210] text-white text-xs font-medium hover:bg-[#33220B] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#152E4D] text-white text-xs font-medium hover:bg-[#0D1E33] transition-colors rounded-md"
             >
               {copiedDraft ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copiedDraft ? 'Brief Copied' : 'Copy Formatted Brief'}</span>
@@ -227,16 +227,16 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               href={`mailto:${siteConfig.defaultEmailPrompt}?subject=${encodeURIComponent(
                 `Statutory Enquiry: ${selectedService}`
               )}&body=${encodeURIComponent(buildMessageText())}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#DEB887] text-[#4A3210] text-xs font-medium hover:bg-[#FAF4EB] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#BFDBFE] text-[#152E4D] text-xs font-medium hover:bg-slate-50 transition-colors rounded-md"
             >
-              <Mail className="w-3.5 h-3.5 text-[#8C6534]" />
+              <Mail className="w-3.5 h-3.5 text-[#1D4ED8]" />
               <span>Send via Email Desk</span>
             </a>
 
             <button
               type="button"
               onClick={() => setShowDevConfig(!showDevConfig)}
-              className="text-[11px] text-[#6B4B1B] underline ml-auto cursor-pointer"
+              className="text-[11px] text-[#1D4ED8] underline ml-auto cursor-pointer"
             >
               {showDevConfig ? 'Hide Test Input' : 'Reviewer Test Number'}
             </button>
@@ -321,7 +321,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             }}
             placeholder="e.g. Ramesh Chandra Sharma"
             aria-describedby={errors.fullName ? 'name-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.fullName ? '!border-[#B42318]' : ''
             }`}
           />
@@ -357,7 +357,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             }}
             placeholder="e.g. 98765 43210 (or +91...)"
             aria-describedby={errors.contactNumber ? 'phone-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.contactNumber ? '!border-[#B42318]' : ''
             }`}
           />
@@ -391,7 +391,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               if (errors.service) setErrors((prev) => ({ ...prev, service: undefined }));
             }}
             aria-describedby={errors.service ? 'service-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.service ? '!border-[#B42318]' : ''
             }`}
           >
@@ -434,7 +434,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Share specific context (e.g. number of directors, registered office state, nature of business activity)..."
-            className="w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-xs placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] resize-y"
+            className="w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] resize-y"
           />
         </div>
 
@@ -442,9 +442,9 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-semibold text-xs uppercase tracking-wider rounded-xs transition-colors cursor-pointer active:scale-[0.99] border border-[#0D1E33]"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer active:scale-[0.99] border border-[#0D1E33]"
           >
-            <MessageSquare className="w-4 h-4 text-[#C99C62]" />
+            <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
             <span>{selectedService ? `Enquire for ${selectedService}` : 'Open WhatsApp Consultation Docket'}</span>
             <ExternalLink className="w-3.5 h-3.5 opacity-70" />
           </button>

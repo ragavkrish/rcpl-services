@@ -58,14 +58,14 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           {/* Dome behind pediment */}
           <path d="M 395,182 A 26,26 0 0,1 447,182 Z" fill="#0D1E33" />
 
-          {/* Scales of Justice Medallion in Warm Gold */}
+          {/* Scales of Justice Medallion in Royal Cobalt */}
           <circle cx="421" cy="214" r="13" fill="#FFFFFF" />
-          <circle cx="421" cy="214" r="11" fill="#FDF8F0" />
-          {/* Gold Scales icon */}
-          <line x1="421" y1="207" x2="421" y2="221" stroke="#B28348" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="414" y1="210" x2="428" y2="210" stroke="#B28348" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 412,216 Q 414,218 416,216 Z" fill="#B28348" />
-          <path d="M 426,216 Q 428,218 430,216 Z" fill="#B28348" />
+          <circle cx="421" cy="214" r="11" fill="#EFF6FF" />
+          {/* Cobalt Scales icon */}
+          <line x1="421" y1="207" x2="421" y2="221" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="414" y1="210" x2="428" y2="210" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 412,216 Q 414,218 416,216 Z" fill="#2563EB" />
+          <path d="M 426,216 Q 428,218 430,216 Z" fill="#2563EB" />
         </g>
 
         {/* 3. The Central Smartphone Mockup (Video Call) */}
@@ -95,17 +95,17 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
             {/* Subtle Law Bookshelf / Office Credenza in background */}
             <rect x="220" y="130" width="45" height="35" rx="3" fill="#D9E6F2" opacity="0.7" />
             <rect x="224" y="138" width="4" height="20" rx="1" fill="#152E4D" opacity="0.3" />
-            <rect x="230" y="136" width="5" height="22" rx="1" fill="#B28348" opacity="0.35" />
+            <rect x="230" y="136" width="5" height="22" rx="1" fill="#2563EB" opacity="0.35" />
             <rect x="237" y="139" width="4" height="19" rx="1" fill="#23456F" opacity="0.3" />
             <rect x="243" y="137" width="5" height="21" rx="1" fill="#152E4D" opacity="0.25" />
-            <rect x="250" y="140" width="4" height="18" rx="1" fill="#B28348" opacity="0.3" />
+            <rect x="250" y="140" width="4" height="18" rx="1" fill="#2563EB" opacity="0.3" />
 
             {/* Framed Certificate on Wall */}
             <rect x="312" y="132" width="34" height="24" rx="2" fill="#FFFFFF" stroke="#CCD8E4" strokeWidth="1" />
-            <rect x="316" y="136" width="26" height="3" rx="1" fill="#B28348" opacity="0.6" />
+            <rect x="316" y="136" width="26" height="3" rx="1" fill="#2563EB" opacity="0.6" />
             <rect x="318" y="142" width="22" height="2" rx="1" fill="#94A3B8" />
             <rect x="320" y="146" width="18" height="2" rx="1" fill="#94A3B8" />
-            <circle cx="329" cy="151" r="2" fill="#B28348" />
+            <circle cx="329" cy="151" r="2" fill="#2563EB" />
 
             {/* Advisor Body & Suit */}
             {/* Dark Navy Suit */}
@@ -114,14 +114,14 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
             <path d="M 255,230 L 268,275 L 275,230" fill="#1C3D66" />
             <path d="M 315,230 L 302,275 L 295,230" fill="#1C3D66" />
             
-            {/* Gold Lapel Pin */}
-            <circle cx="264" cy="248" r="2.5" fill="#B28348" />
+            {/* Cobalt Lapel Pin */}
+            <circle cx="264" cy="248" r="2.5" fill="#60A5FA" />
 
             {/* Crisp White Shirt Collar */}
             <polygon points="274,230 296,230 285,256" fill="#FFFFFF" />
-            {/* Gold / Brass Accent Tie */}
-            <polygon points="282,242 288,242 290,290 285,296 280,290" fill="#B28348" />
-            <polygon points="282,238 288,238 286,244 284,244" fill="#8C6534" />
+            {/* Royal Cobalt Accent Tie */}
+            <polygon points="282,242 288,242 290,290 285,296 280,290" fill="#2563EB" />
+            <polygon points="282,238 288,238 286,244 284,244" fill="#1D4ED8" />
 
             {/* Advisor Head and Neck */}
             <rect x="278" y="210" width="14" height="22" rx="3" fill="#F8C4B4" />
@@ -162,7 +162,7 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           <line x1="324" y1="342" x2="332" y2="342" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
         </g>
 
-        {/* 4. Businesswoman on Left in RCPL Corporate Navy & Gold */}
+        {/* 4. Businesswoman on Left in RCPL Corporate Navy & Cobalt */}
         <g id="businesswoman" filter="url(#softShadow)">
           {/* Legs & Charcoal Tailored Skirt */}
           <rect x="135" y="278" width="40" height="52" rx="4" fill="#1E293B" />
@@ -177,8 +177,8 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           {/* Lapels */}
           <path d="M 140,215 L 147,250 L 152,215" fill="#1C3D66" />
           <path d="M 168,215 L 161,250 L 156,215" fill="#1C3D66" />
-          {/* Gold Brooch */}
-          <circle cx="142" cy="228" r="2.5" fill="#B28348" />
+          {/* Cobalt Brooch */}
+          <circle cx="142" cy="228" r="2.5" fill="#60A5FA" />
 
           {/* White inner blouse collar */}
           <polygon points="149,215 159,215 154,235" fill="#FFFFFF" />
@@ -202,14 +202,14 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           <path d="M 160,190 Q 165,193 168,190" stroke="#1E293B" strokeWidth="1.5" strokeLinecap="round" fill="none" />
         </g>
 
-        {/* 5. Floating Accents in RCPL Brand Gold & Navy */}
+        {/* 5. Floating Accents in RCPL Brand Cobalt & Navy */}
         <g id="accents">
           {/* Verified Checkmark Bubble */}
           <circle cx="105" cy="130" r="18" fill="#FFFFFF" filter="url(#softShadow)" />
           <path d="M 98,130 L 103,135 L 112,125" stroke="#25D366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
 
-          {/* Gold Sparkle Star */}
-          <path d="M 390,120 Q 390,132 402,132 Q 390,132 390,144 Q 390,132 378,132 Q 390,132 390,120 Z" fill="#B28348" />
+          {/* Cobalt Sparkle Star */}
+          <path d="M 390,120 Q 390,132 402,132 Q 390,132 390,144 Q 390,132 378,132 Q 390,132 390,120 Z" fill="#2563EB" />
           {/* Navy Star */}
           <path d="M 180,85 Q 180,93 188,93 Q 180,93 180,101 Q 180,93 172,93 Q 180,93 180,85 Z" fill="#152E4D" />
         </g>

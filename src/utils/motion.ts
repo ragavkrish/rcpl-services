@@ -80,6 +80,8 @@ export const heroTextVariants: Variants = {
   },
 };
 
+export const heroSubtextVariants = heroTextVariants;
+
 export const heroCtaVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
   visible: {

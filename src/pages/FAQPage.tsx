@@ -1,31 +1,39 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Accordion } from '../components/common/Accordion';
 import { useRouter } from '../context/RouterContext';
+import { fadeInUp, viewportConfig } from '../utils/motion';
 import { MessageSquare } from 'lucide-react';
 
 export const FAQPage: React.FC = () => {
   const { openEnquiryModal } = useRouter();
-  const [activeTab, setActiveTab] = useState<'all' | 'formation' | 'ip' | 'tax' | 'secretarial'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'ra' | 'formation' | 'ip' | 'tax' | 'secretarial'>('all');
 
   const allFaqs = [
     {
       category: 'general',
       question: 'What is the role of RCPL Services in corporate filings?',
       answer:
-        'RCPL Services provides business facilitation and administrative compliance support. We assist founders and management teams with drafting constitutional charters, assembling evidentiary records, and executing statutory filings on authorized government portals such as the Ministry of Corporate Affairs (MCA), GST Network, and the Trade Marks Registry.',
+        'RCPL Services provides business facilitation and administrative compliance support. Headquartered in Chennai and serving clients across India, we assist founders and management teams with drafting constitutional charters, assembling evidentiary records, and executing statutory filings on authorized government portals such as the Ministry of Corporate Affairs (MCA), MEA eMigrate, GST Network, and the Trade Marks Registry.',
     },
     {
       category: 'general',
       question: 'Is RCPL Services an official government authority or judicial law firm?',
       answer:
-        'No. RCPL Services is an independent corporate facilitation practice. We hold no formal affiliation with the Ministry of Corporate Affairs, the Central Board of Indirect Taxes and Customs, or the Trade Marks Registry. All certificates, licences, and approvals are granted solely by respective statutory registries.',
+        'No. RCPL Services is an independent corporate facilitation practice. We hold no formal affiliation with the Ministry of Corporate Affairs, Ministry of External Affairs, the Central Board of Indirect Taxes and Customs, or the Trade Marks Registry. All certificates, licences, and approvals are granted solely by respective statutory registries.',
     },
     {
       category: 'general',
       question: 'How does the WhatsApp enquiry process work?',
       answer:
         'Submitting the enquiry form opens your personal WhatsApp application with a structured message pre-filled with your contact information, chosen service, and specific notes. You have complete control to inspect, amend, and send the message to initiate an advisory discussion.',
+    },
+    {
+      category: 'ra',
+      question: 'What are the financial and office criteria for an MEA Recruiting Agent (RA) License?',
+      answer:
+        'For the standard 1,000+ worker capacity RA License under the Emigration Act, 1983, the applicant entity must hold ₹50 Lakhs Net Worth, furnish a ₹50 Lakh Bank Guarantee (or ₹8 Lakh BG for the 100-worker capacity tier), and maintain an accessible commercial office of at least 500 sq. ft. subject to Protector of Emigrants (POE) inspection.',
     },
     {
       category: 'formation',
@@ -91,32 +99,44 @@ export const FAQPage: React.FC = () => {
   return (
     <div className="space-y-12 lg:space-y-16 py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+      >
         <Breadcrumbs items={[{ label: 'FAQs' }]} />
 
-        <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
+        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
           <div className="max-w-3xl space-y-4">
-            <div className="text-[11px] font-mono text-[#B28348] uppercase tracking-widest font-semibold">
+            <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
               Statutory Knowledge Base · Regulatory Guidance
             </div>
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight break-words">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Frequently Asked Questions
             </h1>
 
             <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
-              Methodical clarifications regarding entity incorporation, trademark registration, tax compliance, and corporate governance in India.
+              Methodical clarifications regarding entity incorporation, MEA Overseas RA licensing, trademark registration, tax compliance, and corporate governance in India.
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Filter Tabs & Accordion */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8"
+      >
         {/* Category Segmented Tabs */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-2 border-b border-[#CCD3DA]">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-200">
           {[
             { id: 'all', label: 'All Statutory Questions' },
+            { id: 'ra', label: 'RA License (MEA)' },
             { id: 'formation', label: 'Company Formations' },
             { id: 'ip', label: 'Intellectual Property' },
             { id: 'tax', label: 'Tax & Compliance' },
@@ -126,10 +146,10 @@ export const FAQPage: React.FC = () => {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`px-3.5 py-2 text-xs font-semibold rounded-xs transition-colors whitespace-nowrap cursor-pointer ${
+              className={`px-4 py-2 min-h-[38px] text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-[#152E4D] text-white'
-                  : 'text-[#3A4754] hover:bg-[#F6F7F5] hover:text-[#121B24]'
+                  ? 'bg-[#152E4D] text-white shadow-2xs'
+                  : 'text-slate-600 bg-white border border-slate-200/80 hover:bg-slate-50 hover:text-[#121B24]'
               }`}
             >
               {tab.label}
@@ -141,16 +161,25 @@ export const FAQPage: React.FC = () => {
         <div className="max-w-4xl">
           <Accordion items={filteredFaqs} allowMultiple theme="light" />
         </div>
-      </section>
+      </motion.section>
 
       {/* Direct Consultation Card */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="p-8 sm:p-10 bg-[#F6F7F5] border border-[#CCD3DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <motion.section
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12"
+      >
+        <div className="p-8 sm:p-10 bg-white border border-slate-200/80 rounded-2xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1 max-w-xl">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+              Direct Advisory Desk
+            </span>
             <h2 className="font-display text-xl sm:text-2xl font-bold text-[#121B24]">
               Have a specific question not covered here?
             </h2>
-            <p className="text-xs sm:text-sm text-[#556371] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Every enterprise setup has distinct jurisdictional and capital considerations. Connect directly via WhatsApp to review your exact requirements.
             </p>
           </div>
@@ -158,13 +187,13 @@ export const FAQPage: React.FC = () => {
           <button
             type="button"
             onClick={() => openEnquiryModal()}
-            className="px-6 py-3.5 bg-[#8C6534] hover:bg-[#A3753C] text-white font-semibold text-xs uppercase tracking-wider transition-colors shrink-0 cursor-pointer inline-flex items-center gap-2"
+            className="px-6 py-3.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0 cursor-pointer inline-flex items-center gap-2 shadow-xs whitespace-nowrap"
           >
-            <MessageSquare className="w-4 h-4 text-white" />
+            <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
             <span>Consult on WhatsApp</span>
           </button>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

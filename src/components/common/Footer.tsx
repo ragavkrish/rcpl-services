@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="font-display text-xl font-bold text-white tracking-tight">
-                  RCPL <span className="font-light italic text-[#A5B4C4]">Services</span>
+                  RCPL <span className="font-medium text-[#A5B4C4]">Services</span>
                 </span>
                 <p className="text-[10px] uppercase font-semibold text-[#7A8E9E] tracking-widest">
                   Legal &amp; Business Advisory
@@ -75,15 +75,15 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-2 pt-1 text-[11px] text-[#889DAF]">
               <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#B28348] shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#60A5FA] shrink-0 mt-0.5" />
                 <span>Office: Chennai, Tamil Nadu · Pan-India Advisory</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#B28348] shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" />
                 <span>enquiry@rcplservices.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-[#B28348] shrink-0" />
+                <Clock className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" />
                 <span>Mon – Sat: 9:30 AM – 6:30 PM IST</span>
               </div>
             </div>
@@ -92,9 +92,9 @@ export const Footer: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openEnquiryModal()}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#121B24] font-bold text-xs rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[40px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs rounded-lg transition-colors cursor-pointer whitespace-nowrap"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-[#121B24]" />
+                <MessageSquare className="w-3.5 h-3.5 text-[#0F766E]" />
                 <span>Open WhatsApp Consultation</span>
               </button>
             </div>
@@ -142,13 +142,12 @@ export const Footer: React.FC = () => {
           {/* Column 3: Registrations & Licenses */}
           <div className="space-y-2.5">
             <h4 className="text-[11px] font-mono font-semibold uppercase tracking-widest text-white">
-              Registrations & Licenses
+              Registrations &amp; Licenses
             </h4>
             <ul className="space-y-2 text-[#889DAF] text-xs">
               <li>
-                <Link to="/services/ra-license/overseas-recruitment-agent-license" className="text-white font-medium hover:text-[#B28348] transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
-                  <span>RA License (MEA Emigration)</span>
+                <Link to="/services/ra-license/overseas-recruitment-agent-license" className="text-[#60A5FA] font-semibold hover:text-white transition-colors">
+                  RA License (MEA Emigration)
                 </Link>
               </li>
               <li>

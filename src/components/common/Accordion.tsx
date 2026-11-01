@@ -59,7 +59,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                 onClick={() => toggle(idx)}
                 className={`w-full text-left flex items-start justify-between gap-4 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-1 ${
                   isDark
-                    ? 'text-white hover:text-[#D4A368]'
+                    ? 'text-white hover:text-[#60A5FA]'
                     : 'text-[#121B24] hover:text-[#152E4D]'
                 }`}
               >
@@ -69,7 +69,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                 <span
                   className={`mt-1 shrink-0 w-6 h-6 flex items-center justify-center transition-transform duration-150 ${
                     isDark ? 'text-[#A5B4C4]' : 'text-[#6C7A89]'
-                  } ${isOpen ? 'rotate-180 text-[#8C6534]' : ''}`}
+                  } ${isOpen ? 'rotate-180 text-[#1D4ED8]' : ''}`}
                 >
                   <ChevronDown className="w-4 h-4" />
                 </span>

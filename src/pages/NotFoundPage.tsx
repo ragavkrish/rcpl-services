@@ -7,10 +7,10 @@ export const NotFoundPage: React.FC = () => {
   return (
     <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
       <div className="max-w-md mx-auto space-y-4">
-        <div className="inline-flex p-3 bg-[#F6F7F5] border border-[#CCD3DA] text-[#8C6534]">
+        <div className="inline-flex p-3 bg-[#EFF6FF] border border-[#BFDBFE] text-[#1D4ED8] rounded-xl">
           <Compass className="w-6 h-6" />
         </div>
-        <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#8C6534]">
+        <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#1D4ED8]">
           404 — Registry Docket Not Found
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-[#121B24] tracking-tight">
@@ -26,7 +26,7 @@ export const NotFoundPage: React.FC = () => {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-[#152E4D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0D1E33] transition-colors rounded-lg active:scale-95"
           >
             <span>Return to Overview</span>
-            <ArrowRight className="w-4 h-4 text-[#B28348]" />
+            <ArrowRight className="w-4 h-4 text-[#60A5FA]" />
           </Link>
         </div>
       </div>
@@ -42,7 +42,7 @@ export const NotFoundPage: React.FC = () => {
               to={`/services/${cat.slug}`}
               className="p-3.5 sm:p-4 bg-white border border-[#CCD3DA] hover:border-[#152E4D] text-xs text-[#121B24] transition-colors text-left rounded-lg shadow-2xs"
             >
-              <span className="text-[10px] text-[#8C6534] font-mono block">{cat.number}</span>
+              <span className="text-[10px] text-[#1D4ED8] font-mono block">{cat.number}</span>
               <span className="font-display font-bold mt-1 block text-sm">{cat.title}</span>
             </Link>
           ))}
