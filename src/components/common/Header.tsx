@@ -73,49 +73,6 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs">
-      {/* 1. INSTITUTIONAL TOP UTILITY BAR */}
-      <div className="bg-[#FAFBFB] text-slate-600 text-[12px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-200/70 hidden md:block">
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between font-medium">
-          <div className="flex items-center gap-2 text-slate-500">
-            <MapPin className="w-3.5 h-3.5 text-[#1D4ED8]" />
-            <span>Chennai Head Office · Pan-India Electronic Filings (MCA, MEA &amp; IP India)</span>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <a
-              href="tel:+918691001900"
-              className="flex items-center gap-1.5 text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#152E4D]" />
-              <span>+91 86910 01900</span>
-            </a>
-
-            <a
-              href="https://wa.me/918691001900?text=Hello%20RCPL%20Services,%20I%20would%20like%20to%20inquire%20about%20business%20and%20compliance%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-slate-600 hover:text-[#0F766E] transition-colors whitespace-nowrap"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-[#0F766E]" />
-              <span>WhatsApp Desk</span>
-            </a>
-
-            <Link
-              to="/faq"
-              className="text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
-            >
-              Statutory FAQs
-            </Link>
-
-            <Link
-              to="/contact"
-              className="text-slate-600 hover:text-[#152E4D] transition-colors whitespace-nowrap"
-            >
-              Chennai Office
-            </Link>
-          </div>
-        </div>
-      </div>
 
       {/* 2. MAIN EXECUTIVE NAVIGATION BAR */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">

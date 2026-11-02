@@ -379,45 +379,45 @@ export const HomePage: React.FC = () => {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
           className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12"
         >
-          <div className="bg-[#FCFCFA] border border-slate-200/80 rounded-2xl shadow-2xs p-4 sm:p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/80 items-center">
-              <div className="flex items-center gap-4 justify-center md:justify-start md:px-4">
-                <div className="w-11 h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
-                  <Handshake className="w-5 h-5 text-[#152E4D]" />
+          <div className="bg-[#FCFCFA] border border-slate-200/80 rounded-2xl shadow-2xs p-4 sm:p-5 lg:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/80">
+              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start pb-4 md:pb-0 md:px-4">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
+                  <Handshake className="w-5 h-5 text-[#1D4ED8]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
                     Trusted Advisory Desk
                   </p>
-                  <p className="text-sm sm:text-base font-bold text-[#121B24] leading-tight mt-0.5">
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#121B24] leading-tight mt-0.5">
                     1,000+ Enterprises Supported
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 justify-center md:justify-start pt-4 md:pt-0 md:px-6">
-                <div className="w-11 h-11 rounded-xl bg-white text-[#1D4ED8] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
+              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start py-4 md:py-0 md:px-6">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-[#1D4ED8] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
                   <Award className="w-5 h-5 text-[#1D4ED8]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
                     Qualified Oversight
                   </p>
-                  <p className="text-sm sm:text-base font-bold text-[#1D4ED8] leading-tight mt-0.5">
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#1D4ED8] leading-tight mt-0.5">
                     CA, CS &amp; Legal Specialists
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 justify-center md:justify-start pt-4 md:pt-0 md:px-6">
-                <div className="w-11 h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
+              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start pt-4 md:pt-0 md:px-6">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
                   <CheckCircle2 className="w-5 h-5 text-[#0F766E]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
                     100% Electronic Execution
                   </p>
-                  <p className="text-sm sm:text-base font-bold text-[#152E4D] leading-tight mt-0.5">
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#152E4D] leading-tight mt-0.5">
                     Chennai Office · Pan-India Reach
                   </p>
                 </div>
