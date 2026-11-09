@@ -141,20 +141,31 @@ export const FAQPage: React.FC = () => {
             { id: 'ip', label: 'Intellectual Property' },
             { id: 'tax', label: 'Tax & Compliance' },
             { id: 'secretarial', label: 'Corporate Secretarial' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`px-4 py-2 min-h-[38px] text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === tab.id
-                  ? 'bg-[#152E4D] text-white shadow-2xs'
-                  : 'text-slate-600 bg-white border border-slate-200/80 hover:bg-slate-50 hover:text-[#121B24]'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+          ].map((tab) => {
+            const isRa = tab.id === 'ra';
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                className={`px-4 py-2 min-h-[38px] text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                  isActive
+                    ? isRa
+                      ? 'bg-[#D99A32] text-white shadow-sm ring-2 ring-[#D99A32]/30'
+                      : 'bg-[#152E4D] text-white shadow-2xs'
+                    : isRa
+                    ? 'text-[#B87E22] bg-[#FFFDF8] border border-[#D99A32]/50 hover:bg-[#FDF6E8]'
+                    : 'text-slate-600 bg-white border border-slate-200/80 hover:bg-slate-50 hover:text-[#121B24]'
+                }`}
+              >
+                {isRa && (
+                  <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white' : 'bg-[#D99A32]'}`} />
+                )}
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* FAQs Accordion */}

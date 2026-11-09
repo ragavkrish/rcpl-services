@@ -146,8 +146,9 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-[#889DAF] text-xs">
               <li>
-                <Link to="/services/ra-license/overseas-recruitment-agent-license" className="text-[#60A5FA] font-semibold hover:text-white transition-colors">
-                  RA License (MEA Emigration)
+                <Link to="/services/ra-license/overseas-recruitment-agent-license" className="text-[#D99A32] font-semibold hover:text-[#E8AB43] transition-colors inline-flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D99A32]" />
+                  <span>RA License (MEA Emigration)</span>
                 </Link>
               </li>
               <li>

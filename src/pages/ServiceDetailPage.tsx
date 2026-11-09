@@ -93,11 +93,26 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           ]}
         />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
+        <div className={`text-white border p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl ${
+          category.slug === 'ra-license'
+            ? 'bg-[#121B24] border-[#D99A32]/40 ring-1 ring-[#D99A32]/20'
+            : 'bg-[#121B24] border-slate-800'
+        }`}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-5">
-              <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
-                {category.title} · Statutory Practice Profile
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className={`text-[11px] font-mono uppercase tracking-widest font-semibold ${
+                    category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+                  }`}
+                >
+                  {category.title} · Statutory Practice Profile
+                </span>
+                {category.slug === 'ra-license' && (
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-[#D99A32]/20 text-[#D99A32] border border-[#D99A32]/40">
+                    MEA Sovereign Mandate
+                  </span>
+                )}
               </div>
 
               <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
@@ -114,7 +129,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
                     Governing Authority
                   </span>
-                  <span className="font-semibold text-white mt-0.5 block">
+                  <span
+                    className={`font-semibold mt-0.5 block ${
+                      category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-white'
+                    }`}
+                  >
                     {getAuthorityName(category.slug)}
                   </span>
                 </div>
@@ -130,7 +149,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
                     Fee Transparency
                   </span>
-                  <span className="font-semibold text-[#60A5FA] mt-0.5 block">
+                  <span
+                    className={`font-semibold mt-0.5 block ${
+                      category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+                    }`}
+                  >
                     Itemized Govt + Advisory
                   </span>
                 </div>
@@ -138,8 +161,12 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </div>
 
             {/* Advisory Intake Action Box */}
-            <div className="lg:col-span-4 bg-[#1B2937] border border-[#2D4055] p-6 space-y-4 rounded-xl shadow-md">
-              <div className="flex items-center justify-between text-xs text-[#60A5FA] font-mono">
+            <div className={`lg:col-span-4 bg-[#1B2937] p-6 space-y-4 rounded-xl shadow-md border ${
+              category.slug === 'ra-license' ? 'border-[#D99A32]/40' : 'border-[#2D4055]'
+            }`}>
+              <div className={`flex items-center justify-between text-xs font-mono ${
+                category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+              }`}>
                 <span>Chennai Advisory Desk</span>
                 <span>WhatsApp Intake</span>
               </div>

@@ -44,7 +44,7 @@ export class ErrorBoundary extends Component<Props, State> {
           className="min-h-[50vh] flex items-center justify-center px-4 py-16 bg-[#F8F9FA]"
         >
           <div className="max-w-md w-full bg-white rounded-lg border border-[#E9ECEF] shadow-sm p-8 text-center">
-            <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-[#B28348]">
+            <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#FFFDF8] border border-[#D99A32]/40 flex items-center justify-center text-[#D99A32]">
               <svg
                 className="w-6 h-6"
                 fill="none"

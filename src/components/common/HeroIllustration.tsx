@@ -58,14 +58,14 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           {/* Dome behind pediment */}
           <path d="M 395,182 A 26,26 0 0,1 447,182 Z" fill="#0D1E33" />
 
-          {/* Scales of Justice Medallion in Royal Cobalt */}
+          {/* Scales of Justice Medallion in Gold Amber #D99A32 */}
           <circle cx="421" cy="214" r="13" fill="#FFFFFF" />
-          <circle cx="421" cy="214" r="11" fill="#EFF6FF" />
-          {/* Cobalt Scales icon */}
-          <line x1="421" y1="207" x2="421" y2="221" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="414" y1="210" x2="428" y2="210" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 412,216 Q 414,218 416,216 Z" fill="#2563EB" />
-          <path d="M 426,216 Q 428,218 430,216 Z" fill="#2563EB" />
+          <circle cx="421" cy="214" r="11" fill="#FFFDF8" stroke="#D99A32" strokeWidth="1" />
+          {/* Gold Scales icon */}
+          <line x1="421" y1="207" x2="421" y2="221" stroke="#D99A32" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="414" y1="210" x2="428" y2="210" stroke="#D99A32" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 412,216 Q 414,218 416,216 Z" fill="#D99A32" />
+          <path d="M 426,216 Q 428,218 430,216 Z" fill="#D99A32" />
         </g>
 
         {/* 3. The Central Smartphone Mockup (Video Call) */}
@@ -114,8 +114,8 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
             <path d="M 255,230 L 268,275 L 275,230" fill="#1C3D66" />
             <path d="M 315,230 L 302,275 L 295,230" fill="#1C3D66" />
             
-            {/* Cobalt Lapel Pin */}
-            <circle cx="264" cy="248" r="2.5" fill="#60A5FA" />
+            {/* Gold Lapel Pin */}
+            <circle cx="264" cy="248" r="2.5" fill="#D99A32" />
 
             {/* Crisp White Shirt Collar */}
             <polygon points="274,230 296,230 285,256" fill="#FFFFFF" />
@@ -177,8 +177,8 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           {/* Lapels */}
           <path d="M 140,215 L 147,250 L 152,215" fill="#1C3D66" />
           <path d="M 168,215 L 161,250 L 156,215" fill="#1C3D66" />
-          {/* Cobalt Brooch */}
-          <circle cx="142" cy="228" r="2.5" fill="#60A5FA" />
+          {/* Gold Amber Brooch */}
+          <circle cx="142" cy="228" r="2.5" fill="#D99A32" />
 
           {/* White inner blouse collar */}
           <polygon points="149,215 159,215 154,235" fill="#FFFFFF" />
@@ -208,8 +208,8 @@ export const HeroIllustration: React.FC<{ className?: string }> = ({ className =
           <circle cx="105" cy="130" r="18" fill="#FFFFFF" filter="url(#softShadow)" />
           <path d="M 98,130 L 103,135 L 112,125" stroke="#25D366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
 
-          {/* Cobalt Sparkle Star */}
-          <path d="M 390,120 Q 390,132 402,132 Q 390,132 390,144 Q 390,132 378,132 Q 390,132 390,120 Z" fill="#2563EB" />
+          {/* Gold Amber Sparkle Star */}
+          <path d="M 390,120 Q 390,132 402,132 Q 390,132 390,144 Q 390,132 378,132 Q 390,132 390,120 Z" fill="#D99A32" />
           {/* Navy Star */}
           <path d="M 180,85 Q 180,93 188,93 Q 180,93 180,101 Q 180,93 172,93 Q 180,93 180,85 Z" fill="#152E4D" />
         </g>

@@ -290,13 +290,13 @@ export const ServiceDiscovery: React.FC = () => {
               >
                 {/* Active Indicator Top Accent */}
                 {isSelected && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-amber-400" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#D99A32]" />
                 )}
 
                 <div className="flex items-center justify-between mb-3.5">
                   <span
                     className={`font-mono text-xs font-bold ${
-                      isSelected ? 'text-amber-300' : 'text-slate-400'
+                      isSelected ? 'text-[#D99A32]' : 'text-slate-400'
                     }`}
                   >
                     {pathway.number}
@@ -357,7 +357,7 @@ export const ServiceDiscovery: React.FC = () => {
                 {/* Strategic note */}
                 <div className="p-5 bg-blue-50/70 border-l-4 border-[#1E3A8A] rounded-r-lg space-y-2">
                   <p className="text-xs font-bold uppercase tracking-wider text-[#1E3A8A] flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#B45309]" />
+                    <Sparkles className="w-3.5 h-3.5 text-[#D99A32]" />
                     <span>Recommended Starting Point</span>
                   </p>
                   <p className="text-xs text-slate-700 leading-relaxed font-medium">

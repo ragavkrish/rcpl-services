@@ -55,11 +55,26 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
           ]}
         />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
+        <div className={`text-white border p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl ${
+          category.slug === 'ra-license'
+            ? 'bg-[#121B24] border-[#D99A32]/40 ring-1 ring-[#D99A32]/20'
+            : 'bg-[#121B24] border-slate-800'
+        }`}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 space-y-4">
-              <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
-                Domain {category.number} · Statutory Practice Catalogue
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className={`text-[11px] font-mono uppercase tracking-widest font-semibold ${
+                    category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+                  }`}
+                >
+                  Domain {category.number} · Statutory Practice Catalogue
+                </span>
+                {category.slug === 'ra-license' && (
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-[#D99A32]/20 text-[#D99A32] border border-[#D99A32]/40">
+                    MEA Flagship Domain
+                  </span>
+                )}
               </div>
 
               <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
@@ -71,8 +86,12 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               </p>
             </div>
 
-            <div className="lg:col-span-4 bg-[#1B2937] border border-[#2D4055] p-6 space-y-4 rounded-xl shadow-md">
-              <div className="flex items-center justify-between text-xs text-[#60A5FA] font-mono">
+            <div className={`lg:col-span-4 bg-[#1B2937] p-6 space-y-4 rounded-xl shadow-md border ${
+              category.slug === 'ra-license' ? 'border-[#D99A32]/40' : 'border-[#2D4055]'
+            }`}>
+              <div className={`flex items-center justify-between text-xs font-mono ${
+                category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+              }`}>
                 <span>Chennai Advisory Desk</span>
                 <span>{services.length} Scopes Documented</span>
               </div>
@@ -111,7 +130,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
       >
         <div className="pb-4 flex items-baseline justify-between border-b border-slate-200">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+            <span
+              className={`text-[11px] font-mono uppercase tracking-widest font-semibold ${
+                category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
+              }`}
+            >
               Registry Scopes
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24] mt-0.5">
@@ -132,7 +155,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                 {/* Index number */}
                 <div className="md:col-span-1 hidden md:flex items-center">
-                  <span className="font-mono text-xs font-bold text-[#1D4ED8]">
+                  <span
+                    className={`font-mono text-xs font-bold ${
+                      category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
+                    }`}
+                  >
                     {String(index + 1).padStart(2, '0')}.
                   </span>
                 </div>
@@ -158,7 +185,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                       <ul className="space-y-1">
                         {service.whoNeedsThis.slice(0, 2).map((item, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Check className="w-3.5 h-3.5 text-[#0F766E] shrink-0 mt-0.5" />
+                            <Check
+                              className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${
+                                category.slug === 'ra-license'
+                                  ? 'text-[#D99A32]'
+                                  : 'text-[#0F766E]'
+                              }`}
+                            />
                             <span>{item}</span>
                           </li>
                         ))}

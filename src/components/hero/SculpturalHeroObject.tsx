@@ -22,14 +22,14 @@ export const SculpturalHeroObject: React.FC<SculpturalHeroObjectProps> = ({ clas
         <div className="relative z-10 flex flex-col items-center text-center space-y-5">
           {/* Official Emblem Badge */}
           <div className="relative">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0F2942] to-[#1E3A8A] flex items-center justify-center shadow-lg border-4 border-amber-100 text-white relative">
-              <Landmark className="w-10 h-10 text-amber-200" />
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0F2942] to-[#1E3A8A] flex items-center justify-center shadow-lg border-4 border-[#D99A32]/30 text-white relative">
+              <Landmark className="w-10 h-10 text-[#D99A32]" />
               {/* Gold Star Accents */}
-              <div className="absolute -top-1 right-2 w-3 h-3 bg-amber-400 rotate-45 rounded-xs" />
+              <div className="absolute -top-1 right-2 w-3 h-3 bg-[#D99A32] rotate-45 rounded-xs" />
             </div>
             {/* Trust Ribbon */}
             <div className="absolute -bottom-2 inset-x-0 flex justify-center">
-              <span className="px-3 py-0.5 bg-[#0F2942] text-amber-300 border border-amber-400/40 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs">
+              <span className="px-3 py-0.5 bg-[#0F2942] text-[#D99A32] border border-[#D99A32]/50 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs">
                 Est. Practice
               </span>
             </div>
@@ -56,7 +56,7 @@ export const SculpturalHeroObject: React.FC<SculpturalHeroObjectProps> = ({ clas
             </div>
 
             <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-left flex items-start gap-2.5">
-              <Award className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+              <Award className="w-4 h-4 text-[#D99A32] shrink-0 mt-0.5" />
               <div>
                 <span className="block text-xs font-bold text-slate-900 leading-tight">Intellectual Prop.</span>
                 <span className="block text-[11px] text-slate-500">Trademarks & IP</span>
@@ -72,7 +72,7 @@ export const SculpturalHeroObject: React.FC<SculpturalHeroObjectProps> = ({ clas
             </div>
 
             <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-left flex items-start gap-2.5">
-              <Scale className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+              <Scale className="w-4 h-4 text-[#D99A32] shrink-0 mt-0.5" />
               <div>
                 <span className="block text-xs font-bold text-slate-900 leading-tight">Governance</span>
                 <span className="block text-[11px] text-slate-500">Secretarial & ROC</span>

@@ -32,7 +32,7 @@ export const AboutPage: React.FC = () => {
             </h1>
 
             <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
-              A dedicated corporate facilitation firm built to provide clear, methodical navigation through company incorporation, MEA Overseas RA licensing, trademark registrations, taxation records, and statutory secretarial governance across India.
+              A dedicated corporate facilitation firm built to provide clear, methodical navigation through company incorporation, <span className="text-[#D99A32] font-semibold">MEA Overseas RA licensing</span>, trademark registrations, taxation records, and statutory secretarial governance across India.
             </p>
           </div>
         </div>

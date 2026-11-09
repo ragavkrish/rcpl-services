@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
                   >
                     <span>{item.title}</span>
                     {item.featured && (
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-bold ml-0.5">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded font-bold ml-1">
                         MEA
                       </span>
                     )}
@@ -139,10 +139,18 @@ export const Header: React.FC = () => {
                               <Link
                                 to={`/services/${item.slug}`}
                                 onClick={() => setActiveDropdown(null)}
-                                className="font-display text-sm font-bold text-[#121B24] hover:text-[#152E4D] flex items-center gap-1.5"
+                                className={`font-display text-sm font-bold flex items-center gap-1.5 ${
+                                  item.slug === 'ra-license'
+                                    ? 'text-[#121B24] hover:text-[#D99A32]'
+                                    : 'text-[#121B24] hover:text-[#152E4D]'
+                                }`}
                               >
                                 <span>{item.title} Practice</span>
-                                <ArrowRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                                <ArrowRight
+                                  className={`w-3.5 h-3.5 ${
+                                    item.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
+                                  }`}
+                                />
                               </Link>
                               <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
                                 {item.description}
@@ -159,7 +167,13 @@ export const Header: React.FC = () => {
                                 onClick={() => setActiveDropdown(null)}
                                 className="py-1.5 px-2.5 hover:bg-slate-50 rounded-lg transition-colors group block"
                               >
-                                <span className="text-xs font-semibold text-[#121B24] group-hover:text-[#152E4D] block truncate">
+                                <span
+                                  className={`text-xs font-semibold block truncate ${
+                                    item.slug === 'ra-license'
+                                      ? 'text-[#121B24] group-hover:text-[#D99A32]'
+                                      : 'text-[#121B24] group-hover:text-[#152E4D]'
+                                  }`}
+                                >
                                   {svc.title}
                                 </span>
                                 <span className="text-[11px] text-slate-500 block truncate font-normal">
@@ -267,7 +281,7 @@ export const Header: React.FC = () => {
                       <span className="flex items-center gap-2">
                         <span>{menu.title}</span>
                         {menu.featured && (
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-bold">
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded font-bold">
                             MEA Flagship
                           </span>
                         )}

@@ -28,7 +28,7 @@ export const ContactPage: React.FC = () => {
             </h1>
 
             <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
-              Discuss your enterprise requirements for company formation, MEA Overseas RA Licenses, intellectual property filings, tax registrations, or statutory secretarial changes directly with our team.
+              Discuss your enterprise requirements for company formation, <span className="text-[#D99A32] font-semibold">MEA Overseas RA Licenses</span>, intellectual property filings, tax registrations, or statutory secretarial changes directly with our team.
             </p>
           </div>
         </div>
