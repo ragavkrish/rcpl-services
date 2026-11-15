@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
 
           {/* Desktop Navigation Links — Clean Single-Row Executive Architecture */}
           <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {navMenuItems.map((item) => {
+            {navMenuItems.map((item, idx) => {
               const services = getCategoryServices(item.slugs);
               const isOpen = activeDropdown === item.title;
               const isActiveRoute = currentPath.startsWith(`/services/${item.slug}`);
@@ -110,7 +110,7 @@ export const Header: React.FC = () => {
                         : 'text-slate-700 hover:text-[#152E4D] hover:bg-slate-50'
                     }`}
                   >
-                    <span>{item.title}</span>
+                    <span className={idx === 0 ? 'font-bold' : undefined}>{item.title}</span>
                     {item.featured && (
                       <span className="text-[10px] font-mono uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded font-bold ml-1">
                         MEA
