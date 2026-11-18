@@ -25,11 +25,11 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       aria-label="Breadcrumb"
       className={`text-xs ${isDark ? 'text-[#A5B4C4]' : 'text-[#6C7A89]'} ${className}`}
     >
-      <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-        <li>
+      <ol className="flex flex-nowrap sm:flex-wrap items-center gap-1.5 sm:gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5">
+        <li className="shrink-0">
           <Link
             to="/"
-            className={`transition-colors ${
+            className={`transition-colors inline-block py-1 sm:py-0 ${
               isDark ? 'hover:text-white' : 'hover:text-[#152E4D] hover:underline'
             }`}
           >
@@ -40,14 +40,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           const isLast = idx === items.length - 1;
           return (
             <React.Fragment key={idx}>
-              <li aria-hidden="true" className={isDark ? 'text-[#3A4E63]' : 'text-[#CCD3DA]'}>
+              <li aria-hidden="true" className={`shrink-0 ${isDark ? 'text-[#3A4E63]' : 'text-[#CCD3DA]'}`}>
                 <ChevronRight className="w-3.5 h-3.5" />
               </li>
-              <li>
+              <li className="shrink-0">
                 {item.to && !isLast ? (
                   <Link
                     to={item.to}
-                    className={`transition-colors ${
+                    className={`transition-colors inline-block py-1 sm:py-0 ${
                       isDark ? 'hover:text-white' : 'hover:text-[#152E4D] hover:underline'
                     }`}
                   >
@@ -55,7 +55,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
                   </Link>
                 ) : (
                   <span
-                    className={`font-semibold ${
+                    className={`font-semibold inline-block py-1 sm:py-0 ${
                       isDark ? 'text-white' : 'text-[#121B24]'
                     }`}
                     aria-current={isLast ? 'page' : undefined}

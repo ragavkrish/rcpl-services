@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, MotionConfig } from 'motion/react';
 import { RouterProvider, useRouter } from './context/RouterContext';
 import { EntranceProvider } from './context/EntranceContext';
 import { EntranceCurtain } from './components/animation/EntranceCurtain';
@@ -95,9 +95,9 @@ const AppContent: React.FC = () => {
         <ErrorBoundary fallbackTitle="Section Temporarily Unavailable" fallbackMessage="This page encountered an issue while loading. Please reload or select another practice domain.">
           <motion.div
             key={route.name + (route.params.categorySlug || '') + (route.params.serviceSlug || '')}
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           >
             {renderCurrentPage()}
           </motion.div>
@@ -122,11 +122,13 @@ const AppContent: React.FC = () => {
 export default function App() {
   return (
     <ErrorBoundary fallbackTitle="RCPL Services" fallbackMessage="The application could not initialize. Please refresh your browser.">
-      <RouterProvider>
-        <EntranceProvider>
-          <AppContent />
-        </EntranceProvider>
-      </RouterProvider>
+      <MotionConfig reducedMotion="user">
+        <RouterProvider>
+          <EntranceProvider>
+            <AppContent />
+          </EntranceProvider>
+        </RouterProvider>
+      </MotionConfig>
     </ErrorBoundary>
   );
 }

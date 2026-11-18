@@ -4,23 +4,23 @@ import { type Variants, type Transition } from 'motion/react';
 export const premiumEase = [0.16, 1, 0.3, 1] as const;
 
 export const transitionSmooth: Transition = {
-  duration: 0.45,
+  duration: 0.34,
   ease: premiumEase,
 };
 
 export const transitionFast: Transition = {
-  duration: 0.2,
+  duration: 0.18,
   ease: 'easeOut',
 };
 
 export const transitionSubtle: Transition = {
-  duration: 0.65,
+  duration: 0.45,
   ease: premiumEase,
 };
 
-// Subtle fade-and-lift section entrance
+// Subtle fade-and-lift section entrance (low travel prevents mobile jumpiness)
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
@@ -34,14 +34,27 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.05,
+      staggerChildren: 0.045,
+      delayChildren: 0.02,
     },
   },
 };
 
 // Stagger child element
 export const staggerItem: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.26,
+      ease: premiumEase,
+    },
+  },
+};
+
+// Hero staggered text reveal (immediate on load for first-screen readiness)
+export const heroHeadlineVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
   visible: {
     opacity: 1,
@@ -49,33 +62,20 @@ export const staggerItem: Variants = {
     transition: {
       duration: 0.38,
       ease: premiumEase,
-    },
-  },
-};
-
-// Hero staggered text reveal
-export const heroHeadlineVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: premiumEase,
-      delay: 0.05,
+      delay: 0.02,
     },
   },
 };
 
 export const heroTextVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.35,
       ease: premiumEase,
-      delay: 0.18,
+      delay: 0.08,
     },
   },
 };
@@ -83,20 +83,20 @@ export const heroTextVariants: Variants = {
 export const heroSubtextVariants = heroTextVariants;
 
 export const heroCtaVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.45,
+      duration: 0.32,
       ease: premiumEase,
-      delay: 0.28,
+      delay: 0.14,
     },
   },
 };
 
-// Safe viewport trigger config (once: true prevents replay jumpiness when scrolling back and forth)
+// Safe viewport trigger config (low amount ensures tall mobile sections trigger immediately)
 export const viewportConfig = {
   once: true,
-  amount: 0.12,
+  amount: 0.04,
 } as const;

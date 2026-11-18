@@ -3,17 +3,17 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
-    <div className="space-y-10 py-8">
+    <div className="space-y-6 sm:space-y-10 py-5 sm:py-8">
       {/* Header & Breadcrumbs */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
         <Breadcrumbs items={[{ label: 'Privacy Policy' }]} />
 
-        <div className="bg-[#121B24] text-white border border-[#243342] p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl">
+        <div className="-mx-4 sm:mx-0 bg-[#121B24] text-white border-y sm:border border-[#243342] px-4 py-6 sm:p-8 lg:p-12 rounded-none sm:rounded-2xl relative shadow-none sm:shadow-xl">
           <div className="space-y-2">
-            <span className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
               Official Policy · Version 1.0
             </span>
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight break-words">
+            <h1 className="font-display text-[26px] sm:text-3xl md:text-4xl font-bold text-white tracking-tight break-words">
               Privacy Policy
             </h1>
           </div>
@@ -21,8 +21,8 @@ export const PrivacyPolicyPage: React.FC = () => {
       </section>
 
       {/* Policy Content */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-3xl space-y-8 text-sm text-[#3A4754] leading-relaxed bg-white p-6 sm:p-10 border border-[#CCD3DA] rounded-xl shadow-xs">
+      <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16">
+        <div className="max-w-3xl space-y-6 sm:space-y-8 text-[13.5px] sm:text-sm text-[#3A4754] leading-relaxed bg-transparent sm:bg-white p-0 sm:p-10 border-none sm:border sm:border-[#CCD3DA] rounded-none sm:rounded-xl shadow-none sm:shadow-xs">
           <div className="space-y-2.5">
             <h2 className="font-display text-xl font-bold text-[#121B24]">
               1. Information We Collect

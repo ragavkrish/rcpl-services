@@ -11,27 +11,27 @@ export const AboutPage: React.FC = () => {
   const { openEnquiryModal } = useRouter();
 
   return (
-    <div className="space-y-12 lg:space-y-16 py-8">
+    <div className="space-y-8 sm:space-y-12 lg:space-y-16 py-5 sm:py-8">
       {/* Header & Breadcrumbs */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6"
       >
         <Breadcrumbs items={[{ label: 'About Us' }]} />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
-          <div className="max-w-3xl space-y-4">
-            <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
-              Institutional Profile · Chennai Head Office · Pan-India Practice
+        <div className="-mx-4 sm:mx-0 bg-[#121B24] text-white border-y sm:border border-slate-800 px-4 py-7 sm:p-8 lg:p-14 rounded-none sm:rounded-2xl relative shadow-none sm:shadow-xl">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <div className="text-[10.5px] sm:text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
+              Institutional Profile · Chennai Head Office · Pan-India
             </div>
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h1 className="font-display text-[26px] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               About RCPL Services
             </h1>
 
-            <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
+            <p className="text-sm sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
               A dedicated corporate facilitation firm built to provide clear, methodical navigation through company incorporation, <span className="text-[#D99A32] font-semibold">MEA Overseas RA licensing</span>, trademark registrations, taxation records, and statutory secretarial governance across India.
             </p>
           </div>
@@ -46,13 +46,13 @@ export const AboutPage: React.FC = () => {
         viewport={viewportConfig}
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-7 space-y-5 text-sm text-slate-600 leading-relaxed">
-            <div className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 items-start">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-[13.5px] sm:text-sm text-slate-600 leading-relaxed">
+            <div className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Strategic Foundation
             </div>
 
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-[#121B24]">
               Our Practice Direction
             </h2>
             <p>
@@ -66,12 +66,12 @@ export const AboutPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="lg:col-span-5 bg-white p-7 sm:p-8 border border-slate-200/80 rounded-xl shadow-xs space-y-5">
+          <div className="lg:col-span-5 pt-5 lg:p-8 border-t lg:border border-slate-200/80 bg-transparent lg:bg-white rounded-none lg:rounded-xl lg:shadow-xs space-y-4 sm:space-y-5">
             <h3 className="font-display text-lg font-bold text-[#121B24]">
               Core Operational Standards
             </h3>
 
-            <div className="space-y-4 text-xs text-slate-600 divide-y divide-slate-100">
+            <div className="space-y-3.5 sm:space-y-4 text-xs text-slate-600 divide-y divide-slate-200/80 lg:divide-slate-100">
               <div className="pt-3 first:pt-0">
                 <p className="font-bold text-[#121B24] uppercase tracking-wider text-[11px] mb-1">
                   1. Transparent Scoping &amp; Itemization
@@ -107,14 +107,14 @@ export const AboutPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="bg-slate-50/80 border-y border-slate-200/80 py-14"
+        className="bg-slate-50/80 border-y border-slate-200/80 py-8 sm:py-14"
       >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-8">
           <div className="max-w-xl space-y-1">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Statutory Directory
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24]">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-[#121B24]">
               Core Practice Domains
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -122,35 +122,48 @@ export const AboutPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceCategories.map((cat) => (
-              <div
-                key={cat.id}
-                className="p-6 bg-white border border-slate-200/80 rounded-xl shadow-2xs hover:border-[#152E4D]/50 transition-all space-y-3 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-xs text-[#1D4ED8] font-mono font-semibold">
-                    <span>{cat.number}</span>
-                    <span>Practice Domain</span>
+          <div className="divide-y divide-slate-200/80 sm:divide-y-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 border-t border-slate-200/80 sm:border-t-0">
+            {serviceCategories.map((cat) => {
+              const isRa = cat.slug === 'ra-license';
+              return (
+                <div
+                  key={cat.id}
+                  className={`py-4 sm:p-6 bg-transparent sm:bg-white border-none sm:border rounded-none sm:rounded-xl sm:shadow-2xs transition-all space-y-2.5 sm:space-y-3 flex flex-col justify-between ${
+                    isRa
+                      ? 'sm:border-[#D99A32]/50 sm:hover:border-[#D99A32]'
+                      : 'sm:border-slate-200/80 sm:hover:border-[#152E4D]/50'
+                  }`}
+                >
+                  <div>
+                    <div
+                      className={`flex items-center justify-between text-[11px] sm:text-xs font-mono font-semibold ${
+                        isRa ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
+                      }`}
+                    >
+                      <span>{cat.number}</span>
+                      <span>{isRa ? 'MEA Flagship' : 'Practice Domain'}</span>
+                    </div>
+                    <h3 className="font-display text-base sm:text-lg font-bold text-[#121B24] mt-1 sm:mt-2">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                      {cat.shortDescription}
+                    </p>
                   </div>
-                  <h3 className="font-display text-lg font-bold text-[#121B24] mt-2">
-                    {cat.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-1.5">
-                    {cat.shortDescription}
-                  </p>
+                  <div className="sm:pt-3 sm:border-t sm:border-slate-100">
+                    <Link
+                      to={`/services/${cat.slug}`}
+                      className={`inline-flex items-center gap-1 text-xs font-semibold hover:underline ${
+                        isRa ? 'text-[#D99A32]' : 'text-[#152E4D]'
+                      }`}
+                    >
+                      <span>Inspect Domain Profiles</span>
+                      <ArrowRight className={`w-3.5 h-3.5 ${isRa ? 'text-[#D99A32]' : 'text-[#1D4ED8]'}`} />
+                    </Link>
+                  </div>
                 </div>
-                <div className="pt-3 border-t border-slate-100">
-                  <Link
-                    to={`/services/${cat.slug}`}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#152E4D] hover:underline"
-                  >
-                    <span>Inspect Domain Profiles</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </motion.section>
@@ -163,7 +176,7 @@ export const AboutPage: React.FC = () => {
         viewport={viewportConfig}
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="p-6 bg-white border border-slate-200/80 rounded-xl shadow-2xs space-y-1.5 text-xs text-slate-600">
+        <div className="p-4 sm:p-6 bg-slate-50/80 sm:bg-white border-l-2 sm:border border-[#152E4D] sm:border-slate-200/80 rounded-none sm:rounded-xl sm:shadow-2xs space-y-1.5 text-xs text-slate-600">
           <h3 className="font-semibold text-[#121B24]">
             Institutional Transparency Policy
           </h3>
@@ -179,14 +192,14 @@ export const AboutPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12"
+        className="max-w-[1320px] mx-auto px-0 sm:px-6 lg:px-8 pb-4 sm:pb-12"
       >
-        <div className="bg-[#121B24] text-white p-8 sm:p-10 border border-slate-800 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-[#121B24] text-white px-4 py-7 sm:p-10 border-y sm:border border-slate-800 rounded-none sm:rounded-2xl shadow-none sm:shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
           <div className="space-y-1.5 max-w-xl">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#60A5FA] font-semibold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#60A5FA] font-semibold">
               Direct Advisory Line
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold">
+            <h2 className="font-display text-xl sm:text-3xl font-bold">
               Have a question about your enterprise structure?
             </h2>
             <p className="text-xs sm:text-sm text-[#CCD3DA] leading-relaxed">
@@ -196,9 +209,9 @@ export const AboutPage: React.FC = () => {
           <button
             type="button"
             onClick={() => openEnquiryModal()}
-            className="px-6 py-3.5 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0 cursor-pointer flex items-center gap-2 shadow-md whitespace-nowrap"
+            className="w-full sm:w-auto justify-center px-6 py-3.5 min-h-[46px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0 cursor-pointer flex items-center gap-2 shadow-md whitespace-nowrap active:scale-[0.99]"
           >
-            <MessageSquare className="w-4 h-4 text-[#0F766E]" />
+            <MessageSquare className="w-4 h-4 text-[#0F766E] shrink-0" />
             <span>Talk to an Expert</span>
           </button>
         </div>

@@ -86,6 +86,8 @@ export const HomePage: React.FC = () => {
   // 2. Interactive Category Tabs (Clean Catalogue)
   const [activeCategoryTab, setActiveCategoryTab] = useState<string>('all');
   const [showAllServices, setShowAllServices] = useState<boolean>(false);
+  // Mobile expandable audience row index (desktop/tablet shows all)
+  const [expandedAudienceIdx, setExpandedAudienceIdx] = useState<number>(1);
 
   const categoryTabs = [
     { id: 'all', label: 'Featured & All' },
@@ -243,50 +245,50 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-20 lg:space-y-28 pb-24 bg-[#FCFCFA]">
+    <div className="space-y-12 sm:space-y-18 lg:space-y-28 pb-16 lg:pb-24 bg-[#FCFCFA]">
       {/* =========================================================================
-          1. HERO SECTION (EXECUTIVE EDITORIAL SPLIT + INTERACTIVE DOCKETS)
+          1. HERO SECTION (MOBILE-TUNED FIRST SCREEN + EXECUTIVE DESKTOP SPLIT)
          ========================================================================= */}
-      <section className="relative pt-8 sm:pt-14 pb-8 sm:pb-12 bg-white border-b border-slate-200/70">
+      <section className="relative pt-5 sm:pt-12 lg:pt-14 pb-6 sm:pb-12 bg-white border-b border-slate-200/70">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-center">
             {/* Left Column: Kicker, Headline, Executive Subheadline & Dual CTAs */}
             <motion.div
               initial="hidden"
               animate="visible"
-              className="lg:col-span-6 space-y-6 text-left"
+              className="lg:col-span-6 space-y-4 sm:space-y-6 text-left"
             >
               <motion.div
                 variants={fadeInUp}
-                className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold"
+                className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider sm:tracking-widest text-[#1D4ED8] font-bold leading-relaxed"
               >
-                Corporate Formation · <span className="text-[#D99A32] font-extrabold">MEA RA Licensing</span> · Statutory Compliance
+                Corporate Formation · <span className="text-[#D99A32] font-extrabold">MEA RA Licensing</span> · Compliance
               </motion.div>
 
               <motion.h1
                 variants={heroHeadlineVariants}
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-extrabold text-[#121B24] leading-[1.12] tracking-[-0.03em]"
+                className="font-display text-[26px] sm:text-4xl md:text-5xl lg:text-[48px] font-extrabold text-[#121B24] leading-[1.15] sm:leading-[1.12] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
               >
                 Helping Entrepreneurs Launch, Protect, and Grow in India.
               </motion.h1>
 
               <motion.p
                 variants={heroTextVariants}
-                className="text-sm sm:text-base lg:text-[17px] text-slate-600 leading-relaxed max-w-xl"
+                className="text-[13.5px] sm:text-base lg:text-[17px] text-slate-600 leading-relaxed max-w-xl"
               >
                 Headquartered in Chennai with pan-India electronic execution. Our CA, CS, and legal specialists handle MCA incorporations, MEA Overseas RA Licenses, trademark filings, and statutory governance with itemized fee transparency.
               </motion.p>
 
               <motion.div
                 variants={heroCtaVariants}
-                className="flex flex-wrap items-center gap-3 pt-1"
+                className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1"
               >
                 <button
                   type="button"
                   onClick={() => openEnquiryModal()}
-                  className="px-6 sm:px-7 py-3.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.99] whitespace-nowrap"
+                  className="w-full sm:w-auto px-5 sm:px-7 py-3 min-h-[46px] sm:min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.99] whitespace-nowrap"
                 >
-                  <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
+                  <MessageSquare className="w-4 h-4 text-[#60A5FA] shrink-0" />
                   <span>Get Free Consultation</span>
                 </button>
 
@@ -296,17 +298,17 @@ export const HomePage: React.FC = () => {
                     const el = document.getElementById('services-tabs-section');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-5 sm:px-6 py-3.5 min-h-[44px] bg-white hover:bg-slate-50 text-[#121B24] border border-slate-300 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.99] whitespace-nowrap"
+                  className="w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[46px] sm:min-h-[44px] bg-white hover:bg-slate-50 text-[#121B24] border border-slate-300 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer inline-flex items-center justify-center gap-2 active:scale-[0.99] whitespace-nowrap"
                 >
                   <span>Explore 32 Statutory Scopes</span>
-                  <ArrowRight className="w-4 h-4 text-[#1D4ED8]" />
+                  <ArrowRight className="w-4 h-4 text-[#1D4ED8] shrink-0" />
                 </button>
               </motion.div>
 
               {/* Integrated Quick Search in Hero */}
               <motion.div
                 variants={heroCtaVariants}
-                className="pt-2 relative max-w-xl"
+                className="pt-1 sm:pt-2 relative max-w-xl"
               >
                 <div className="relative flex items-center border border-slate-300 focus-within:border-[#152E4D] focus-within:ring-4 focus-within:ring-[#152E4D]/10 bg-[#FCFCFA] rounded-xl transition-all shadow-2xs">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
@@ -316,9 +318,9 @@ export const HomePage: React.FC = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setTimeout(() => setIsSearchFocused(false), 250)}
-                    placeholder="Quick search: RA License, Private Limited, Trademark, GST..."
+                    placeholder="Search RA License, Pvt Ltd, Trademark..."
                     aria-label="Search statutory services"
-                    className="w-full pl-10 pr-24 py-3 text-xs sm:text-sm text-[#121B24] placeholder-slate-400 focus:outline-hidden bg-transparent"
+                    className="w-full pl-10 pr-20 sm:pr-24 py-2.5 sm:py-3 text-base sm:text-sm text-[#121B24] placeholder-slate-400 focus:outline-hidden bg-transparent"
                   />
                   <button
                     type="button"
@@ -326,7 +328,7 @@ export const HomePage: React.FC = () => {
                       const el = document.getElementById('services-tabs-section');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="absolute right-1.5 px-3.5 py-1.5 min-h-[34px] bg-slate-200/80 hover:bg-slate-300/80 text-[#121B24] text-xs font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap"
+                    className="absolute right-1.5 px-3 sm:px-3.5 py-1.5 min-h-[34px] bg-slate-200/80 hover:bg-slate-300/80 text-[#121B24] text-xs font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap"
                   >
                     Browse
                   </button>
@@ -344,8 +346,8 @@ export const HomePage: React.FC = () => {
                         to={`/services/${result.categorySlug}/${result.slug}`}
                         className="p-3.5 hover:bg-slate-50 transition-colors flex items-center justify-between group block"
                       >
-                        <div>
-                          <p className="text-xs font-bold text-[#121B24] group-hover:text-[#152E4D]">
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold text-[#121B24] group-hover:text-[#152E4D] truncate">
                             {result.title}
                           </p>
                           <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
@@ -360,64 +362,64 @@ export const HomePage: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column: Custom Clean Vector Illustration */}
+            {/* Right Column: Custom Clean Vector Illustration (Compactly framed on mobile) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
-              className="lg:col-span-6 flex justify-center lg:justify-end"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
+              className="lg:col-span-6 flex justify-center lg:justify-end pt-1 lg:pt-0"
             >
-              <HeroIllustration className="w-full max-w-[480px] sm:max-w-[500px]" />
+              <HeroIllustration className="w-full max-w-[270px] sm:max-w-[400px] lg:max-w-[500px]" />
             </motion.div>
           </div>
         </div>
 
-        {/* 3-Pillar Trust Strip */}
+        {/* 3-Pillar Trust Strip: Open hairline list on mobile, rounded card on md+ */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12"
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.16 }}
+          className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-12"
         >
-          <div className="bg-[#FCFCFA] border border-slate-200/80 rounded-2xl shadow-2xs p-4 sm:p-5 lg:p-6">
+          <div className="bg-transparent md:bg-[#FCFCFA] border-y md:border border-slate-200/80 rounded-none md:rounded-2xl md:shadow-2xs py-1 md:p-5 lg:p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/80">
-              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start pb-4 md:pb-0 md:px-4">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
-                  <Handshake className="w-5 h-5 text-[#1D4ED8]" />
+              <div className="flex items-center gap-3 sm:gap-4 justify-start md:justify-start py-3 md:py-0 md:px-4">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-slate-50 md:bg-white text-[#152E4D] flex items-center justify-center shrink-0 border border-slate-200/70">
+                  <Handshake className="w-4 h-4 sm:w-5 sm:h-5 text-[#1D4ED8]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
+                  <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
                     Trusted Advisory Desk
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#121B24] leading-tight mt-0.5">
+                  <p className="text-[13px] sm:text-sm md:text-base font-bold text-[#121B24] leading-tight mt-0.5">
                     1,000+ Enterprises Supported
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start py-4 md:py-0 md:px-6">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#FFFDF8] text-[#D99A32] flex items-center justify-center shrink-0 shadow-2xs border border-[#D99A32]/40">
-                  <Award className="w-5 h-5 text-[#D99A32]" />
+              <div className="flex items-center gap-3 sm:gap-4 justify-start md:justify-start py-3 md:py-0 md:px-6">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-[#FFFDF8] text-[#D99A32] flex items-center justify-center shrink-0 border border-[#D99A32]/40">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-[#D99A32]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-[#D99A32] font-semibold leading-tight">
+                  <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#D99A32] font-semibold leading-tight">
                     Qualified Oversight
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#121B24] leading-tight mt-0.5">
+                  <p className="text-[13px] sm:text-sm md:text-base font-bold text-[#121B24] leading-tight mt-0.5">
                     CA, CS &amp; Legal Specialists
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3.5 sm:gap-4 justify-start sm:justify-center md:justify-start pt-4 md:pt-0 md:px-6">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-[#152E4D] flex items-center justify-center shrink-0 shadow-2xs border border-slate-200/70">
-                  <CheckCircle2 className="w-5 h-5 text-[#0F766E]" />
+              <div className="flex items-center gap-3 sm:gap-4 justify-start md:justify-start py-3 md:py-0 md:px-6">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-slate-50 md:bg-white text-[#152E4D] flex items-center justify-center shrink-0 border border-slate-200/70">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#0F766E]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
+                  <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-500 leading-tight">
                     100% Electronic Execution
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#152E4D] leading-tight mt-0.5">
+                  <p className="text-[13px] sm:text-sm md:text-base font-bold text-[#152E4D] leading-tight mt-0.5">
                     Chennai Office · Pan-India Reach
                   </p>
                 </div>
@@ -428,7 +430,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          2. SIGNATURE SERVICE CATEGORY TABS (SCANNABLE STATUTORY DIRECTORY)
+          2. SIGNATURE SERVICE DIRECTORY (EDITORIAL INDEX LIST ON MOBILE / CARDS ON MD+)
          ========================================================================= */}
       <motion.section
         id="services-tabs-section"
@@ -436,63 +438,69 @@ export const HomePage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-8"
       >
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-2.5 sm:gap-4 pb-3.5 sm:pb-4 border-b border-slate-200">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
               Statutory Practice Catalogue
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#121B24] mt-1">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121B24] mt-1 leading-tight">
               Statutory Services &amp; Compliance Directory
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-md">
-            Select a practice domain below to inspect verified prerequisites, governing authorities, and direct WhatsApp consultation dockets.
+          <p className="text-xs sm:text-sm text-slate-600 max-w-md leading-relaxed">
+            Select a practice domain to inspect prerequisites, governing authorities, and WhatsApp consultation dockets.
           </p>
         </div>
 
-        {/* Category Tabs Bar */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
-          {categoryTabs.map((tab) => {
-            const isActive = activeCategoryTab === tab.id;
-            const isRaTab = tab.id === 'ra-license';
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => {
-                  setActiveCategoryTab(tab.id);
-                  if (tab.id !== 'all') {
-                    setShowAllServices(false);
-                  }
-                }}
-                className={`px-4 py-2.5 min-h-[40px] text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? isRaTab
-                      ? 'bg-[#D99A32] text-white shadow-sm ring-2 ring-[#D99A32]/30'
-                      : 'bg-[#152E4D] text-white shadow-xs'
-                    : isRaTab
-                    ? 'text-[#B87E22] bg-[#FFFDF8] border border-[#D99A32]/50 hover:bg-[#FDF6E8]'
-                    : 'text-slate-600 bg-white border border-slate-200/80 hover:bg-slate-100 hover:text-[#121B24]'
-                }`}
-              >
-                {isRaTab && (
-                  <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white' : 'bg-[#D99A32]'}`} />
-                )}
-                <span>{tab.label}</span>
-              </button>
-            );
-          })}
+        {/* Category Tabs Bar: Edge-to-edge swipeable strip on mobile */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
+            {categoryTabs.map((tab) => {
+              const isActive = activeCategoryTab === tab.id;
+              const isRaTab = tab.id === 'ra-license';
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategoryTab(tab.id);
+                    if (tab.id !== 'all') {
+                      setShowAllServices(false);
+                    }
+                  }}
+                  className={`px-3.5 sm:px-4 py-2 min-h-[40px] text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 shrink-0 ${
+                    isActive
+                      ? isRaTab
+                        ? 'bg-[#D99A32] text-white shadow-sm ring-2 ring-[#D99A32]/30'
+                        : 'bg-[#152E4D] text-white shadow-xs'
+                      : isRaTab
+                      ? 'text-[#B87E22] bg-[#FFFDF8] border border-[#D99A32]/50 hover:bg-[#FDF6E8]'
+                      : 'text-slate-600 bg-white border border-slate-200/80 hover:bg-slate-100 hover:text-[#121B24]'
+                  }`}
+                >
+                  {isRaTab && (
+                    <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white' : 'bg-[#D99A32]'}`} />
+                  )}
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="md:hidden flex items-center justify-between text-[11px] font-mono text-slate-500 pt-0.5">
+            <span>Showing {displayedServices.length} {activeCategoryTab === 'all' && !showAllServices ? 'flagship scopes' : 'scopes'}</span>
+            <span>Swipe tabs to filter →</span>
+          </div>
         </div>
 
-        {/* Refined Service Cards Grid */}
+        {/* Service Directory: Open Editorial Rows on Mobile (< md), Card Grid on Tablet/Desktop (md+) */}
         <motion.div
           key={`${activeCategoryTab}-${showAllServices}`}
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-1"
+          className="-mx-4 md:mx-0 bg-white md:bg-transparent border-y md:border-none border-slate-200/80 divide-y divide-slate-200/80 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pt-1"
         >
           {displayedServices.map((service) => {
             const isRaService = service.categorySlug === 'ra-license';
@@ -500,17 +508,15 @@ export const HomePage: React.FC = () => {
               <motion.div
                 key={service.id}
                 variants={staggerItem}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2 }}
-                className={`bg-white border rounded-xl p-6 sm:p-7 shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between ${
+                className={`px-4 py-4 sm:px-6 md:bg-white md:border md:rounded-xl md:p-6 lg:p-7 md:shadow-2xs md:hover:shadow-md md:hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between ${
                   isRaService
-                    ? 'border-[#D99A32]/45 hover:border-[#D99A32] ring-1 ring-[#D99A32]/10'
-                    : 'border-slate-200/90 hover:border-[#152E4D]/50'
+                    ? 'bg-[#FFFDF8]/70 md:bg-white md:border-[#D99A32]/45 md:hover:border-[#D99A32] md:ring-1 md:ring-[#D99A32]/10'
+                    : 'md:border-slate-200/90 md:hover:border-[#152E4D]/50'
                 }`}
               >
-                <div className="space-y-3.5">
-                  {/* Unboxed Metadata Header with Accurate Authority */}
-                  <div className="flex items-center justify-between gap-2 text-[11px]">
+                <div className="space-y-2 md:space-y-3.5">
+                  {/* Metadata Header with Accurate Authority */}
+                  <div className="flex items-center justify-between gap-2 text-[10.5px] sm:text-[11px]">
                     <span
                       className={`font-bold uppercase tracking-wider truncate ${
                         isRaService ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
@@ -521,7 +527,7 @@ export const HomePage: React.FC = () => {
                     <span
                       className={`font-mono shrink-0 ${
                         isRaService
-                          ? 'text-[#D99A32] font-bold bg-[#D99A32]/10 border border-[#D99A32]/30 px-2 py-0.5 rounded text-[10px]'
+                          ? 'text-[#D99A32] font-bold bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded text-[10px]'
                           : 'text-slate-400'
                       }`}
                     >
@@ -530,13 +536,13 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   <h3
-                    className={`font-display text-lg sm:text-[19px] font-bold leading-snug transition-colors ${
+                    className={`font-display text-base sm:text-lg md:text-[19px] font-bold leading-snug transition-colors ${
                       isRaService
                         ? 'text-slate-900 hover:text-[#D99A32]'
                         : 'text-slate-900 hover:text-[#152E4D]'
                     }`}
                   >
-                    <Link to={`/services/${service.categorySlug}/${service.slug}`}>
+                    <Link to={`/services/${service.categorySlug}/${service.slug}`} className="block py-0.5 md:py-0">
                       {service.title}
                     </Link>
                   </h3>
@@ -545,8 +551,8 @@ export const HomePage: React.FC = () => {
                     {service.summary}
                   </p>
 
-                  {/* Key Deliverables Bullet Points */}
-                  <div className="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-700">
+                  {/* Key Deliverables Bullet Points (Shown on md+ for compact mobile scannability) */}
+                  <div className="hidden md:block pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-700">
                     {service.whoNeedsThis &&
                       service.whoNeedsThis.slice(0, 2).map((item, idx) => (
                         <div key={idx} className="flex items-start gap-2">
@@ -574,23 +580,23 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+                <div className="pt-3 md:pt-5 mt-2 md:mt-5 md:border-t md:border-slate-100 flex items-center justify-between gap-3">
                   <Link
                     to={`/services/${service.categorySlug}/${service.slug}`}
-                    className={`text-xs font-semibold inline-flex items-center gap-1 whitespace-nowrap hover:underline ${
+                    className={`text-xs font-semibold inline-flex items-center gap-1 whitespace-nowrap hover:underline min-h-[38px] md:min-h-0 ${
                       isRaService ? 'text-[#D99A32]' : 'text-[#152E4D]'
                     }`}
                   >
                     <span>Inspect Scope</span>
                     <ArrowRight
-                      className={`w-3 h-3 ${isRaService ? 'text-[#D99A32]' : 'text-[#1D4ED8]'}`}
+                      className={`w-3.5 h-3.5 ${isRaService ? 'text-[#D99A32]' : 'text-[#1D4ED8]'}`}
                     />
                   </Link>
 
                   <button
                     type="button"
                     onClick={() => openEnquiryModal(service.title)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[36px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer shadow-2xs whitespace-nowrap"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer shadow-2xs whitespace-nowrap active:scale-95"
                   >
                     <MessageSquare className="w-3 h-3 text-[#60A5FA]" />
                     <span>Enquire</span>
@@ -603,11 +609,11 @@ export const HomePage: React.FC = () => {
 
         {/* Expand / Collapse All 32 Services Toggle when on 'all' tab */}
         {activeCategoryTab === 'all' && allPublishedServices.length > 9 && (
-          <div className="pt-2 flex justify-center">
+          <div className="pt-1 flex justify-center">
             <button
               type="button"
               onClick={() => setShowAllServices((prev) => !prev)}
-              className="inline-flex items-center gap-2 px-6 py-3 min-h-[44px] bg-white hover:bg-slate-50 text-[#121B24] border border-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 min-h-[44px] bg-white hover:bg-slate-50 text-[#121B24] border border-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs"
             >
               <span>
                 {showAllServices
@@ -625,7 +631,7 @@ export const HomePage: React.FC = () => {
       </motion.section>
 
       {/* =========================================================================
-          3. WHO WE SUPPORT ACROSS INDIA (PRACTICE AUDIENCES)
+          3. WHO WE SUPPORT ACROSS INDIA (INTERACTIVE EDITORIAL ROWS ON MOBILE / 4-COL CARD ON MD+)
          ========================================================================= */}
       <motion.section
         variants={fadeInUp}
@@ -634,10 +640,10 @@ export const HomePage: React.FC = () => {
         viewport={viewportConfig}
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 lg:space-y-10 shadow-2xs">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-slate-200/80 text-left">
+        <div className="bg-transparent md:bg-white md:border md:border-slate-200/80 md:rounded-2xl p-0 md:p-8 lg:p-12 space-y-5 sm:space-y-8 lg:space-y-10 md:shadow-2xs">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-2.5 sm:gap-4 pb-4 sm:pb-6 border-b border-slate-200/80 text-left">
             <div className="space-y-1 sm:space-y-1.5">
-              <span className="block text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
+              <span className="block text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
                 Tailored Practice Scopes
               </span>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121B24] tracking-tight">
@@ -645,14 +651,15 @@ export const HomePage: React.FC = () => {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md lg:text-left">
-              From early-stage founders and MEA recruitment agencies to expanding commercial enterprises, we align our facilitation with the exact regulatory demands of your industry.
+              From early-stage founders and MEA recruitment agencies to expanding commercial enterprises, we align our facilitation with your regulatory requirements.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 divide-y divide-slate-100 md:divide-y-0 lg:divide-x lg:divide-slate-200/80">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 md:gap-8 lg:gap-0 divide-y divide-slate-200/80 md:divide-y-0 lg:divide-x lg:divide-slate-200/80 border-b border-slate-200/80 md:border-b-0">
             {businessesServed.map((item, idx) => {
               const Icon = item.icon;
               const isRa = item.title.includes('Overseas Recruitment') || idx === 1;
+              const isMobileExpanded = expandedAudienceIdx === idx;
               const colPadding =
                 idx === 0
                   ? 'lg:pr-7'
@@ -662,60 +669,101 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className={`flex flex-col justify-between text-left pt-5 md:pt-0 ${idx !== 0 ? 'pt-6' : ''} ${colPadding}`}
+                  className={`flex flex-col justify-between text-left py-4 md:py-0 ${colPadding}`}
                 >
                   <div className="flex flex-col flex-1">
-                    <div className="mb-3.5 flex items-center justify-between">
-                      <div
-                        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shadow-2xs border shrink-0 ${
-                          isRa
-                            ? 'bg-[#FFFDF8] text-[#D99A32] border-[#D99A32]/50'
-                            : 'bg-slate-50 text-[#152E4D] border-slate-200/80'
-                        }`}
-                      >
-                        <Icon className={`w-5 h-5 ${isRa ? 'text-[#D99A32]' : 'text-[#152E4D]'}`} />
+                    {/* Mobile interactive header toggle / Desktop static header */}
+                    <div className="flex items-start gap-3 md:block">
+                      <div className="md:mb-3.5 flex items-center justify-between shrink-0">
+                        <div
+                          className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center border shrink-0 ${
+                            isRa
+                              ? 'bg-[#FFFDF8] text-[#D99A32] border-[#D99A32]/50'
+                              : 'bg-white md:bg-slate-50 text-[#152E4D] border-slate-200/80'
+                          }`}
+                        >
+                          <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isRa ? 'text-[#D99A32]' : 'text-[#152E4D]'}`} />
+                        </div>
+                        {isRa && (
+                          <span className="hidden md:inline-block text-[10px] font-mono font-bold uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded">
+                            MEA Flagship
+                          </span>
+                        )}
                       </div>
-                      {isRa && (
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded">
-                          MEA Flagship
-                        </span>
-                      )}
-                    </div>
 
-                    <div className="min-h-0 lg:min-h-[76px] flex flex-col justify-start mb-2 sm:mb-3">
-                      <h3 className="font-display text-base sm:text-[17px] font-bold text-[#121B24] leading-snug text-left">
-                        {item.title}
-                      </h3>
-                      <p
-                        className={`text-xs mt-1 leading-snug text-left ${
-                          isRa ? 'text-[#D99A32] font-bold' : 'text-[#1D4ED8] font-semibold'
-                        }`}
-                      >
-                        {item.subtitle}
-                      </p>
-                    </div>
-
-                    <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed text-left flex-1 mb-4 sm:mb-6">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-3.5 sm:pt-4 border-t border-slate-200/70 mt-auto text-left">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold mb-2">
-                      Key Mandates:
-                    </p>
-                    <ul className="space-y-1.5 sm:space-y-2 text-xs text-slate-700">
-                      {item.popularServices.map((svc, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs font-medium leading-snug">
-                          <Check
-                            className={`w-3.5 h-3.5 shrink-0 ${
-                              isRa ? 'text-[#D99A32]' : 'text-[#0F766E]'
+                      <div className="flex-1 min-w-0">
+                        <button
+                          type="button"
+                          onClick={() => setExpandedAudienceIdx(isMobileExpanded ? -1 : idx)}
+                          aria-expanded={isMobileExpanded}
+                          className="md:hidden w-full text-left flex items-start justify-between gap-2 min-h-[40px] cursor-pointer"
+                        >
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              <h3 className="font-display text-[15px] font-bold text-[#121B24] leading-snug">
+                                {item.title}
+                              </h3>
+                              {isRa && (
+                                <span className="text-[9.5px] font-mono font-bold uppercase tracking-wider text-[#D99A32] bg-[#D99A32]/10 border border-[#D99A32]/30 px-1.5 py-0.5 rounded">
+                                  MEA Flagship
+                                </span>
+                              )}
+                            </div>
+                            <p
+                              className={`text-xs mt-0.5 leading-snug ${
+                                isRa ? 'text-[#D99A32] font-semibold' : 'text-[#1D4ED8] font-medium'
+                              }`}
+                            >
+                              {item.subtitle}
+                            </p>
+                          </div>
+                          <ChevronDown
+                            className={`w-4 h-4 shrink-0 mt-1 text-slate-400 transition-transform duration-150 ${
+                              isMobileExpanded ? 'rotate-180 text-[#152E4D]' : ''
                             }`}
                           />
-                          <span className="truncate">{svc}</span>
-                        </li>
-                      ))}
-                    </ul>
+                        </button>
+
+                        {/* Tablet & Desktop heading */}
+                        <div className="hidden md:flex md:min-h-0 lg:min-h-[76px] flex-col justify-start mb-2 sm:mb-3">
+                          <h3 className="font-display text-[17px] font-bold text-[#121B24] leading-snug text-left">
+                            {item.title}
+                          </h3>
+                          <p
+                            className={`text-xs mt-1 leading-snug text-left ${
+                              isRa ? 'text-[#D99A32] font-bold' : 'text-[#1D4ED8] font-semibold'
+                            }`}
+                          >
+                            {item.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Description & Mandates: Collapsible on Mobile, Always visible on md+ */}
+                    <div className={`${isMobileExpanded ? 'block mt-3 pl-12' : 'hidden'} md:block md:pl-0 md:mt-0 md:flex-1`}>
+                      <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed text-left mb-3 md:mb-6">
+                        {item.description}
+                      </p>
+
+                      <div className="pt-2.5 md:pt-4 border-t border-slate-200/70 mt-auto text-left">
+                        <p className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold mb-1.5 md:mb-2">
+                          Key Mandates:
+                        </p>
+                        <ul className="space-y-1.5 text-xs text-slate-700">
+                          {item.popularServices.map((svc, i) => (
+                            <li key={i} className="flex items-center gap-2 text-xs font-medium leading-snug">
+                              <Check
+                                className={`w-3.5 h-3.5 shrink-0 ${
+                                  isRa ? 'text-[#D99A32]' : 'text-[#0F766E]'
+                                }`}
+                              />
+                              <span className="truncate">{svc}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );
@@ -725,17 +773,17 @@ export const HomePage: React.FC = () => {
       </motion.section>
 
       {/* =========================================================================
-          4. HOW IT WORKS (OPEN, DIRECTIONAL WORKFLOW TIMELINE)
+          4. HOW IT WORKS (TYPOGRAPHY-LED EDITORIAL LIST ON MOBILE / TIMELINE ON LG+)
          ========================================================================= */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-10"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-10"
       >
         <div className="text-left sm:text-center max-w-2xl sm:mx-auto space-y-1.5 sm:space-y-2">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
+          <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
             Procedural Roadmap
           </span>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121B24]">
@@ -746,31 +794,25 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
 
-        {/* Responsive Timeline: Vertical connector on mobile, horizontal line on desktop */}
-        <div className="relative pl-3 sm:pl-6 lg:pl-0">
-          {/* Mobile vertical line */}
-          <div
-            aria-hidden="true"
-            className="lg:hidden absolute left-8 sm:left-11 top-6 bottom-10 w-0.5 bg-slate-200/90 -z-0"
-          />
-
+        {/* Open numbered editorial list on mobile/tablet; horizontal 4-step timeline on lg+ */}
+        <div className="relative">
           {/* Desktop horizontal timeline bar */}
           <div
             aria-hidden="true"
             className="hidden lg:block absolute top-6 left-12 right-12 h-0.5 bg-slate-200 -z-0"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-6 pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 md:gap-6 divide-y divide-slate-200/80 md:divide-y-0 border-y border-slate-200/80 md:border-y-0 pt-0 lg:pt-2">
             {howItWorksSteps.map((step) => (
               <div
                 key={step.step}
-                className="flex lg:flex-col items-start gap-4 lg:gap-3 relative bg-white lg:bg-transparent p-4 sm:p-5 lg:p-0 rounded-xl lg:rounded-none border border-slate-200/80 lg:border-none shadow-2xs lg:shadow-none"
+                className="flex lg:flex-col items-start gap-4 lg:gap-3 relative py-4 md:p-5 lg:p-0 bg-transparent md:bg-white lg:bg-transparent md:rounded-xl lg:rounded-none md:border md:border-slate-200/80 lg:border-none md:shadow-2xs lg:shadow-none"
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#152E4D] text-white font-display font-bold text-base sm:text-lg flex items-center justify-center shadow-xs shrink-0 z-10 relative ring-4 ring-[#FCFCFA] sm:ring-[#FCFCFA]">
+                <div className="font-mono lg:font-display font-bold text-lg sm:text-xl lg:text-lg text-[#1D4ED8] lg:text-white lg:w-12 lg:h-12 lg:rounded-xl lg:bg-[#152E4D] flex items-center justify-center lg:shadow-xs shrink-0 z-10 relative lg:ring-4 lg:ring-[#FCFCFA] tabular-nums pt-0.5 lg:pt-0">
                   {step.step}
                 </div>
-                <div className="flex-1 space-y-1 lg:space-y-2 pt-0.5 lg:pt-1 text-left">
-                  <h3 className="font-display text-base font-bold text-slate-900 leading-snug">
+                <div className="flex-1 space-y-1 lg:space-y-2 text-left min-w-0">
+                  <h3 className="font-display text-[15px] sm:text-base font-bold text-slate-900 leading-snug">
                     {step.title}
                   </h3>
                   <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
@@ -793,11 +835,11 @@ export const HomePage: React.FC = () => {
         viewport={viewportConfig}
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
           {/* Left Column: Authoritative Editorial Statement & Trust Callout */}
           <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-left">
             <div className="space-y-1.5 sm:space-y-2">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
+              <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
                 The Advisory Commitment
               </span>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#121B24] leading-tight">
@@ -808,9 +850,9 @@ export const HomePage: React.FC = () => {
               We bridge the gap between complex Indian corporate regulatory laws and growing commercial enterprises. Every application undergoes structured procedural vetting before submission.
             </p>
 
-            {/* Featured Trust Anchor */}
-            <div className="bg-[#EFF6FF]/75 border border-[#BFDBFE] rounded-xl p-4 sm:p-5 space-y-2 text-left">
-              <p className="text-xs font-bold text-[#1D4ED8] uppercase tracking-wider">
+            {/* Featured Trust Anchor: subtle left border accent on mobile, full rounded callout on sm+ */}
+            <div className="border-l-2 sm:border border-[#1D4ED8] sm:border-[#BFDBFE] bg-[#EFF6FF]/60 sm:bg-[#EFF6FF]/75 rounded-none sm:rounded-xl pl-3.5 pr-3 py-3 sm:p-5 space-y-1.5 sm:space-y-2 text-left">
+              <p className="text-[11px] sm:text-xs font-bold text-[#1D4ED8] uppercase tracking-wider">
                 Direct Professional Accountability
               </p>
               <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed">
@@ -820,19 +862,19 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Right Column: Clean Open List with Quiet Dividers */}
-          <div className="lg:col-span-7 divide-y divide-slate-200/80 text-left">
+          <div className="lg:col-span-7 divide-y divide-slate-200/80 text-left border-t border-slate-200/80 lg:border-t-0">
             {whyChooseUsPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
                 <div
                   key={idx}
-                  className={`flex items-start gap-3.5 sm:gap-4 ${idx === 0 ? 'pb-4 sm:pb-6' : 'py-4 sm:py-6'}`}
+                  className={`flex items-start gap-3.5 sm:gap-4 ${idx === 0 ? 'py-4 lg:pt-0 lg:pb-6' : 'py-4 sm:py-6'}`}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white text-[#152E4D] flex items-center justify-center shrink-0 border border-slate-200/80 shadow-2xs mt-0.5">
-                    <Icon className="w-5 h-5 text-[#152E4D]" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white text-[#152E4D] flex items-center justify-center shrink-0 border border-slate-200/80 shadow-2xs mt-0.5">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#152E4D]" />
                   </div>
-                  <div className="space-y-1">
-                    <h3 className="font-display text-base font-bold text-slate-900 leading-snug">
+                  <div className="space-y-1 min-w-0">
+                    <h3 className="font-display text-[15px] sm:text-base font-bold text-slate-900 leading-snug">
                       {pillar.title}
                     </h3>
                     <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
@@ -847,48 +889,48 @@ export const HomePage: React.FC = () => {
       </motion.section>
 
       {/* =========================================================================
-          6. EXPERT SUPPORT / CONTACT PANEL (EXECUTIVE DARK BANNER)
+          6. EXPERT SUPPORT / CONTACT PANEL (FULL-BLEED BAND ON MOBILE / ROUNDED BANNER ON SM+)
          ========================================================================= */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-[1320px] mx-auto px-0 sm:px-6 lg:px-8"
       >
-        <div className="bg-[#121B24] text-white p-6 sm:p-8 lg:p-12 rounded-2xl border border-slate-800 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="bg-[#121B24] text-white px-4 py-8 sm:p-8 lg:p-12 rounded-none sm:rounded-2xl border-y sm:border border-slate-800 shadow-none sm:shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#60A5FA] font-bold">
+              <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#60A5FA] font-bold">
                 Chennai Advisory Desk · Pan-India Filings
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight text-balance">
                 Need Help Navigating Corporate, <span className="text-[#D99A32]">MEA RA</span> or Tax Filings?
               </h2>
               <p className="text-xs sm:text-sm text-[#A5B4C4] leading-relaxed max-w-xl">
                 Connect directly with our corporate advisory desk on WhatsApp or phone. We review your entity objectives, outline exact evidentiary documents needed, and itemize official government charges.
               </p>
-              <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#CCD3DA]">
+              <div className="pt-1 flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-2 text-xs text-[#CCD3DA]">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#60A5FA] shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#60A5FA] shrink-0" />
                   <span>Direct CA/CS desk review</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#60A5FA] shrink-0" />
-                  <span>Zero upfront consultation fee</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#60A5FA] shrink-0" />
+                  <span>Zero upfront fee</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#60A5FA] shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#60A5FA] shrink-0" />
                   <span>Itemized government duties</span>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => openEnquiryModal()}
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md active:scale-[0.99] whitespace-nowrap"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 min-h-[46px] bg-white hover:bg-slate-100 text-[#121B24] text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer shadow-md active:scale-[0.99] whitespace-nowrap"
               >
                 <MessageSquare className="w-4 h-4 text-[#0F766E] shrink-0" />
                 <span>Consult on WhatsApp</span>
@@ -896,7 +938,7 @@ export const HomePage: React.FC = () => {
 
               <Link
                 to="/contact"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[44px] bg-transparent hover:bg-white/5 text-[#CCD3DA] hover:text-white text-xs font-semibold uppercase tracking-wider border border-[#3A4754] transition-colors rounded-lg text-center active:scale-[0.99] whitespace-nowrap"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 min-h-[46px] bg-transparent hover:bg-white/5 text-[#CCD3DA] hover:text-white text-xs font-semibold uppercase tracking-wider border border-[#3A4754] transition-colors rounded-lg text-center active:scale-[0.99] whitespace-nowrap"
               >
                 <span>Chennai Office &amp; Contact</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" />
@@ -914,23 +956,23 @@ export const HomePage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6"
       >
-        <div className="pb-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="pb-3.5 sm:pb-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-bold">
               Frequently Asked Questions
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24] mt-1">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24] mt-1 leading-tight">
               Common Questions on Business Registration &amp; Compliance
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
               Clear clarifications regarding entity selection, MEA RA licensing, required documents, and government fee structures.
             </p>
           </div>
           <Link
             to="/faq"
-            className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 whitespace-nowrap"
+            className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 whitespace-nowrap min-h-[36px] sm:min-h-0"
           >
             <span>View Full Knowledge Base</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#1D4ED8]" />

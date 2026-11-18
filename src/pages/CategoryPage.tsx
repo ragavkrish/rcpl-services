@@ -40,13 +40,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
   const otherCategories = serviceCategories.filter((c) => c.slug !== categorySlug);
 
   return (
-    <div className="space-y-12 lg:space-y-16 py-8">
+    <div className="space-y-8 sm:space-y-12 lg:space-y-16 py-5 sm:py-8 pb-14 sm:pb-16">
       {/* Header & Breadcrumbs */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6"
       >
         <Breadcrumbs
           items={[
@@ -55,16 +55,18 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
           ]}
         />
 
-        <div className={`text-white border p-6 sm:p-8 lg:p-12 rounded-2xl relative shadow-xl ${
-          category.slug === 'ra-license'
-            ? 'bg-[#121B24] border-[#D99A32]/40 ring-1 ring-[#D99A32]/20'
-            : 'bg-[#121B24] border-slate-800'
-        }`}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8 space-y-4">
+        <div
+          className={`-mx-4 sm:mx-0 text-white border-y sm:border px-4 py-7 sm:p-8 lg:p-12 rounded-none sm:rounded-2xl relative shadow-none sm:shadow-xl ${
+            category.slug === 'ra-license'
+              ? 'bg-[#121B24] border-[#D99A32]/40 sm:ring-1 sm:ring-[#D99A32]/20'
+              : 'bg-[#121B24] border-slate-800'
+          }`}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+            <div className="lg:col-span-8 space-y-3 sm:space-y-4">
               <div className="flex flex-wrap items-center gap-2">
                 <span
-                  className={`text-[11px] font-mono uppercase tracking-widest font-semibold ${
+                  className={`text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest font-semibold ${
                     category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
                   }`}
                 >
@@ -77,26 +79,30 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                 )}
               </div>
 
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+              <h1 className="font-display text-[24px] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight text-balance">
                 {category.title}
               </h1>
 
-              <p className="text-base sm:text-[17px] text-[#CCD3DA] leading-relaxed max-w-2xl font-normal">
+              <p className="text-sm sm:text-[17px] text-[#CCD3DA] leading-relaxed max-w-2xl font-normal">
                 {category.editorialIntro}
               </p>
             </div>
 
-            <div className={`lg:col-span-4 bg-[#1B2937] p-6 space-y-4 rounded-xl shadow-md border ${
-              category.slug === 'ra-license' ? 'border-[#D99A32]/40' : 'border-[#2D4055]'
-            }`}>
-              <div className={`flex items-center justify-between text-xs font-mono ${
-                category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
-              }`}>
+            <div
+              className={`lg:col-span-4 bg-[#1B2937] p-4 sm:p-6 space-y-3 sm:space-y-4 rounded-xl shadow-md border ${
+                category.slug === 'ra-license' ? 'border-[#D99A32]/40' : 'border-[#2D4055]'
+              }`}
+            >
+              <div
+                className={`flex items-center justify-between text-[11px] sm:text-xs font-mono ${
+                  category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#60A5FA]'
+                }`}
+              >
                 <span>Chennai Advisory Desk</span>
-                <span>{services.length} Scopes Documented</span>
+                <span>{services.length} Scopes</span>
               </div>
               <div className="space-y-1">
-                <h2 className="font-display text-lg font-bold text-white">
+                <h2 className="font-display text-base sm:text-lg font-bold text-white">
                   Consult on {category.title}
                 </h2>
                 <p className="text-xs text-[#CCD3DA] leading-relaxed">
@@ -106,7 +112,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               <button
                 type="button"
                 onClick={() => openEnquiryModal(category.title)}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md whitespace-nowrap"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 min-h-[44px] bg-white hover:bg-slate-100 text-[#121B24] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg shadow-md whitespace-nowrap active:scale-[0.99]"
               >
                 <MessageSquare className="w-4 h-4 text-[#0F766E] shrink-0" />
                 <span className="truncate">Open WhatsApp Discussion</span>
@@ -126,18 +132,18 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6"
       >
-        <div className="pb-4 flex items-baseline justify-between border-b border-slate-200">
+        <div className="pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-slate-200">
           <div>
             <span
-              className={`text-[11px] font-mono uppercase tracking-widest font-semibold ${
+              className={`text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest font-semibold ${
                 category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
               }`}
             >
               Registry Scopes
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#121B24] mt-0.5">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-[#121B24] mt-0.5">
               Available Practices in this Domain
             </h2>
           </div>
@@ -146,13 +152,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
           </span>
         </div>
 
-        <div className="border border-slate-200/80 bg-white divide-y divide-slate-100 rounded-xl overflow-hidden shadow-xs">
+        <div className="-mx-4 sm:mx-0 border-y sm:border border-slate-200/80 bg-white divide-y divide-slate-200/80 sm:divide-slate-100 rounded-none sm:rounded-xl overflow-hidden shadow-none sm:shadow-xs">
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="p-6 hover:bg-slate-50/60 transition-colors"
+              className="px-4 py-4 sm:p-6 hover:bg-slate-50/60 transition-colors"
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-start">
                 {/* Index number */}
                 <div className="md:col-span-1 hidden md:flex items-center">
                   <span
@@ -165,21 +171,29 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                 </div>
 
                 {/* Main description */}
-                <div className="md:col-span-8 space-y-2">
-                  <h3 className="font-display text-xl font-bold text-[#121B24] hover:text-[#152E4D] transition-colors">
+                <div className="md:col-span-8 space-y-1.5 sm:space-y-2">
+                  <span
+                    className={`md:hidden font-mono text-[11px] font-bold block ${
+                      category.slug === 'ra-license' ? 'text-[#D99A32]' : 'text-[#1D4ED8]'
+                    }`}
+                  >
+                    Scope {String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-[#121B24] hover:text-[#152E4D] transition-colors leading-snug">
                     <Link to={`/services/${category.slug}/${service.slug}`}>
                       {service.title}
                     </Link>
                   </h3>
 
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {service.summary}
                   </p>
 
                   {/* Typical candidate profiles */}
                   {service.whoNeedsThis && service.whoNeedsThis.length > 0 && (
-                    <div className="pt-2 text-xs text-slate-500 space-y-1">
-                      <p className="font-semibold text-slate-700">
+                    <div className="pt-1.5 sm:pt-2 text-xs text-slate-500 space-y-1">
+                      <p className="hidden sm:block font-semibold text-slate-700">
                         Typical Application Context:
                       </p>
                       <ul className="space-y-1">
@@ -201,23 +215,23 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                 </div>
 
                 {/* Actions */}
-                <div className="md:col-span-3 flex flex-wrap items-center md:items-end justify-between md:justify-start gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => openEnquiryModal(service.title)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[38px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer active:scale-95"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5 text-[#60A5FA]" />
-                    <span>Direct Enquiry</span>
-                  </button>
-
+                <div className="md:col-span-3 flex items-center justify-between md:justify-start md:flex-col md:items-end lg:flex-row lg:items-center gap-3 pt-1 sm:pt-2">
                   <Link
                     to={`/services/${category.slug}/${service.slug}`}
-                    className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 min-h-[38px] py-1"
+                    className="text-xs font-semibold text-[#152E4D] hover:underline inline-flex items-center gap-1 min-h-[40px] py-1 md:order-2"
                   >
                     <span>Inspect Profile</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#1D4ED8]" />
                   </Link>
+
+                  <button
+                    type="button"
+                    onClick={() => openEnquiryModal(service.title)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] bg-[#152E4D] hover:bg-[#0D1E33] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer active:scale-95 md:order-1 whitespace-nowrap"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-[#60A5FA]" />
+                    <span>Direct Enquiry</span>
+                  </button>
                 </div>
               </div>
             </article>
@@ -233,7 +247,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
         viewport={viewportConfig}
         className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-4 text-xs text-slate-600">
+        <div className="p-4 sm:p-6 bg-slate-50 border-l-2 sm:border border-[#1D4ED8] sm:border-slate-200 rounded-none sm:rounded-xl flex items-start gap-3 sm:gap-4 text-xs text-slate-600">
           <ShieldAlert className="w-5 h-5 text-[#1D4ED8] shrink-0 mt-0.5" />
           <div className="space-y-1">
             <h3 className="font-semibold text-[#121B24]">
@@ -252,29 +266,40 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-4"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-4"
       >
         <div className="pb-3 border-b border-slate-200 mb-4">
-          <h3 className="font-display text-xl font-bold text-[#121B24]">
+          <h3 className="font-display text-lg sm:text-xl font-bold text-[#121B24]">
             Other Statutory Practice Domains
           </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          {otherCategories.map((c) => (
-            <Link
-              key={c.id}
-              to={`/services/${c.slug}`}
-              className="p-4 bg-white border border-slate-200/80 hover:border-[#152E4D] rounded-xl hover:shadow-xs transition-all flex flex-col justify-between group"
-            >
-              <div className="flex items-center justify-between text-xs text-[#1D4ED8] font-mono">
-                <span>{c.number}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#152E4D]" />
-              </div>
-              <span className="font-display font-bold text-[#121B24] group-hover:text-[#152E4D] mt-2 text-sm leading-snug">
-                {c.title}
-              </span>
-            </Link>
-          ))}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-3">
+          {otherCategories.map((c) => {
+            const isRa = c.slug === 'ra-license';
+            return (
+              <Link
+                key={c.id}
+                to={`/services/${c.slug}`}
+                className={`p-3.5 sm:p-4 bg-white border rounded-xl hover:shadow-xs transition-all flex flex-col justify-between group min-h-[82px] ${
+                  isRa
+                    ? 'border-[#D99A32]/50 hover:border-[#D99A32]'
+                    : 'border-slate-200/80 hover:border-[#152E4D]'
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-between text-[11px] sm:text-xs font-mono ${
+                    isRa ? 'text-[#D99A32] font-bold' : 'text-[#1D4ED8]'
+                  }`}
+                >
+                  <span>{c.number}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#152E4D]" />
+                </div>
+                <span className="font-display font-bold text-[#121B24] group-hover:text-[#152E4D] mt-1.5 text-xs sm:text-sm leading-snug">
+                  {c.title}
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </motion.section>
     </div>

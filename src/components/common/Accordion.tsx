@@ -49,7 +49,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         const panelId = `faq-panel-${idx}`;
 
         return (
-          <div key={idx} className="py-5 transition-colors">
+          <div key={idx} className="py-4 sm:py-5 transition-colors">
             <h3 className="text-base">
               <button
                 type="button"
@@ -57,17 +57,17 @@ export const Accordion: React.FC<AccordionProps> = ({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(idx)}
-                className={`w-full text-left flex items-start justify-between gap-4 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-1 ${
+                className={`w-full min-h-[44px] py-0.5 text-left flex items-start justify-between gap-3 sm:gap-4 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-1 ${
                   isDark
                     ? 'text-white hover:text-[#60A5FA]'
                     : 'text-[#121B24] hover:text-[#152E4D]'
                 }`}
               >
-                <span className="font-display text-lg sm:text-[19px] font-bold leading-snug tracking-tight">
+                <span className="font-display text-[15px] sm:text-lg font-semibold sm:font-bold leading-snug tracking-tight">
                   {item.question}
                 </span>
                 <span
-                  className={`mt-1 shrink-0 w-6 h-6 flex items-center justify-center transition-transform duration-150 ${
+                  className={`mt-0.5 shrink-0 w-7 h-7 flex items-center justify-center transition-transform duration-150 ${
                     isDark ? 'text-[#A5B4C4]' : 'text-[#6C7A89]'
                   } ${isOpen ? 'rotate-180 text-[#1D4ED8]' : ''}`}
                 >
@@ -85,11 +85,11 @@ export const Accordion: React.FC<AccordionProps> = ({
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
                   <div
-                    className={`pt-2.5 pb-1 pr-6 sm:pr-8 text-xs sm:text-sm leading-relaxed ${
+                    className={`pt-2 pb-1 pr-2 sm:pr-8 text-[13px] sm:text-sm leading-relaxed ${
                       isDark ? 'text-[#CCD3DA]' : 'text-[#3A4754]'
                     }`}
                   >

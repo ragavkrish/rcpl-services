@@ -97,28 +97,28 @@ export const FAQPage: React.FC = () => {
       : allFaqs.filter((item) => item.category === activeTab || item.category === 'general');
 
   return (
-    <div className="space-y-12 lg:space-y-16 py-8">
+    <div className="space-y-8 sm:space-y-12 lg:space-y-16 py-5 sm:py-8">
       {/* Header & Breadcrumbs */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6"
       >
         <Breadcrumbs items={[{ label: 'FAQs' }]} />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
-          <div className="max-w-3xl space-y-4">
-            <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
+        <div className="-mx-4 sm:mx-0 bg-[#121B24] text-white border-y sm:border border-slate-800 px-4 py-7 sm:p-8 lg:p-14 rounded-none sm:rounded-2xl relative shadow-none sm:shadow-xl">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <div className="text-[10.5px] sm:text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
               Statutory Knowledge Base · Regulatory Guidance
             </div>
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h1 className="font-display text-[26px] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Frequently Asked Questions
             </h1>
 
-            <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
-              Methodical clarifications regarding entity incorporation, MEA Overseas RA licensing, trademark registration, tax compliance, and corporate governance in India.
+            <p className="text-sm sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
+              Methodical clarifications regarding entity incorporation, <span className="text-[#D99A32] font-semibold">MEA Overseas RA licensing</span>, trademark registration, tax compliance, and corporate governance in India.
             </p>
           </div>
         </div>
@@ -130,10 +130,10 @@ export const FAQPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-8"
       >
         {/* Category Segmented Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-200">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2.5 -mx-4 px-4 sm:mx-0 sm:px-0 border-b border-slate-200 scrollbar-none">
           {[
             { id: 'all', label: 'All Statutory Questions' },
             { id: 'ra', label: 'RA License (MEA)' },
@@ -149,7 +149,7 @@ export const FAQPage: React.FC = () => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`px-4 py-2 min-h-[38px] text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3.5 sm:px-4 py-2 min-h-[40px] text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 shrink-0 ${
                   isActive
                     ? isRa
                       ? 'bg-[#D99A32] text-white shadow-sm ring-2 ring-[#D99A32]/30'
@@ -180,14 +180,14 @@ export const FAQPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-12"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12"
       >
-        <div className="p-8 sm:p-10 bg-white border border-slate-200/80 rounded-2xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="p-5 sm:p-10 bg-white border border-slate-200/80 rounded-xl sm:rounded-2xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <div className="space-y-1 max-w-xl">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
+            <span className="text-[10.5px] sm:text-[11px] font-mono uppercase tracking-widest text-[#1D4ED8] font-semibold">
               Direct Advisory Desk
             </span>
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#121B24]">
+            <h2 className="font-display text-lg sm:text-2xl font-bold text-[#121B24]">
               Have a specific question not covered here?
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -198,9 +198,9 @@ export const FAQPage: React.FC = () => {
           <button
             type="button"
             onClick={() => openEnquiryModal()}
-            className="px-6 py-3.5 min-h-[44px] bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0 cursor-pointer inline-flex items-center gap-2 shadow-xs whitespace-nowrap"
+            className="w-full sm:w-auto justify-center px-6 py-3.5 min-h-[46px] bg-[#152E4D] hover:bg-[#0D1E33] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0 cursor-pointer inline-flex items-center gap-2 shadow-xs whitespace-nowrap active:scale-[0.99]"
           >
-            <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
+            <MessageSquare className="w-4 h-4 text-[#60A5FA] shrink-0" />
             <span>Consult on WhatsApp</span>
           </button>
         </div>

@@ -52,6 +52,17 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   h1, h2, h3, h4, .font-display {
@@ -64,6 +75,15 @@
     background-color: #152E4D;
     color: #FFFFFF;
   }
+}
+
+/* Mobile-safe hidden scrollbar for horizontal filter strips */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* Print and Editorial Utilities */

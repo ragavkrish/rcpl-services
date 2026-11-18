@@ -170,28 +170,28 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
     <div
       className={`bg-white text-[#121B24] ${
         isModal
-          ? 'p-6 sm:p-8'
-          : 'p-6 sm:p-8 border border-slate-200/80 rounded-xl shadow-xs'
+          ? 'px-5 pt-3 pb-6 sm:p-8'
+          : 'p-5 sm:p-8 border border-slate-200/80 rounded-xl shadow-xs'
       }`}
     >
       {heading && (
-        <div className="mb-6 space-y-2 pb-4 border-b border-slate-100">
+        <div className="mb-5 sm:mb-6 space-y-1.5 sm:space-y-2 pb-3.5 sm:pb-4 border-b border-slate-100 pr-9 sm:pr-0">
           <div className="text-[11px] font-mono uppercase tracking-wider text-[#1D4ED8] font-semibold">
             Registry Advisory Intake Desk
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#121B24]">
+          <h3 className="font-display text-xl sm:text-3xl font-bold tracking-tight text-[#121B24]">
             {heading}
           </h3>
           <p className="text-xs text-[#556371] leading-relaxed font-normal">
             {subheading ||
               'Submit your entity facts below. Your brief is assembled into WhatsApp for immediate direct review with our senior compliance officers.'}
           </p>
-          <div className="pt-1 text-[11px] text-[#6C7A89] flex flex-wrap items-center gap-x-3 gap-y-1">
+          <div className="pt-1 text-[11px] text-[#6C7A89] flex flex-wrap items-center gap-x-2.5 gap-y-1">
             <span>Direct partner review</span>
             <span aria-hidden="true">·</span>
             <span>Zero upfront fee</span>
             <span aria-hidden="true">·</span>
-            <span>You review brief before dispatch</span>
+            <span>Review before dispatch</span>
           </div>
         </div>
       )}
@@ -299,18 +299,19 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       <form onSubmit={handleSubmit} noValidate className="space-y-4">
         {/* Full Name */}
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5 mb-1.5">
             <label
               htmlFor="enquiry-name"
               className="block text-xs font-semibold text-[#121B24]"
             >
               Full Legal Name <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[11px] text-[#6C7A89]">As in Aadhaar/PAN records</span>
+            <span className="text-[11px] text-[#6C7A89]">As in Aadhaar/PAN</span>
           </div>
           <input
             id="enquiry-name"
             type="text"
+            autoComplete="name"
             required
             aria-required="true"
             aria-invalid={Boolean(errors.fullName)}
@@ -321,13 +322,13 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             }}
             placeholder="e.g. Ramesh Chandra Sharma"
             aria-describedby={errors.fullName ? 'name-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 min-h-[44px] text-base sm:text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.fullName ? '!border-[#B42318]' : ''
             }`}
           />
           {errors.fullName && (
             <p id="name-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
-              <AlertCircle className="w-3.5 h-3.5" />
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               <span>{errors.fullName}</span>
             </p>
           )}
@@ -335,18 +336,20 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Contact Phone */}
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5 mb-1.5">
             <label
               htmlFor="enquiry-phone"
               className="block text-xs font-semibold text-[#121B24]"
             >
               Contact Phone / WhatsApp <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[11px] text-[#6C7A89]">For statutory review handoff</span>
+            <span className="text-[11px] text-[#6C7A89]">For review handoff</span>
           </div>
           <input
             id="enquiry-phone"
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             required
             aria-required="true"
             aria-invalid={Boolean(errors.contactNumber)}
@@ -355,15 +358,15 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               setContactNumber(e.target.value);
               if (errors.contactNumber) setErrors((prev) => ({ ...prev, contactNumber: undefined }));
             }}
-            placeholder="e.g. 98765 43210 (or +91...)"
+            placeholder="e.g. 98765 43210"
             aria-describedby={errors.contactNumber ? 'phone-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 min-h-[44px] text-base sm:text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.contactNumber ? '!border-[#B42318]' : ''
             }`}
           />
           {errors.contactNumber && (
             <p id="phone-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
-              <AlertCircle className="w-3.5 h-3.5" />
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               <span>{errors.contactNumber}</span>
             </p>
           )}
@@ -371,14 +374,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Service of Interest */}
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5 mb-1.5">
             <label
               htmlFor="enquiry-service"
               className="block text-xs font-semibold text-[#121B24]"
             >
-              Statutory Service of Interest <span className="text-[#B42318]">*</span>
+              Statutory Service <span className="text-[#B42318]">*</span>
             </label>
-            <span className="text-[11px] text-[#6C7A89]">MCA / IP / Tax domain</span>
+            <span className="text-[11px] text-[#6C7A89]">MEA / MCA / IP / Tax</span>
           </div>
           <select
             id="enquiry-service"
@@ -391,7 +394,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               if (errors.service) setErrors((prev) => ({ ...prev, service: undefined }));
             }}
             aria-describedby={errors.service ? 'service-error' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
+            className={`w-full px-3.5 py-2.5 min-h-[44px] text-base sm:text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] ${
               errors.service ? '!border-[#B42318]' : ''
             }`}
           >
@@ -411,7 +414,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
           </select>
           {errors.service && (
             <p id="service-error" className="mt-1 text-xs text-[#B42318] font-medium flex items-center gap-1">
-              <AlertCircle className="w-3.5 h-3.5" />
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               <span>{errors.service}</span>
             </p>
           )}
@@ -419,37 +422,39 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         {/* Message / Brief requirement */}
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5 mb-1.5">
             <label
               htmlFor="enquiry-message"
               className="block text-xs font-semibold text-[#121B24]"
             >
               Entity Facts / Notes <span className="text-[#6C7A89] font-normal">(optional)</span>
             </label>
-            <span className="text-[11px] text-[#6C7A89]">State, authorized capital, or timeline</span>
+            <span className="text-[11px] text-[#6C7A89]">State, timeline, notes</span>
           </div>
           <textarea
             id="enquiry-message"
             rows={3}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Share specific context (e.g. number of directors, registered office state, nature of business activity)..."
-            className="w-full px-3.5 py-2.5 text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] resize-y"
+            placeholder="Share context (e.g. directors, registered state, activity)..."
+            className="w-full px-3.5 py-2.5 text-base sm:text-sm text-[#121B24] bg-white border border-[#CCD3DA] rounded-lg placeholder-[#98A5B3] focus:outline-hidden focus:border-[#152E4D] focus:ring-1 focus:ring-[#152E4D] resize-y"
           />
         </div>
 
         {/* Submit Button */}
-        <div className="pt-2">
+        <div className="pt-1.5">
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer active:scale-[0.99] border border-[#0D1E33]"
+            className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-[#152E4D] hover:bg-[#0D1E33] text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer active:scale-[0.99] border border-[#0D1E33]"
           >
-            <MessageSquare className="w-4 h-4 text-[#60A5FA]" />
-            <span>{selectedService ? `Enquire for ${selectedService}` : 'Open WhatsApp Consultation Docket'}</span>
-            <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+            <MessageSquare className="w-4 h-4 text-[#60A5FA] shrink-0" />
+            <span className="truncate">
+              {selectedService ? `Enquire: ${selectedService}` : 'Open WhatsApp Consultation Docket'}
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />
           </button>
-          <p className="text-[11px] text-[#6C7A89] text-center mt-2">
-            Dispatches directly to WhatsApp. You review and approve message text before sending.
+          <p className="text-[11px] text-[#6C7A89] text-center mt-2 leading-relaxed">
+            Opens in WhatsApp so you can review and approve your message before sending.
           </p>
         </div>
       </form>

@@ -40,24 +40,29 @@ export const EnquiryModal: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1620]/75 backdrop-blur-[2px] flex items-center justify-center p-4 sm:p-6"
+          transition={{ duration: 0.18 }}
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1620]/75 sm:backdrop-blur-[2px] flex items-end sm:items-center justify-center p-0 sm:p-6"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeEnquiryModal();
           }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 14 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.97, y: 10 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-xl bg-white rounded-xl shadow-2xl border border-[#CCD3DA] my-auto max-h-[92vh] overflow-y-auto"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-xl bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border-t sm:border border-[#CCD3DA] sm:my-auto max-h-[92dvh] overflow-y-auto overscroll-contain"
           >
+            {/* Native mobile bottom-sheet handle */}
+            <div className="sm:hidden pt-2.5 pb-0.5 flex justify-center" aria-hidden="true">
+              <span className="w-10 h-1 rounded-full bg-slate-300" />
+            </div>
+
             <button
               type="button"
               onClick={closeEnquiryModal}
               aria-label="Close consultation modal"
-              className="absolute top-3 right-3 z-10 w-11 h-11 min-h-[44px] min-w-[44px] rounded-lg border border-[#CCD3DA] text-[#556371] hover:text-[#121B24] hover:bg-[#F6F7F5] flex items-center justify-center transition-colors cursor-pointer active:scale-95 bg-white/90"
+              className="absolute top-3 right-3 z-10 w-10 h-10 sm:w-11 sm:h-11 min-h-[40px] min-w-[40px] rounded-lg border border-slate-200 text-[#556371] hover:text-[#121B24] hover:bg-[#F6F7F5] flex items-center justify-center transition-colors cursor-pointer active:scale-95 bg-white/95"
             >
               <X className="w-5 h-5" />
             </button>

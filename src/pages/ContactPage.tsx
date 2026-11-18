@@ -7,27 +7,27 @@ import { Check, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   return (
-    <div className="space-y-12 lg:space-y-16 py-8">
+    <div className="space-y-8 sm:space-y-12 lg:space-y-16 py-5 sm:py-8">
       {/* Header & Breadcrumbs */}
       <motion.section
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6"
       >
         <Breadcrumbs items={[{ label: 'Contact Us' }]} />
 
-        <div className="bg-[#121B24] text-white border border-slate-800 p-6 sm:p-8 lg:p-14 rounded-2xl relative shadow-xl">
-          <div className="max-w-3xl space-y-4">
-            <div className="text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
+        <div className="-mx-4 sm:mx-0 bg-[#121B24] text-white border-y sm:border border-slate-800 px-4 py-7 sm:p-8 lg:p-14 rounded-none sm:rounded-2xl relative shadow-none sm:shadow-xl">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <div className="text-[10.5px] sm:text-[11px] font-mono text-[#60A5FA] uppercase tracking-widest font-semibold">
               Statutory Consultation · Chennai Head Office · Pan-India Desk
             </div>
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h1 className="font-display text-[26px] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Contact RCPL Services
             </h1>
 
-            <p className="text-base sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
+            <p className="text-sm sm:text-lg text-[#CCD3DA] leading-relaxed font-normal">
               Discuss your enterprise requirements for company formation, <span className="text-[#D99A32] font-semibold">MEA Overseas RA Licenses</span>, intellectual property filings, tax registrations, or statutory secretarial changes directly with our team.
             </p>
           </div>
@@ -40,9 +40,9 @@ export const ContactPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={viewportConfig}
-        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-16"
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left: Enquiry Form */}
           <div className="lg:col-span-7">
             <EnquiryForm />
@@ -50,25 +50,25 @@ export const ContactPage: React.FC = () => {
 
           {/* Right: Consultation Guidance */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white p-7 sm:p-8 border border-slate-200/80 rounded-xl shadow-xs space-y-4">
+            <div className="bg-transparent sm:bg-white pt-4 sm:p-7 border-t sm:border border-slate-200/80 rounded-none sm:rounded-xl sm:shadow-xs space-y-3.5 sm:space-y-4">
               <h2 className="font-display text-lg font-bold text-[#121B24]">
                 How the Consultation Works
               </h2>
 
-              <ul className="space-y-3.5 text-xs text-slate-600 divide-y divide-slate-100">
-                <li className="pt-3 first:pt-0 flex items-start gap-3">
+              <ul className="space-y-3 text-xs text-slate-600 divide-y divide-slate-200/80 sm:divide-slate-100">
+                <li className="pt-2.5 first:pt-0 flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
                   <span className="leading-relaxed">
                     <strong className="text-[#121B24]">Submit Brief:</strong> Enter your legal name, contact phone number, and candidate service of interest.
                   </span>
                 </li>
-                <li className="pt-3 flex items-start gap-3">
+                <li className="pt-2.5 flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
                   <span className="leading-relaxed">
                     <strong className="text-[#121B24]">WhatsApp Handoff:</strong> Your brief is formatted and opened in your personal WhatsApp app.
                   </span>
                 </li>
-                <li className="pt-3 flex items-start gap-3">
+                <li className="pt-2.5 flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
                   <span className="leading-relaxed">
                     <strong className="text-[#121B24]">You Inspect &amp; Send:</strong> You retain complete editorial control to review, edit, and send the message.
@@ -77,27 +77,27 @@ export const ContactPage: React.FC = () => {
               </ul>
             </div>
 
-            <div className="bg-white p-6 sm:p-7 border border-slate-200/80 rounded-xl shadow-xs space-y-3">
+            <div className="bg-white p-5 sm:p-7 border border-slate-200/80 rounded-xl shadow-xs space-y-3">
               <h3 className="font-display text-base font-bold text-[#121B24]">
                 Chennai Head Office &amp; Operating Hours
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Our advisory desk reviews incoming WhatsApp enquiries during regular commercial business hours (Monday to Saturday, 9:30 AM to 6:30 PM IST).
               </p>
-              <div className="pt-2 border-t border-slate-100 text-xs text-slate-700 space-y-2">
-                <div className="flex items-center gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#1D4ED8] shrink-0" />
+              <div className="pt-2 border-t border-slate-100 text-xs text-slate-700 space-y-2.5">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                   <span><strong>Head Office:</strong> Chennai, Tamil Nadu · Pan-India Electronic Filings</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#152E4D] shrink-0" />
-                  <a href="tel:+918691001900" className="hover:text-[#152E4D] font-semibold">
+                  <a href="tel:+918691001900" className="hover:text-[#152E4D] font-semibold py-0.5">
                     +91 86910 01900
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-[#1D4ED8] shrink-0" />
-                  <a href="mailto:enquiry@rcplservices.com" className="hover:text-[#152E4D]">
+                  <a href="mailto:enquiry@rcplservices.com" className="hover:text-[#152E4D] py-0.5">
                     enquiry@rcplservices.com
                   </a>
                 </div>
@@ -108,7 +108,7 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1.5 text-xs text-slate-600">
+            <div className="p-4 sm:p-6 bg-slate-50 border-l-2 sm:border border-[#152E4D] sm:border-slate-200/80 rounded-none sm:rounded-xl space-y-1.5 text-xs text-slate-600">
               <div className="font-semibold text-[#121B24]">
                 Confidentiality &amp; Privacy
               </div>
